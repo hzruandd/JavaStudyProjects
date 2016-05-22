@@ -42,7 +42,7 @@ public class MainView extends Frame {
 	public MainView() {
 		view_x = (SCREEN_WIDTH - viewWidth)/2;
 		view_y = (SCREEN_HEIGHT - viewHeight)/2;
-	    for (int i=0; i<5; i++) {
+	    for (int i=0; i<7; i++) {
 	    	tanks.add(new Tank(50 + Tank.random.nextInt(viewWidth - 50), 50 + Tank.random.nextInt(viewHeight - 50), false,Tank.Direction.D, this));
 	    }
 	}
