@@ -10,6 +10,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import java.awt.Color;
+import javax.swing.border.LineBorder;
+import javax.swing.JScrollPane;
 
 public class TestView extends JFrame {
 
@@ -29,6 +33,9 @@ public class TestView extends JFrame {
 	private JTextField stuAgeAlter;
 	private JTextField stuSexAlter;
 	private JTextField stuAddressAlter;
+	private JTable table;
+	private JTextField pageNo;
+	private StuTableModel stuTableModel = new StuTableModel();
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -156,12 +163,12 @@ public class TestView extends JFrame {
 		alterPane.setLayout(null);
 		
 		stuIdAlter = new JTextField();
-		stuIdAlter.setBounds(92, 143, 172, 21);
+		stuIdAlter.setBounds(28, 82, 172, 21);
 		alterPane.add(stuIdAlter);
 		stuIdAlter.setColumns(10);
 		
 		JLabel label_6 = new JLabel("请输入要修改的学生的学号");
-		label_6.setBounds(92, 102, 172, 31);
+		label_6.setBounds(39, 41, 172, 31);
 		alterPane.add(label_6);
 		
 		JLabel lblNewLabel = new JLabel("姓名");
@@ -186,32 +193,59 @@ public class TestView extends JFrame {
 		alterPane.add(label_7);
 		
 		stuAgeAlter = new JTextField();
-		stuAgeAlter.setBounds(91, 229, 66, 21);
+		stuAgeAlter.setBounds(115, 229, 66, 21);
 		alterPane.add(stuAgeAlter);
 		stuAgeAlter.setColumns(10);
 		
 		stuSexAlter = new JTextField();
-		stuSexAlter.setBounds(198, 229, 66, 21);
+		stuSexAlter.setBounds(224, 229, 66, 21);
 		alterPane.add(stuSexAlter);
 		stuSexAlter.setColumns(10);
 		
 		stuAddressAlter = new JTextField();
-		stuAddressAlter.setBounds(303, 229, 66, 21);
+		stuAddressAlter.setBounds(373, 229, 149, 21);
 		alterPane.add(stuAddressAlter);
 		stuAddressAlter.setColumns(10);
 		
 		JButton button = new JButton("开始修改");
 		
-		button.setBounds(303, 142, 93, 23);
+		button.setBounds(300, 58, 93, 23);
 		alterPane.add(button);
 		
 		JButton button_1 = new JButton("提交修改");
-		button_1.setBounds(429, 142, 93, 23);
+		
+		button_1.setBounds(439, 58, 93, 23);
 		alterPane.add(button_1);
 		
 		JPanel searchPane = new JPanel();
 		menu.add(searchPane, "searchPane");
 		searchPane.setLayout(null);
+		
+		JButton upPage = new JButton("上一页");
+		upPage.setBounds(62, 275, 93, 23);
+		searchPane.add(upPage);
+		
+		JButton nextPage = new JButton("下一页");
+		nextPage.setBounds(363, 275, 93, 23);
+		searchPane.add(nextPage);
+		
+		pageNo = new JTextField();
+		pageNo.setBounds(231, 276, 66, 21);
+		searchPane.add(pageNo);
+		pageNo.setColumns(10);
+		
+		//table = new JTable(StuControl.getStuControl().getTableData(), StuControl.getStuControl().getTableRow());
+		table = new JTable();
+		table.setModel(stuTableModel);
+		
+		//table.setToolTipText("fd dsaf ");
+		//table.setBorder(new LineBorder(new Color(255, 160, 122), 3));
+		//table.setBackground(new Color(60, 179, 113));
+		//table.setBounds(10, 111, 257, -107);
+		//searchPane.add(table);
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(40, 10, 550, 250);
+		searchPane.add(scrollPane);
 		
 		addStu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -246,6 +280,8 @@ public class TestView extends JFrame {
 		searchStu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				menuLayout.show(menu, "searchPane");
+				stuTableModel.updateDate();
+				//scrollPane.repaint();
 			}
 		});
 		
@@ -258,20 +294,39 @@ public class TestView extends JFrame {
 		
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int stu_id = Integer.parseInt(stuIdAlter.getText());
+				int stu_id = Integer.parseInt(stuIdAlter.getText().trim());
+				//System.out.println(stu_id);
 				Stu stu = StuControl.getStuControl().getStuOne(stu_id);
+				
 				if (stu != null) {
 					stuNameAlter.setText(stu.getStu_name());
 					stuAgeAlter.setText(String.valueOf(stu.getStu_age()));
 					stuSexAlter.setText(stu.getStu_sex());
 					stuAddressAlter.setText(stu.getStu_address());
-					
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "没有此学生!");
 				}
 			}
 		});
+		
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Stu stu = null;
+				int stu_id = Integer.parseInt(stuIdAlter.getText());
+				String stu_name = stuNameAlter.getText();
+				int stu_age = Integer.parseInt(stuAgeAlter.getText());
+				String stu_sex = stuSexAlter.getText();
+				String stu_address = stuAddressAlter.getText();
+				System.out.println(stu_address);
+				stu = new Stu(stu_id, stu_id, stu_name, stu_age, stu_sex, stu_address);
+				if (StuControl.getStuControl().alterStu(stu)) {
+					JOptionPane.showMessageDialog(null, "修改成功!");
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "修改失败，请重新输入!");
+				}
+			}
+		});
 	}
-
 }

@@ -2,9 +2,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
-
-import org.omg.Messaging.SyncScopeHelper;
 
 public class JdbcUtil {
 	//private SQLConn sqlConn = new SQLConn();
@@ -29,12 +28,13 @@ public class JdbcUtil {
 	
 	//获取所有学生信息
 	@SuppressWarnings("finally")
-	public List<Stu> getStuList(List<Stu> stuList) {
+	public ArrayList<Stu> getStuList() {
 		
+		ArrayList<Stu> stuList = new ArrayList<Stu>();
 		try {
 			sql = conn.createStatement();
-			String sqlQuery = "SELECT stu_id,stu.info_id stu_name, stu_age, stu_sex, stu_address "
-					+ "FROM stu INNER JOIN stu_info USING(info_id)";
+			String sqlQuery = "SELECT stu_id,stu.info_id as info_id, stu_name, stu_age, stu_sex, stu_address "
+					+ "FROM stu INNER JOIN stu_info ON stu_id = stu_info.info_id ";
 			ResultSet rs = sql.executeQuery(sqlQuery);
 			while (rs.next()) {
 				int stu_id = rs.getInt("stu_id");
@@ -96,17 +96,17 @@ public class JdbcUtil {
 	public boolean addStu(Stu stu) throws SQLException {
 		if (!isStu(stu)) {
 			sql = conn.createStatement();
-			String sqlAddStu = "INSERT INTO stu (stu_id, info_id, major_id) VALUES(" + stu.getStu_id()+","+
-			   stu.getInfo_id()+", "+stu.getInfo_id()+2+")";
+			String sqlAddStu = "INSERT INTO stu (stu_id, info_id) VALUES(" + stu.getStu_id()+","+
+			   stu.getInfo_id()+")";
 			String sqlAddInfo = "INSERT INTO stu_info VALUES ("+stu.getInfo_id()+",'"+ stu.getStu_name()+"',"
 					+ stu.getStu_age()+",'" +stu.getStu_sex()+"', '"+ stu.getStu_address()+"')";
 			sql.executeUpdate(sqlAddStu);
 			sql.executeUpdate(sqlAddInfo);
-			System.out.println("111");
+			//System.out.println("111");
 			return true;
 		}
 		else {
-			System.out.println("222");
+			//System.out.println("222");
 			return false;
 		}
 	}
@@ -124,12 +124,12 @@ public class JdbcUtil {
 		}
 	}
 	
-	//获取单个学生的
+	//获取单个学生
 	public Stu getStu(int stu_id) throws SQLException {
 		Stu stu = null;
 		sql = conn.createStatement();
 		String sqlGetStu = "SELECT stu.info_id, stu_name, stu_age, stu_sex, stu_address FROM stu "
-				+ "INNER JOIN stu_info WHERE stu_id = " +stu_id+ "";
+				+ "INNER JOIN stu_info ON stu_id = stu_info.info_id WHERE stu_id = " +stu_id+ "";
 		ResultSet rs = sql.executeQuery(sqlGetStu);
 		if (rs.next()) {
 			int info_id = rs.getInt("info_id");

@@ -17,6 +17,12 @@ public class Stu {
 		this.stu_address = stu_address;
 	}
 
+	//将学生信息转化为对象数组
+	public Object[] stuToArray() {
+		Object[] object = {stu_id, stu_name, stu_age, stu_sex, stu_address};
+		return object;
+	}
+	
 	public int getInfo_id() {
 		return info_id;
 	}
