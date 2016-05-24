@@ -109,8 +109,17 @@ public class Bullets {
 	
 	public boolean hitTank(Tank t) {
 		if (this.live && this.getRect().intersects(t.getRect()) && t.isLive() && this.camp != t.isCamp()) {
+			if (t.isCamp()) {
+				t.setLife(t.getLife() - 20);
+				if (t.getLife() <=0 ) {
+					t.setLive(false);
+				}
+			}
+			else {
+				t.setLive(false);
+			}
 			this.live = false;
-			t.setLive(false);
+			//t.setLive(false);
 			Explode explode = new Explode(x, y, mv);
 			mv.explodes.add(explode);
 			return true;
@@ -127,7 +136,14 @@ public class Bullets {
 		}
 		return false;
 	}
-	
+
+	public boolean hitWall(Wall wall) {
+		if (this.live && this.getRect().intersects(wall.getRec())) {
+			this.live = false;
+			return true;
+		}
+		return false;
+	}
 	public int getX() {
 		return x;
 	}

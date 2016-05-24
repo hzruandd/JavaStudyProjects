@@ -12,9 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainView extends Frame {
-	/**
-	 * 
-	 */
+	private static final long serialVersionUID = 5248857607736720286L;
+
     public static final int viewHeight = 600;
 	public static final int viewWidth = 800;
 	private final String viewName = "坦克大战";             //窗体名字
@@ -25,6 +24,7 @@ public class MainView extends Frame {
 	//坦克的位置
 	int x = 50;
 	int y = 50;
+	private Blood blood = new Blood();
 	
 	//双缓冲引用图片
     Image offScreenImage = null;
@@ -39,10 +39,13 @@ public class MainView extends Frame {
   	List<Explode> explodes = new ArrayList<Explode>();
   	List<Tank> tanks = new ArrayList<Tank>();
   	
+  	Wall w1 = new Wall(100, 200, 20, 150, this);
+  	Wall w2 = new Wall(300, 100, 300, 20, this);
+  	
 	public MainView() {
 		view_x = (SCREEN_WIDTH - viewWidth)/2;
 		view_y = (SCREEN_HEIGHT - viewHeight)/2;
-	    for (int i=0; i<7; i++) {
+	    for (int i=0; i<5; i++) {
 	    	tanks.add(new Tank(50 + Tank.random.nextInt(viewWidth - 50), 50 + Tank.random.nextInt(viewHeight - 50), false,Tank.Direction.D, this));
 	    }
 	}
@@ -52,11 +55,13 @@ public class MainView extends Frame {
 		g.drawString("子弹的数量: " + bullets.size(), 10,	50);
 		g.drawString("爆炸的数量:" + explodes.size(), 10, 70);
 		g.drawString("敌方坦克的数量: " + tanks.size(), 10,	90);
+		g.drawString("我方坦克的血量: " + myTank.getLife(), 10, 110);
 		for (int i = 0; i<bullets.size(); i++) {
 			Bullets bullet = bullets.get(i);
-			//bullet.hitTank(enemyTank);     //判断子弹是否打中敌方坦克
 			bullet.hitTanks(tanks);
 			bullet.hitTank(myTank);
+			bullet.hitWall(w1);
+			bullet.hitWall(w2);
 			bullet.draw(g);
 		}
 		
@@ -67,11 +72,17 @@ public class MainView extends Frame {
 		
 		for (int i=0; i<tanks.size(); i++) {
 			Tank tank = tanks.get(i);
+			tank.impactWall(w1);
+			tank.impactWall(w2);
+			tank.impactTanks(tanks);
 			tank.draw(g);
 		}
 		
 		myTank.draw(g);  //画我方坦克
-		//enemyTank.draw(g);  //画敌方坦克
+		w1.draw(g);
+		w2.draw(g);
+		myTank.eat(blood);
+		blood.draw(g);
 	}
 	public void update(Graphics g) {
 		if (offScreenImage == null ) {

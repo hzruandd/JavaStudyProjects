@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.util.List;
 import java.util.Random;
 
 
@@ -16,8 +17,19 @@ public class Tank {
 	
 	private int x;  //坦克的X轴坐标(不是中心坐标)
 	private int y;  //坦克的Y轴坐标
-	private int radius = 30; //圆的半径
+	private int radius = 30; //圆的直径
+	private int oldX;   //坦克撞墙前的坐标
+	private int oldY;   
+	private int life = 100;
+	private BloodBar bloodBar = new BloodBar();
 	
+	public int getLife() {
+		return life;
+	}
+	public void setLife(int life) {
+		this.life = life;
+	}
+
 	private boolean bL = false, bU = false, bR = false, bD = false;
 	enum Direction {L, LU, U, RU, R, RD, D, LD, STOP};
 	private Direction dir = Direction.STOP;
@@ -47,6 +59,8 @@ public class Tank {
 	public Tank(int x, int y, boolean camp) {
 		this.x = x;
 		this.y = y;
+		this.oldX = x;
+		this.oldY = y;
 		this.camp = camp;
 	}
 	public Tank(int x, int y, boolean camp,Direction dir, MainView mv) {
@@ -58,6 +72,10 @@ public class Tank {
 	
 	//坦克移动方法，通过方向来移动
 	void move() {
+		
+		this.oldX = x;
+		this.oldY = y;
+		
 		switch(dir) {
 		case L:
 			x -= SPEED;
@@ -104,7 +122,7 @@ public class Tank {
 				dir = dirs[rn];
 			}
 			step --;
-			if (random.nextInt(100) < 5) {
+			if (random.nextInt(100) < 3) {
 				this.fire();
 			}
 		}
@@ -123,7 +141,9 @@ public class Tank {
 		Color c = g.getColor();
 		if (camp){
 			//设置前景色
-			g.setColor(Color.RED);
+			g.setColor(Color.blue);
+			//画出血条
+			bloodBar.draw(g);
 		} 
 		else{
 			g.setColor(Color.MAGENTA);
@@ -131,6 +151,7 @@ public class Tank {
 		//画一个实心圆
 		g.fillOval(x, y, radius, radius);
 		g.setColor(c);
+		
 		move();
 		
 		//化炮筒的方向
@@ -248,6 +269,9 @@ public class Tank {
 //			}	
 			fire();
 			break;
+		case KeyEvent.VK_R:
+			superFire();
+			break;
 		}
 	}
 	
@@ -263,6 +287,55 @@ public class Tank {
 		mv.bullets.add(bullet);
 		return bullet;
 	}
+	
+	public Bullets fire(Direction dir) {
+		if (!live) {
+			return null;
+		}
+		//将子弹的设置为坦克的圆心
+		int x = this.x + radius/2 - Bullets.RADIUS/2;
+		int y = this.y + radius/2 - Bullets.RADIUS/2;
+		bullet = new Bullets(x , y, camp, dir, this.mv);
+		mv.bullets.add(bullet);
+		return bullet;
+	}
+	
+	private void stay() {
+		x = oldX;
+		y = oldY;
+	}
+	
+	//判断坦克是否撞到墙了
+	public boolean impactWall(Wall wall) {
+		if (this.live && this.getRect().intersects(wall.getRec())) {
+			this.stay();
+			return true;
+		}
+		return false;
+	}
+	
+	//判断坦克是否撞到坦克
+	public boolean impactTanks(List<Tank> tanks) {
+		for (int i=0; i<tanks.size(); i++) {
+			Tank tank = tanks.get(i);
+			if (this != tank) {
+				if (this.live && tank.isLive() &&this.getRect().intersects(tank.getRect())) {
+					this.stay();
+					tank.stay();
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	//自己坦克作弊方法，发射大的子弹
+	private void superFire() {
+		Direction[] dirs = Direction.values();
+		for (int i=0; i<8; i++) {
+			fire(dirs[i]);
+		}
+	}
 	public boolean isLive() {
 		return live;
 	}
@@ -272,6 +345,28 @@ public class Tank {
 	
 	public Rectangle getRect() {
 		return new Rectangle(x, y, radius, radius);
+	}
+	
+	//坦克的血条类
+	private class BloodBar {
+		public void draw(Graphics g) {
+			Color c = g.getColor();
+			g.setColor(Color.RED);
+			g.drawRect(x, y-10, radius, 10);
+			int width = radius * life /100;
+			g.fillRect(x, y-10, width, 10);
+			g.setColor(c);
+		}
+	}
+	
+	//坦克吃血的方法
+	public boolean eat(Blood blood) {
+		if (this.live && blood.isLive() && this.getRect().intersects(blood.getRect())) {
+			blood.setLive(false);
+			this.life = 100;
+			return true;
+		}
+		return false;
 	}
 	
 }
