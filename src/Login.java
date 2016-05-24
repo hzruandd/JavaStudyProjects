@@ -60,7 +60,17 @@ public class Login {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					if (jdbc.verifyUser(user_account.getText(), user_pwd.getText())) {
-						JOptionPane.showMessageDialog(null, "登陆成功!");
+						EventQueue.invokeLater(new Runnable() {
+							public void run() {
+								try {
+									TestView frame = new TestView();
+									frame.setVisible(true);
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+							}
+						});
+						frame.dispose();
 					}
 					else {
 						JOptionPane.showMessageDialog(null, "用户名或密码错误!");

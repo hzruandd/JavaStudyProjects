@@ -5,9 +5,6 @@ import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 
 public class StuTable extends JTable {
-	
-	
-	
 	public StuTable(Object[][] rowData, Object[] columnNames)  {
 		super(rowData, columnNames);
 		this.setToolTipText("doctor");

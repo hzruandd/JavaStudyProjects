@@ -37,19 +37,6 @@ public class TestView extends JFrame {
 	private JTextField pageNo;
 	private StuTableModel stuTableModel = new StuTableModel();
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TestView frame = new TestView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
