@@ -83,31 +83,31 @@ public class TestView extends JFrame {
 		addPane.add(addStuButton);
 		
 		stuName = new JTextField();
-		stuName.setBounds(108, 104, 66, 21);
+		stuName.setBounds(172, 104, 115, 21);
 		addPane.add(stuName);
 		stuName.setColumns(10);
 		
 		stuAge = new JTextField();
-		stuAge.setBounds(190, 104, 66, 21);
+		stuAge.setBounds(333, 104, 66, 21);
 		addPane.add(stuAge);
 		stuAge.setColumns(10);
 		
 		stuSex = new JTextField();
-		stuSex.setBounds(288, 104, 66, 21);
+		stuSex.setBounds(452, 104, 66, 21);
 		addPane.add(stuSex);
 		stuSex.setColumns(10);
 		
 		stuAddress = new JTextField();
-		stuAddress.setBounds(400, 104, 66, 21);
+		stuAddress.setBounds(21, 193, 143, 21);
 		addPane.add(stuAddress);
 		stuAddress.setColumns(10);
 		
 		JLabel label = new JLabel("姓名");
-		label.setBounds(108, 79, 54, 15);
+		label.setBounds(172, 79, 54, 15);
 		addPane.add(label);
 		
 		stuId = new JTextField();
-		stuId.setBounds(21, 104, 66, 21);
+		stuId.setBounds(21, 104, 141, 21);
 		addPane.add(stuId);
 		stuId.setColumns(10);
 		
@@ -116,15 +116,15 @@ public class TestView extends JFrame {
 		addPane.add(label_1);
 		
 		JLabel label_2 = new JLabel("年龄");
-		label_2.setBounds(170, 79, 54, 15);
+		label_2.setBounds(345, 79, 54, 15);
 		addPane.add(label_2);
 		
 		JLabel label_3 = new JLabel("性别");
-		label_3.setBounds(300, 79, 54, 15);
+		label_3.setBounds(452, 79, 54, 15);
 		addPane.add(label_3);
 		
 		JLabel label_4 = new JLabel("地址");
-		label_4.setBounds(412, 79, 54, 15);
+		label_4.setBounds(32, 161, 54, 15);
 		addPane.add(label_4);
 		
 		JPanel delPane = new JPanel();
