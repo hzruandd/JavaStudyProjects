@@ -51,7 +51,7 @@ public class Login {
 		frame.getContentPane().setLayout(null);
 		
 		user_account = new JTextField();
-		user_account.setBounds(223, 139, 146, 33);
+		user_account.setBounds(223, 139, 146, 23);
 		frame.getContentPane().add(user_account);
 		user_account.setColumns(10);
 		
@@ -60,16 +60,18 @@ public class Login {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					if (jdbc.verifyUser(user_account.getText(), user_pwd.getText())) {
+						
 						EventQueue.invokeLater(new Runnable() {
 							public void run() {
 								try {
-									TestView frame = new TestView();
+									MainView frame = new MainView();
 									frame.setVisible(true);
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
 							}
 						});
+						
 						frame.dispose();
 					}
 					else {
@@ -106,7 +108,7 @@ public class Login {
 		frame.getContentPane().add(label_1);
 		
 		user_pwd = new JPasswordField();
-		user_pwd.setBounds(224, 230, 155, 21);
+		user_pwd.setBounds(224, 233, 155, 23);
 		frame.getContentPane().add(user_pwd);
 	}
 }

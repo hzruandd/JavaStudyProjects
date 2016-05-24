@@ -15,7 +15,7 @@ import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
 
-public class TestView extends JFrame {
+public class MainView extends JFrame {
 
 	private JPanel contentPane;
 	/**
@@ -40,7 +40,7 @@ public class TestView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TestView() {
+	public MainView() {
 		CardLayout menuLayout = new CardLayout();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 635, 473);
@@ -133,16 +133,16 @@ public class TestView extends JFrame {
 		
 		JButton delStuButton = new JButton("删除");
 		
-		delStuButton.setBounds(76, 232, 93, 23);
+		delStuButton.setBounds(238, 242, 93, 23);
 		delPane.add(delStuButton);
 		
 		delStuText = new JTextField();
-		delStuText.setBounds(103, 174, 66, 21);
+		delStuText.setBounds(204, 165, 156, 23);
 		delPane.add(delStuText);
 		delStuText.setColumns(10);
 		
 		JLabel label_5 = new JLabel("请输入要删除的学生的学号");
-		label_5.setBounds(74, 121, 216, 23);
+		label_5.setBounds(204, 109, 216, 23);
 		delPane.add(label_5);
 		
 		JPanel alterPane = new JPanel();
@@ -159,49 +159,49 @@ public class TestView extends JFrame {
 		alterPane.add(label_6);
 		
 		JLabel lblNewLabel = new JLabel("姓名");
-		lblNewLabel.setBounds(10, 181, 54, 15);
+		lblNewLabel.setBounds(28, 181, 54, 15);
 		alterPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("年龄");
-		lblNewLabel_1.setBounds(115, 181, 54, 15);
+		lblNewLabel_1.setBounds(146, 181, 54, 15);
 		alterPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("性别");
-		lblNewLabel_2.setBounds(220, 181, 54, 15);
+		lblNewLabel_2.setBounds(277, 181, 54, 15);
 		alterPane.add(lblNewLabel_2);
 		
 		stuNameAlter = new JTextField();
-		stuNameAlter.setBounds(10, 229, 66, 21);
+		stuNameAlter.setBounds(10, 229, 124, 21);
 		alterPane.add(stuNameAlter);
 		stuNameAlter.setColumns(10);
 		
 		JLabel label_7 = new JLabel("地址");
-		label_7.setBounds(317, 181, 54, 15);
+		label_7.setBounds(451, 181, 54, 15);
 		alterPane.add(label_7);
 		
 		stuAgeAlter = new JTextField();
-		stuAgeAlter.setBounds(115, 229, 66, 21);
+		stuAgeAlter.setBounds(144, 229, 66, 21);
 		alterPane.add(stuAgeAlter);
 		stuAgeAlter.setColumns(10);
 		
 		stuSexAlter = new JTextField();
-		stuSexAlter.setBounds(224, 229, 66, 21);
+		stuSexAlter.setBounds(277, 229, 66, 21);
 		alterPane.add(stuSexAlter);
 		stuSexAlter.setColumns(10);
 		
 		stuAddressAlter = new JTextField();
-		stuAddressAlter.setBounds(373, 229, 149, 21);
+		stuAddressAlter.setBounds(439, 229, 149, 21);
 		alterPane.add(stuAddressAlter);
 		stuAddressAlter.setColumns(10);
 		
 		JButton button = new JButton("开始修改");
 		
-		button.setBounds(300, 58, 93, 23);
+		button.setBounds(250, 81, 93, 23);
 		alterPane.add(button);
 		
 		JButton button_1 = new JButton("提交修改");
 		
-		button_1.setBounds(439, 58, 93, 23);
+		button_1.setBounds(396, 81, 93, 23);
 		alterPane.add(button_1);
 		
 		JPanel searchPane = new JPanel();
