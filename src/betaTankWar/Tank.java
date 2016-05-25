@@ -260,7 +260,13 @@ public class Tank {
 		case KeyEvent.VK_RIGHT:
 			bR = false;
 			break;
-		
+		case KeyEvent.VK_F2:
+			if (!this.live) {
+				this.live = true;
+				this.life = 100;
+			} 
+			
+			break;
 		//抬起空格键发一发炮弹，这样就不会按着空格键一直发炮弹。
 		case KeyEvent.VK_SPACE:
 //			//当子弹存在时，不在打子弹
@@ -288,6 +294,7 @@ public class Tank {
 		return bullet;
 	}
 	
+	//坦克开火，
 	public Bullets fire(Direction dir) {
 		if (!live) {
 			return null;
@@ -305,6 +312,11 @@ public class Tank {
 		y = oldY;
 	}
 	
+	/**
+	 * 
+	 * @param wall ：被坦克撞的墙
+	 * @return 坦克是否撞到墙，撞到了返回ture
+	 */
 	//判断坦克是否撞到墙了
 	public boolean impactWall(Wall wall) {
 		if (this.live && this.getRect().intersects(wall.getRec())) {

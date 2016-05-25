@@ -51,7 +51,15 @@ public class MainView extends Frame {
 	}
 	
 	public void paint(Graphics g) {
-
+		if (tanks.size() <=0) {
+			for (int i=0; i<5; i++) {
+		    	tanks.add(new Tank(50 + Tank.random.nextInt(viewWidth - 50), 50 + Tank.random.nextInt(viewHeight - 50), false,Tank.Direction.D, this));
+		    }
+		}
+		
+		/**
+		 * 动态显示游戏的数据
+		 */
 		g.drawString("子弹的数量: " + bullets.size(), 10,	50);
 		g.drawString("爆炸的数量:" + explodes.size(), 10, 70);
 		g.drawString("敌方坦克的数量: " + tanks.size(), 10,	90);
@@ -84,6 +92,7 @@ public class MainView extends Frame {
 		myTank.eat(blood);
 		blood.draw(g);
 	}
+	
 	public void update(Graphics g) {
 		if (offScreenImage == null ) {
 			//创建一张图片
