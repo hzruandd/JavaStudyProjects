@@ -22,12 +22,12 @@ public class GameFrame extends JFrame {
 	private final int ScreenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
 	
 	//游戏画面
-	private GamePanel tankPanel;
+	private GamePanel gamePanel;
 	
 	public GameFrame() {
 		X = (ScreenWidth - GameWidth)/2;
 		Y = (ScreenHeight - GameHeight)/2;
-		tankPanel = new GamePanel();
+		//gamePanel = new GamePanel();
 		init();
 	}
 	
@@ -41,7 +41,7 @@ public class GameFrame extends JFrame {
 		setResizable(false);
 		setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		add(tankPanel);
+		//add(gamePanel);
 		setVisible(true);
 	}
 	
@@ -57,6 +57,14 @@ public class GameFrame extends JFrame {
 		public void keyReleased(KeyEvent e) {
 			
 		}
+	}
+
+	public GamePanel getGamePanel() {
+		return gamePanel;
+	}
+
+	public void setTankPanel(GamePanel gamePanel) {
+		this.gamePanel = gamePanel;
 	}
 	
 
