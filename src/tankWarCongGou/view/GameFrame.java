@@ -22,12 +22,12 @@ public class GameFrame extends JFrame {
 	private final int ScreenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
 	
 	//游戏画面
-	private TankPanel tankPanel;
+	private GamePanel tankPanel;
 	
 	public GameFrame() {
 		X = (ScreenWidth - GameWidth)/2;
 		Y = (ScreenHeight - GameHeight)/2;
-		tankPanel = new TankPanel();
+		tankPanel = new GamePanel();
 		init();
 	}
 	

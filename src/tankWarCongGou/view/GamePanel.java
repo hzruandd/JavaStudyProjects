@@ -7,14 +7,14 @@ import javax.swing.JPanel;
 
 import tankWarCongGou.entity.MyTank;
 
-public class TankPanel extends JPanel{
+public class GamePanel extends JPanel{
 	//窗体坐标
 	private final int X;
 	private final int Y;
 	private final int WIDTH = 800;
 	private final int HEIGHT = 700;
 	private MyTank myTank = new MyTank();
-	public TankPanel() {
+	public GamePanel() {
 		X = 0;
 		Y = 0;
 		init();
