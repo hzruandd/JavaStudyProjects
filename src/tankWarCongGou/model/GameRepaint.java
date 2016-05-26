@@ -7,10 +7,10 @@ import javax.swing.JPanel;
  * @author Doctor邓
  * 生成游戏画面类
  */
-public class GamePaint implements Runnable{
+public class GameRepaint implements Runnable{
 	private JPanel gamePanel;
 	
-	public GamePaint(JPanel gamePanel) {
+	public GameRepaint(JPanel gamePanel) {
 		this.gamePanel = gamePanel;
 	}
 	

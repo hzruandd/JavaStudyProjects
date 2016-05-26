@@ -1,10 +1,7 @@
-package tankWarCongGou.view;
+package tankWarCongGou.control;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.util.List;
-
-import javax.swing.JPanel;
 
 import tankWarCongGou.entity.AITank;
 import tankWarCongGou.entity.Boom;
@@ -13,12 +10,12 @@ import tankWarCongGou.entity.MyTank;
 import tankWarCongGou.entity.Prop;
 import tankWarCongGou.entity.Wall;
 
-public class GamePanel extends JPanel{
-	//Panel坐标
-	private final int X;
-	private final int Y;
-	private final int WIDTH = 800;
-	private final int HEIGHT = 700;
+/**
+ * 
+ * @author Administrator
+ * 画出游戏的各种对象，如坦克，子弹，爆炸、墙等
+ */
+public class GamePaint {
 	
 	private List<MyTank> myTanks;       //我方坦克集合
 	private List<AITank> aiTanks;       //AI坦克集合
@@ -27,82 +24,71 @@ public class GamePanel extends JPanel{
 	private List<Wall> walls;           //墙集合
 	private List<Boom> booms;           //爆炸集合
 	
-	public GamePanel() {
-		X = 0;
-		Y = 0;
+	public void draw(Graphics g) {
+		drawTank(g);
+//		drawBullet(g);
+//		drawWall(g);
+//		drawBoom(g);
+//		drawProp(g);
+	}
+	
+	private void drawTank(Graphics g) {
+		for(MyTank myTank : myTanks) {
+			myTank.draw(g);
+		}
 		
-		this.myTanks = myTanks;
-		this.bullets = bullets;
-		this.props = props;
-		this.walls = walls;
-		this.booms = booms;
-		init();
+//		for(AITank aiTank : aiTanks) {
+//			aiTank.draw(g);
+//		}
 	}
 	
-	//GamePanel初始化
-	public void init() {
-		setSize(WIDTH, HEIGHT);
-		setLocation(X, Y);
-		setBackground(Color.BLACK);
-	}
-	
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-    	update(g);
-	}
-	
-	public void update(Graphics g) {
-		g.setColor(Color.black);
-		
-	}
+//	private void drawBullet(Graphics g) {
+//		for(Bullet bullet : bullets) {
+//			bullet.draw(g);
+//		}
+//	}
+//	
+//	private void drawWall(Graphics g) {
+//		for(Wall wall : walls) {
+//			wall.draw(g);
+//		}
+//	}
+//	
+//	private void drawBoom(Graphics g) {
+//		for(Boom boom : booms) {
+//			boom.draw(g);
+//		}
+//	}
+//	
+//	private void drawProp(Graphics g) {
+//		for(Prop prop : props) {
+//			prop.draw(g);
+//		}
+//	}
 
-	public List<MyTank> getMyTanks() {
-		return myTanks;
-	}
 
 	public void setMyTanks(List<MyTank> myTanks) {
 		this.myTanks = myTanks;
-	}
-
-	public List<AITank> getAiTanks() {
-		return aiTanks;
 	}
 
 	public void setAiTanks(List<AITank> aiTanks) {
 		this.aiTanks = aiTanks;
 	}
 
-	public List<Bullet> getBullets() {
-		return bullets;
-	}
-
 	public void setBullets(List<Bullet> bullets) {
 		this.bullets = bullets;
-	}
-
-	public List<Prop> getProps() {
-		return props;
 	}
 
 	public void setProps(List<Prop> props) {
 		this.props = props;
 	}
 
-	public List<Wall> getWalls() {
-		return walls;
-	}
-
 	public void setWalls(List<Wall> walls) {
 		this.walls = walls;
-	}
-
-	public List<Boom> getBooms() {
-		return booms;
 	}
 
 	public void setBooms(List<Boom> booms) {
 		this.booms = booms;
 	}
-	
 	
 }

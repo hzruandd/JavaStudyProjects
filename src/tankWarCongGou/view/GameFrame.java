@@ -3,16 +3,23 @@ package tankWarCongGou.view;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.List;
 
 import javax.swing.JFrame;
 
+import tankWarCongGou.entity.AITank;
+import tankWarCongGou.entity.Boom;
+import tankWarCongGou.entity.Bullet;
 import tankWarCongGou.entity.MyTank;
+import tankWarCongGou.entity.Prop;
+import tankWarCongGou.entity.Wall;
 /**
  * 
  * @author Doctor邓
  * 游戏主界面
  */
 public class GameFrame extends JFrame {
+	
 	public static final int GameHeight = 700;
 	public static final int GameWidth = 1100;
 	private final String GameName = "坦克大战";
@@ -25,9 +32,10 @@ public class GameFrame extends JFrame {
 	private GamePanel gamePanel;
 	
 	public GameFrame() {
+		
 		X = (ScreenWidth - GameWidth)/2;
 		Y = (ScreenHeight - GameHeight)/2;
-		//gamePanel = new GamePanel();
+		gamePanel = new GamePanel();
 		init();
 	}
 	
@@ -41,7 +49,7 @@ public class GameFrame extends JFrame {
 		setResizable(false);
 		setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		//add(gamePanel);
+		add(gamePanel);
 		setVisible(true);
 	}
 	

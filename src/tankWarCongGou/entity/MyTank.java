@@ -8,11 +8,11 @@ public class MyTank extends Tank {
 
 	private HPbar hpBar;
 	
-	public MyTank() {
+	public MyTank(int x, int y) {
 		super();
 		//初始化坦克的初始位置
-		setX(100);
-		setY(100);
+		setX(x);
+		setY(y);
 	}
 	
 	@Override
@@ -60,31 +60,6 @@ public class MyTank extends Tank {
 		g.fillRect(getX(), getY(), getWIDTH(), getHEIGHT());
 		g.setColor(c);
 		move();
-		
-	}
-	
-	public void keyPressed(KeyEvent e) {
-		switch(e.getKeyCode()) {
-		case KeyEvent.VK_UP:
-			setMotionStatus(true);
-			setDir(Direction.Up);
-			break;
-		case KeyEvent.VK_LEFT:
-			setMotionStatus(true);
-			setDir(Direction.Left);
-			break;
-		case KeyEvent.VK_DOWN:
-			setMotionStatus(true);
-			setDir(Direction.Down);
-			break;
-		case KeyEvent.VK_RIGHT:
-			setMotionStatus(true);
-			setDir(Direction.Right);
-			break;
-		}
-	}
-	
-	public void keyReleased(KeyEvent e) {
 		
 	}
 	
