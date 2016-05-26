@@ -10,7 +10,6 @@ import tankWarCongGou.view.GameFrame;
  * 游戏负责将游戏的界面和后台逻辑相连接
  * 游戏的主体类，控制游戏主题界面和运行
  */
-
 public class TankClient {
 	private GameFactory gameFactory = new GameFactory();
 	private GameData gameData = new GameData();

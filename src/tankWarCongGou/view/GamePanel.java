@@ -12,8 +12,8 @@ public class GamePanel extends JPanel{
 	//Panel坐标
 	private final int X;
 	private final int Y;
-	private final int WIDTH = 800;
-	private final int HEIGHT = 700;
+	public  static final int WIDTH = 800;
+	public  static final int HEIGHT = GameFrame.GameHeight;
 	private GamePaint gamePaint;
 	
 //	private List<MyTank> myTanks;       //我方坦克集合

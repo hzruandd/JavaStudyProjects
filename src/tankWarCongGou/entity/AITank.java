@@ -22,4 +22,10 @@ public class AITank extends Tank {
 
 	}
 
+	@Override
+	public void hitWall() {
+		// TODO 自动生成的方法存根
+		
+	}
+
 }

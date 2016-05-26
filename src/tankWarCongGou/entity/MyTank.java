@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
+import tankWarCongGou.view.GamePanel;
+
 public class MyTank extends Tank {
 
 	private HPbar hpBar;
@@ -39,6 +41,7 @@ public class MyTank extends Tank {
 				break;
 			}
 		}
+		hitWall();
 	}
 
 	@Override
@@ -65,6 +68,26 @@ public class MyTank extends Tank {
 	
 	class HPbar {
 		
+	}
+
+	@Override
+	public void hitWall() {
+
+		if (getX() < 0) {
+			setX(0);
+		}
+		
+		if (getX() + getWIDTH() > GamePanel.WIDTH) {
+			setX(GamePanel.WIDTH - getWIDTH());
+		}
+		
+		if (getY() < 0) {
+			setY(0);
+		} 
+		
+		if (getY() + 2*getHEIGHT()> GamePanel.HEIGHT) {
+			setY(GamePanel.HEIGHT - 2*getHEIGHT());
+		}
 	}
 
 }

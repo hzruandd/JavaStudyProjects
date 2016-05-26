@@ -52,6 +52,8 @@ public abstract  class Tank {
 	 */
 	public abstract void draw(Graphics g);
 	
+	public abstract void hitWall();
+	
 	public int getSpeed() {
 		return speed;
 	}
