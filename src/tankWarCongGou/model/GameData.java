@@ -23,6 +23,16 @@ public class GameData {
 	private static List<Wall> walls;           //墙集合
 	private static List<Boom> booms;           //爆炸集合
 	
+	public GameData() {
+		myTanks = new ArrayList<MyTank>();
+		aiTanks = new ArrayList<AITank>();
+		bullets = new ArrayList<Bullet>();
+		props = new ArrayList<Prop>();
+		walls = new ArrayList<Wall>();
+		booms = new ArrayList<Boom>();
+		
+	}
+	
 	public static List<Bullet> getBullets() {
 		return bullets;
 	}

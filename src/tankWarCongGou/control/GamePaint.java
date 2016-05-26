@@ -32,7 +32,7 @@ public class GamePaint {
 	
 	public void draw(Graphics g) {
 		drawTank(g);
-//		drawBullet(g);
+		drawBullet(g);
 //		drawWall(g);
 //		drawBoom(g);
 //		drawProp(g);
@@ -41,6 +41,7 @@ public class GamePaint {
 	//游戏数据初始化
 	public void dataInit() {
 		myTanks = GameData.getMyTanks();
+		bullets = GameData.getBullets();
 	}
 	
 	private void drawTank(Graphics g) {
@@ -53,12 +54,12 @@ public class GamePaint {
 //		}
 	}
 	
-//	private void drawBullet(Graphics g) {
-//		for(Bullet bullet : bullets) {
-//			bullet.draw(g);
-//		}
-//	}
-//	
+	private void drawBullet(Graphics g) {
+		for(Bullet bullet : bullets) {
+			bullet.draw(g);
+		}
+	}
+	
 //	private void drawWall(Graphics g) {
 //		for(Wall wall : walls) {
 //			wall.draw(g);

@@ -47,6 +47,9 @@ public class GameAction {
 				myTank1.setMotionStatus(true);
 				myTank1.setDir(Direction.Right);
 				break;
+			case KeyEvent.VK_SPACE:
+				myTank1.fire();
+				break;
 			}
 		}
 		

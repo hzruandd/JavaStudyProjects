@@ -16,6 +16,7 @@ public class MyTank extends Tank {
 		setX(x);
 		setY(y);
 		setCamp(true);
+		setDir(Direction.Up);
 	}
 	
 	@Override
@@ -49,7 +50,10 @@ public class MyTank extends Tank {
 	@Override
 	public void fire() {
 		// TODO 自动生成的方法存根
-		Bullet bullet = new Bullet(getX(), getY(), isCamp());
+		int bulletX = getX() + getWIDTH()/2;
+		int bulletY = getY() + getHEIGHT()/2;
+		Bullet bullet = new Bullet(bulletX, bulletY, isCamp(), getDir());
+		getGameListener().fireAction(bullet);
 	}
 
 	@Override
