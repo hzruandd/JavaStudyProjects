@@ -42,6 +42,7 @@ public class GameFrame extends JFrame {
 		setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		add(gamePanel);
+		//该窗体添加监听器
 		addKeyListener(new KeyMonitor());
 		setVisible(true);
 	}
