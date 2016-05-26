@@ -3,6 +3,7 @@ package tankWarCongGou.control;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import tankWarCongGou.model.GameAction;
 import tankWarCongGou.model.GameData;
 
 /**
@@ -22,7 +23,7 @@ public class KeyMonitor extends KeyAdapter {
 	//按下的按键被抬起来后的监听方法
 	@Override
 	public void keyReleased(KeyEvent e) {
-
+//		gameAction.keyReleased(e);
 	}
 	
 }

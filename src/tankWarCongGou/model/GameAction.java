@@ -1,4 +1,4 @@
-package tankWarCongGou.control;
+package tankWarCongGou.model;
 
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -9,7 +9,7 @@ import tankWarCongGou.entity.MyTank;
 /**
  * 
  * @author Doctor邓
- *	游戏监听类，用于监听用户的操作
+ *	游戏监听类，用于监听用户的操作，
  */
 public class GameAction {
 	private List<MyTank> myTanks;
@@ -26,6 +26,7 @@ public class GameAction {
 			myTank2 = myTanks.get(1);
 		} 
 	} 
+	
 	
 	public  void keyPressed(KeyEvent e) {
 		if (myTank1 != null) {
@@ -71,9 +72,41 @@ public class GameAction {
 		}
 	}
 	
-	public void keyReleased(KeyEvent e) {
-		
-	}
+//	public void keyReleased(KeyEvent e) {
+//		if (myTank1 != null) {
+//			switch(e.getKeyCode()) {
+//			case KeyEvent.VK_W:
+//				myTank1.setMotionStatus(false);
+//				break;
+//			case KeyEvent.VK_A:
+//				myTank1.setMotionStatus(false);
+//				break;
+//			case KeyEvent.VK_S:
+//				myTank1.setMotionStatus(false);
+//				break;
+//			case KeyEvent.VK_D:
+//				myTank1.setMotionStatus(false);
+//				break;
+//			}
+//		}
+//		
+//		if (myTank2 != null) {
+//			switch(e.getKeyCode()) {
+//			case KeyEvent.VK_UP:
+//				myTank2.setMotionStatus(false);
+//				break;
+//			case KeyEvent.VK_LEFT:
+//				myTank2.setMotionStatus(false);
+//				break;
+//			case KeyEvent.VK_DOWN:
+//				myTank2.setMotionStatus(false);
+//				break;
+//			case KeyEvent.VK_RIGHT:
+//				myTank2.setMotionStatus(false);
+//				break;
+//			}
+//		}
+//	}
 	
 	
 		

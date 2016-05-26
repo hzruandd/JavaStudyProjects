@@ -15,6 +15,7 @@ public class MyTank extends Tank {
 		//初始化坦克的初始位置
 		setX(x);
 		setY(y);
+		setCamp(true);
 	}
 	
 	@Override
@@ -44,15 +45,15 @@ public class MyTank extends Tank {
 		hitWall();
 	}
 
+	
 	@Override
 	public void fire() {
 		// TODO 自动生成的方法存根
-
+		Bullet bullet = new Bullet(getX(), getY(), isCamp());
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO 自动生成的方法存根
 		//当坦克不存活时，直接退出
 		if (!isLive()) {
 			return ;
@@ -63,7 +64,6 @@ public class MyTank extends Tank {
 		g.fillRect(getX(), getY(), getWIDTH(), getHEIGHT());
 		g.setColor(c);
 		move();
-		
 	}
 	
 	class HPbar {
@@ -89,5 +89,4 @@ public class MyTank extends Tank {
 			setY(GamePanel.HEIGHT - 2*getHEIGHT());
 		}
 	}
-
 }

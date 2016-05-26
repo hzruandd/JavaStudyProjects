@@ -23,6 +23,10 @@ public class GameData {
 	private static List<Wall> walls;           //墙集合
 	private static List<Boom> booms;           //爆炸集合
 	
+	public static List<Bullet> getBullets() {
+		return bullets;
+	}
+
 	public static List<MyTank> getMyTanks() {
 		return myTanks;
 	}
@@ -30,4 +34,6 @@ public class GameData {
 	public void setMyTanks(List<MyTank> myTanks) {
 		this.myTanks = myTanks;
 	}
+	
+	
 }

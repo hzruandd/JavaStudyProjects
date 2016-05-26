@@ -1,7 +1,8 @@
 package tankWarCongGou.entity;
 
 import java.awt.Graphics;
-import java.util.List;
+
+import tankWarCongGou.control.GameListener;
 
 /**
  * 
@@ -31,10 +32,21 @@ public abstract  class Tank {
 	//坦克的子弹上限，决定了游戏最多能同时存在几个坦克发出的子弹
 	private int bulletMax;
 	
+	//用于设置坦克具体方向的变量
+	private boolean up;
+	private boolean right;
+	private boolean down;
+	private boolean left;
+	
+	//坦克身上的监听器
+	private GameListener gameListener;
+
 	public Tank() {
 		this.speed = 5;
 		this.motionStatus = false;  
 		this.live = true;
+		gameListener = new GameListener();
+		up = true;
 	}
 	
 	/**
@@ -53,6 +65,11 @@ public abstract  class Tank {
 	public abstract void draw(Graphics g);
 	
 	public abstract void hitWall();
+
+	//设置坦克具体的方向
+	public void setDirection () {
+	
+	}
 	
 	public int getSpeed() {
 		return speed;
@@ -136,6 +153,10 @@ public abstract  class Tank {
 
 	public int getBulletMax() {
 		return bulletMax;
+	}
+	
+	public GameListener getGameListener() {
+		return gameListener;
 	}
 
 }
