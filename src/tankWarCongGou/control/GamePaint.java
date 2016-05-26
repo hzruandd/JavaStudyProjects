@@ -9,6 +9,8 @@ import tankWarCongGou.entity.Bullet;
 import tankWarCongGou.entity.MyTank;
 import tankWarCongGou.entity.Prop;
 import tankWarCongGou.entity.Wall;
+import tankWarCongGou.model.GameData;
+import tankWarCongGou.model.GameFactory;
 
 /**
  * 
@@ -24,12 +26,21 @@ public class GamePaint {
 	private List<Wall> walls;           //墙集合
 	private List<Boom> booms;           //爆炸集合
 	
+	public GamePaint() {
+		dataInit();
+	}
+	
 	public void draw(Graphics g) {
 		drawTank(g);
 //		drawBullet(g);
 //		drawWall(g);
 //		drawBoom(g);
 //		drawProp(g);
+	}
+	
+	//游戏数据初始化
+	public void dataInit() {
+		myTanks = GameData.getMyTanks();
 	}
 	
 	private void drawTank(Graphics g) {
@@ -67,28 +78,28 @@ public class GamePaint {
 //	}
 
 
-	public void setMyTanks(List<MyTank> myTanks) {
-		this.myTanks = myTanks;
-	}
-
-	public void setAiTanks(List<AITank> aiTanks) {
-		this.aiTanks = aiTanks;
-	}
-
-	public void setBullets(List<Bullet> bullets) {
-		this.bullets = bullets;
-	}
-
-	public void setProps(List<Prop> props) {
-		this.props = props;
-	}
-
-	public void setWalls(List<Wall> walls) {
-		this.walls = walls;
-	}
-
-	public void setBooms(List<Boom> booms) {
-		this.booms = booms;
-	}
+//	public void setMyTanks(List<MyTank> myTanks) {
+//		this.myTanks = myTanks;
+//	}
+//
+//	public void setAiTanks(List<AITank> aiTanks) {
+//		this.aiTanks = aiTanks;
+//	}
+//
+//	public void setBullets(List<Bullet> bullets) {
+//		this.bullets = bullets;
+//	}
+//
+//	public void setProps(List<Prop> props) {
+//		this.props = props;
+//	}
+//
+//	public void setWalls(List<Wall> walls) {
+//		this.walls = walls;
+//	}
+//
+//	public void setBooms(List<Boom> booms) {
+//		this.booms = booms;
+//	}
 	
 }

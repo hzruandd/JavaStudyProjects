@@ -1,18 +1,10 @@
 package tankWarCongGou.view;
 
 import java.awt.Toolkit;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.util.List;
 
 import javax.swing.JFrame;
 
-import tankWarCongGou.entity.AITank;
-import tankWarCongGou.entity.Boom;
-import tankWarCongGou.entity.Bullet;
-import tankWarCongGou.entity.MyTank;
-import tankWarCongGou.entity.Prop;
-import tankWarCongGou.entity.Wall;
+import tankWarCongGou.control.KeyMonitor;
 /**
  * 
  * @author Doctor邓
@@ -50,30 +42,17 @@ public class GameFrame extends JFrame {
 		setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		add(gamePanel);
+		addKeyListener(new KeyMonitor());
 		setVisible(true);
-	}
-	
-	//键盘监听，获取用户输入，控制MyTank的方向
-	private class KeyMonitor extends KeyAdapter {
-		
-		//按键被按下的监听方法
-		public void keyPressed(KeyEvent e) {
-			
-		}
-		
-		//按下的按键被抬起来后的监听方法
-		public void keyReleased(KeyEvent e) {
-			
-		}
 	}
 
 	public GamePanel getGamePanel() {
 		return gamePanel;
 	}
 
-	public void setTankPanel(GamePanel gamePanel) {
-		this.gamePanel = gamePanel;
-	}
+//	public void setTankPanel(GamePanel gamePanel) {
+//		this.gamePanel = gamePanel;
+//	}
 	
 
 }

@@ -1,4 +1,4 @@
-package tankWarCongGou.model;
+package tankWarCongGou.control;
 
 import javax.swing.JPanel;
 
