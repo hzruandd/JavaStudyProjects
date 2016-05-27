@@ -1,10 +1,10 @@
 package tankWarCongGou.control;
 
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import tankWarCongGou.entity.Bullet;
+import tankWarCongGou.entity.Direction;
 import tankWarCongGou.model.GameAction;
 
 /**
@@ -21,7 +21,16 @@ public class GameListener implements KeyListener {
 		gameAction = new GameAction(admin);
 	}
 	
-	public void fireAction(Bullet bullet) {
+	/**
+	 * 坦克开火后生成一颗子弹
+	 * @param x
+	 * @param y
+	 * @param camp
+	 * @param dir
+	 */
+	public void fireAction(int x, int y, boolean camp, Direction dir) {
+		Bullet bullet = new Bullet(x, y, camp, dir);
+		bullet.setListener(this);
 		admin.addBullet(bullet);
 	}
 	

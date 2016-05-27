@@ -11,8 +11,8 @@ public class MyTank extends Tank {
 
 	private HPbar hpBar;
 	
-	public MyTank(int x, int y, GameListener listener) {
-		super(listener);
+	public MyTank(int x, int y) {
+		//super(listener);
 		//初始化坦克的初始位置
 		setX(x);
 		setY(y);
@@ -53,8 +53,7 @@ public class MyTank extends Tank {
 		// TODO 自动生成的方法存根
 		int bulletX = getX() + getWIDTH()/2;
 		int bulletY = getY() + getHEIGHT()/2;
-		Bullet bullet = new Bullet(bulletX, bulletY, isCamp(), getDir());
-		getGameListener().fireAction(bullet);
+		getGameListener().fireAction(bulletX, bulletY, isCamp(), getDir());
 	}
 
 	@Override

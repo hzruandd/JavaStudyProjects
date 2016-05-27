@@ -49,6 +49,11 @@ public class DataAdmin {
 		gameData.setMyTanks(myTanks);
 	}
 	
+	public void dataAddListener(GameListener listener) {
+		for (int i=0; i<getMyTanks().size(); i++) {
+			getMyTanks().get(i).setGameListener(listener);
+		}
+	}
 	 
 	
 //	d

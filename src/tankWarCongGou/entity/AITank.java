@@ -7,7 +7,7 @@ import tankWarCongGou.control.GameListener;
 public class AITank extends Tank {
 	
 	public AITank(GameListener listener) {
-		super(listener);
+		super();
 		// TODO 自动生成的构造函数存根
 	}
 
