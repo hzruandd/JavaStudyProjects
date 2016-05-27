@@ -3,7 +3,10 @@ package tankWarCongGou.view;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.xml.bind.Marshaller.Listener;
 
+import tankWarCongGou.control.GameListener;
+import tankWarCongGou.control.GamePaint;
 import tankWarCongGou.control.KeyMonitor;
 /**
  * 
@@ -22,19 +25,20 @@ public class GameFrame extends JFrame {
 	
 	//游戏画面
 	private GamePanel gamePanel;
-	
-	public GameFrame() {
+	private GameListener listener;
+	public GameFrame(GamePaint gamePaint, GameListener listener) {
 		
 		X = (ScreenWidth - GameWidth)/2;
 		Y = (ScreenHeight - GameHeight)/2;
-		gamePanel = new GamePanel();
-		init();
+		gamePanel = new GamePanel(gamePaint);
+		this.listener = listener;
+		viewInit();
 	}
 	
 	/**
 	 * 初始化界面
 	 */
-	private void init() {
+	private void viewInit() {
 		setTitle(GameName);
 		setSize(GameWidth, GameHeight);
 		setLocation(X, Y);
@@ -42,11 +46,10 @@ public class GameFrame extends JFrame {
 		setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		add(gamePanel);
-		//该窗体添加监听器
-		addKeyListener(new KeyMonitor());
+		addKeyListener(listener);
 		setVisible(true);
 	}
-
+	
 	public GamePanel getGamePanel() {
 		return gamePanel;
 	}

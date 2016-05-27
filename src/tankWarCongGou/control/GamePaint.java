@@ -23,10 +23,10 @@ public class GamePaint {
 	private List<Wall> walls;           //墙集合
 	private List<Boom> booms;           //爆炸集合
 	
-	//private DataAdmin admin = DataAdmin.getAdmin();
+	private DataAdmin admin;
 	
-	public GamePaint() {
-		
+	public GamePaint(DataAdmin admin) {
+		this.admin = admin;
 	}
 	
 	public void draw(Graphics g) {
@@ -46,10 +46,12 @@ public class GamePaint {
 		g.setColor(c);
 	}
 	
-	//游戏数据初始化
+	/**
+	 * 画图数据初始化
+	 */
 	public void dataInit() {
-		myTanks = DataAdmin.getAdmin().getMyTanks();
-		bullets = DataAdmin.getAdmin().getBullets();
+		myTanks = admin .getMyTanks();
+		bullets = admin.getBullets();
 	}
 	
 	private void drawTank(Graphics g) {

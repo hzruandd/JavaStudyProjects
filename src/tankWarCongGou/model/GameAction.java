@@ -3,6 +3,7 @@ package tankWarCongGou.model;
 import java.awt.event.KeyEvent;
 import java.util.List;
 
+import tankWarCongGou.control.DataAdmin;
 import tankWarCongGou.entity.Direction;
 import tankWarCongGou.entity.MyTank;
 
@@ -16,8 +17,9 @@ public class GameAction {
 	private MyTank myTank1 = null;   //玩家一
 	private MyTank myTank2 = null;   //玩家二
 	
-	public GameAction(List<MyTank> myTanks) {
-		this.myTanks = myTanks;
+	public GameAction(DataAdmin admin) {
+		this.myTanks = admin.getMyTanks();
+
 		if (myTanks.size()!= 0 && myTanks.size() == 1) {
 			myTank1 = myTanks.get(0);
 		} 
@@ -29,9 +31,12 @@ public class GameAction {
 	
 	
 	public  void keyPressed(KeyEvent e) {
+
 		if (myTank1 != null) {
+			
 			switch(e.getKeyCode()) {
 			case KeyEvent.VK_W:
+				System.out.println("111");
 				myTank1.setMotionStatus(true);
 				myTank1.setDir(Direction.Up);
 				break;
@@ -78,41 +83,9 @@ public class GameAction {
 		}
 	}
 	
-//	public void keyReleased(KeyEvent e) {
-//		if (myTank1 != null) {
-//			switch(e.getKeyCode()) {
-//			case KeyEvent.VK_W:
-//				myTank1.setMotionStatus(false);
-//				break;
-//			case KeyEvent.VK_A:
-//				myTank1.setMotionStatus(false);
-//				break;
-//			case KeyEvent.VK_S:
-//				myTank1.setMotionStatus(false);
-//				break;
-//			case KeyEvent.VK_D:
-//				myTank1.setMotionStatus(false);
-//				break;
-//			}
-//		}
-//		
-//		if (myTank2 != null) {
-//			switch(e.getKeyCode()) {
-//			case KeyEvent.VK_UP:
-//				myTank2.setMotionStatus(false);
-//				break;
-//			case KeyEvent.VK_LEFT:
-//				myTank2.setMotionStatus(false);
-//				break;
-//			case KeyEvent.VK_DOWN:
-//				myTank2.setMotionStatus(false);
-//				break;
-//			case KeyEvent.VK_RIGHT:
-//				myTank2.setMotionStatus(false);
-//				break;
-//			}
-//		}
-//	}
+	public void keyReleased(KeyEvent e) {
+		
+	}
 	
 	
 		

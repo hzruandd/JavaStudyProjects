@@ -53,7 +53,7 @@ public class MyTank extends Tank {
 		int bulletX = getX() + getWIDTH()/2;
 		int bulletY = getY() + getHEIGHT()/2;
 		Bullet bullet = new Bullet(bulletX, bulletY, isCamp(), getDir());
-		getGameListener().fireAction(bullet);
+//		getGameListener().fireAction(bullet);
 	}
 
 	@Override

@@ -16,26 +16,22 @@ public class GamePanel extends JPanel{
 	public  static final int HEIGHT = GameFrame.GameHeight;
 	private GamePaint gamePaint;
 	
-//	private List<MyTank> myTanks;       //我方坦克集合
-//	private List<AITank> aiTanks;       //AI坦克集合
-//	private List<Bullet> bullets;       //子弹集合
-//	private List<Prop> props;           //道具集合
-//	private List<Wall> walls;           //墙集合
-//	private List<Boom> booms;           //爆炸集合
-	
-	public GamePanel() {
+	public GamePanel(GamePaint gamePaint) {
 		X = 0;
 		Y = 0;
-		gamePaint = new GamePaint();
+//		gamePaint = new GamePaint();
 //		this.myTanks = myTanks;
 //		this.bullets = bullets;
 //		this.props = props;
 //		this.walls = walls;
 //		this.booms = booms;
+		this.gamePaint = gamePaint;
 		init();
 	}
 	
-	//GamePanel初始化
+	/**
+	 * GamePanel初始化
+	 */
 	public void init() {
 		setSize(WIDTH, HEIGHT);
 		setLocation(X, Y);

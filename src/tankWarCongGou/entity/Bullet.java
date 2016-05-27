@@ -21,7 +21,7 @@ public class Bullet {
 	private final int SPEED = 8;
 	private Direction dir = Direction.Down;
 	
-	private GameListener listener = new GameListener();
+//	private GameListener listener = new GameListener();
 	
 	public Bullet(int x, int y, boolean camp, Direction dir) {
 		this.x = x;
@@ -64,9 +64,9 @@ public class Bullet {
 	}
 	
 	public void overBorder() {
-		System.out.println(x +"hei"+y);
-		if (x > GamePanel.WIDTH | x < 0 | y < 0 | y > GamePanel.HEIGHT ) {
-			listener.bulletOverBorder(this);
+		if (x > tankWarCongGou.view.GamePanel.WIDTH | x < 0 | y < 0 | 
+				y >  tankWarCongGou.view.GamePanel.HEIGHT) {
+//			listener.bulletOverBorder(this);
 		} 
 	}
 	

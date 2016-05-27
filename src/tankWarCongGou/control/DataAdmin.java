@@ -11,11 +11,10 @@ import tankWarCongGou.model.GameData;
  * 用于对Model中的存放游戏数据的GameData实现增、删、改、查的工作。
  */
 public class DataAdmin {
-	private GameData gameData = new GameData();
-	private static DataAdmin dataAdmin = new DataAdmin();
+	private GameData gameData;
 	
-	public static  DataAdmin getAdmin() {
-		return dataAdmin;
+	public DataAdmin() {
+		gameData = new GameData();
 	}
 	
 	public void addBullet(Bullet bullet) {

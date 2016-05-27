@@ -45,7 +45,7 @@ public abstract  class Tank {
 		this.speed = 5;
 		this.motionStatus = false;  
 		this.live = true;
-		gameListener = new GameListener();
+//		gameListener = new GameListener();
 		up = true;
 	}
 	

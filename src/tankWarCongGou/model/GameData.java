@@ -16,12 +16,12 @@ import tankWarCongGou.entity.Wall;
  */
 public class GameData {
 	
-	private static List<MyTank> myTanks;       //我方坦克集合
-	private static List<AITank> aiTanks;       //AI坦克集合
-	private static List<Bullet> bullets;       //子弹集合
-	private static List<Prop> props;           //道具集合
-	private static List<Wall> walls;           //墙集合
-	private static List<Boom> booms;           //爆炸集合
+	private List<MyTank> myTanks;       //我方坦克集合
+	private List<AITank> aiTanks;       //AI坦克集合
+	private List<Bullet> bullets;       //子弹集合
+	private List<Prop> props;           //道具集合
+	private List<Wall> walls;           //墙集合
+	private List<Boom> booms;           //爆炸集合
 	
 	public GameData() {
 		myTanks = new ArrayList<MyTank>();
@@ -44,7 +44,20 @@ public class GameData {
 	public void setMyTanks(List<MyTank> myTanks) {
 		this.myTanks = myTanks;
 	}
-	
-	
-	
+
+	public List<AITank> getAiTanks() {
+		return aiTanks;
+	}
+
+	public void setAiTanks(List<AITank> aiTanks) {
+		this.aiTanks = aiTanks;
+	}
+
+	public List<Wall> getWalls() {
+		return walls;
+	}
+
+	public void setWalls(List<Wall> walls) {
+		this.walls = walls;
+	}
 }
