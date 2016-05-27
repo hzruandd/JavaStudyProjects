@@ -46,6 +46,10 @@ public class DataAdmin {
 		}
 	}
 	
+	public void setMyTanks(List<MyTank> myTanks) {
+		gameData.setMyTanks(myTanks);
+	}
+	
 	 
 	
 //	d

@@ -71,6 +71,9 @@ public class GameAction {
 				myTank2.setMotionStatus(true);
 				myTank2.setDir(Direction.Right);
 				break;
+			case KeyEvent.VK_ENTER:
+				myTank2.fire();
+				break;
 			}
 		}
 	}

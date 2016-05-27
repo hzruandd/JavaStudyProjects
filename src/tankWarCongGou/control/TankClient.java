@@ -12,10 +12,10 @@ import tankWarCongGou.view.GameFrame;
  */
 public class TankClient {
 	private GameFactory gameFactory = new GameFactory();
-	private GameData gameData = new GameData();
+	private DataAdmin admin = new DataAdmin();
 	
 	private void dataInit() {
-		gameData.setMyTanks(gameFactory.getMyTanks(2));
+		admin.setMyTanks(gameFactory.getMyTanks(2));
 	}
 	
 	public static void main(String[] args) {

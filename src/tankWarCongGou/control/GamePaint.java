@@ -1,5 +1,6 @@
 package tankWarCongGou.control;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class GamePaint {
 	private List<Wall> walls;           //墙集合
 	private List<Boom> booms;           //爆炸集合
 	
-	private DataAdmin admin = DataAdmin.getAdmin();
+	//private DataAdmin admin = DataAdmin.getAdmin();
 	
 	public GamePaint() {
 		dataInit();
@@ -31,15 +32,23 @@ public class GamePaint {
 	public void draw(Graphics g) {
 		drawTank(g);
 		drawBullet(g);
+		drawData(g);
 //		drawWall(g);
 //		drawBoom(g);
 //		drawProp(g);
 	}
 	
+	public void drawData(Graphics g) {
+		Color c = g.getColor();
+		g.setColor(Color.WHITE);
+		g.drawString("子弹有：" + bullets.size() , 50, 50);
+		g.setColor(c);
+	}
+	
 	//游戏数据初始化
 	public void dataInit() {
-		myTanks = admin.getMyTanks();
-		bullets = admin.getBullets();
+		myTanks = DataAdmin.getAdmin().getMyTanks();
+		bullets = DataAdmin.getAdmin().getBullets();
 	}
 	
 	private void drawTank(Graphics g) {

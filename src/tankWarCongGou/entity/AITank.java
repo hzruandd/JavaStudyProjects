@@ -3,7 +3,7 @@ package tankWarCongGou.entity;
 import java.awt.Graphics;
 
 public class AITank extends Tank {
-
+	
 	@Override
 	public void move() {
 		// TODO 自动生成的方法存根

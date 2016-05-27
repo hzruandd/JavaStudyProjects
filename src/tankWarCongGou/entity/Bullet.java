@@ -3,6 +3,9 @@ package tankWarCongGou.entity;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import tankWar.gameView.GamePanel;
+import tankWarCongGou.control.GameListener;
+
 /**
  * 
  * @author Doctor邓
@@ -17,6 +20,8 @@ public class Bullet {
 	private boolean camp;
 	private final int SPEED = 8;
 	private Direction dir = Direction.Down;
+	
+	private GameListener listener = new GameListener();
 	
 	public Bullet(int x, int y, boolean camp, Direction dir) {
 		this.x = x;
@@ -43,6 +48,7 @@ public class Bullet {
 				break;
 			}
 		}
+		overBorder();
 	}
 	
 	public void draw(Graphics g) {
@@ -55,7 +61,13 @@ public class Bullet {
 		g.setColor(c);
 		move();
 	}
-
+	
+	public void overBorder() {
+		if (x > GamePanel.WIDTH || x < 0 || y < 0 || y > GamePanel.HEIGHT ) {
+			listener.bulletOverBorder(this);
+		} 
+	}
+	
 	public int getX() {
 		return x;
 	}
