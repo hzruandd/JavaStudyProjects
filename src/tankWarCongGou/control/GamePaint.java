@@ -30,6 +30,7 @@ public class GamePaint {
 	}
 	
 	public void draw(Graphics g) {
+		dataInit();
 		drawTank(g);
 		drawBullet(g);
 		drawData(g);
