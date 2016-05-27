@@ -13,7 +13,9 @@ import tankWarCongGou.model.GameData;
  */
 public class KeyMonitor extends KeyAdapter {
 
-	private GameAction gameAction = new GameAction(GameData.getMyTanks());
+	private DataAdmin admin = DataAdmin.getAdmin();
+	
+	private GameAction gameAction = new GameAction(admin.getMyTanks());
 	//按键被按下的监听方法
 	@Override
 	public void keyPressed(KeyEvent e) {

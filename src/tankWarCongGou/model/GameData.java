@@ -33,17 +33,18 @@ public class GameData {
 		
 	}
 	
-	public static List<Bullet> getBullets() {
+	public  List<Bullet> getBullets() {
 		return bullets;
 	}
 
-	public static List<MyTank> getMyTanks() {
+	public  List<MyTank> getMyTanks() {
 		return myTanks;
 	}
 	
 	public void setMyTanks(List<MyTank> myTanks) {
 		this.myTanks = myTanks;
 	}
+	
 	
 	
 }

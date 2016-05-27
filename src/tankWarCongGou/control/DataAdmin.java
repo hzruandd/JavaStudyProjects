@@ -1,6 +1,9 @@
 package tankWarCongGou.control;
 
+import java.util.List;
+
 import tankWarCongGou.entity.Bullet;
+import tankWarCongGou.entity.MyTank;
 import tankWarCongGou.model.GameData;
 /**
  * 
@@ -8,9 +11,43 @@ import tankWarCongGou.model.GameData;
  * 用于对Model中的存放游戏数据的GameData实现增、删、改、查的工作。
  */
 public class DataAdmin {
-	private GameData gameData;
+	private GameData gameData = new GameData();
+	private static DataAdmin dataAdmin = new DataAdmin();
+	
+	public static  DataAdmin getAdmin() {
+		return dataAdmin;
+	}
 	
 	public void addBullet(Bullet bullet) {
 		gameData.getBullets().add(bullet);
 	}
+	
+	public List<Bullet> getBullets() {
+		return gameData.getBullets();
+	}
+	
+	public void removeBullet(Bullet bullet) {
+		if (gameData.getBullets().contains(bullet)) {
+			gameData.getBullets().remove(bullet);
+		}
+	}
+	
+	public void addMyTank(MyTank myTank) {
+		gameData.getMyTanks().add(myTank);
+	}
+	
+	public List<MyTank> getMyTanks() {
+		return gameData.getMyTanks();
+	} 
+	
+	public void removeMyTank(MyTank myTank) {
+		if (gameData.getMyTanks().contains(myTank)) {
+			gameData.getMyTanks().remove(myTank);
+		}
+	}
+	
+	 
+	
+//	d
+	
 }

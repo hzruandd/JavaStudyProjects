@@ -9,12 +9,8 @@ import tankWarCongGou.entity.Bullet;
 import tankWarCongGou.entity.MyTank;
 import tankWarCongGou.entity.Prop;
 import tankWarCongGou.entity.Wall;
-import tankWarCongGou.model.GameData;
-import tankWarCongGou.model.GameFactory;
-
+import tankWarCongGou.model.GameData; 
 /**
- * 
- * @author Administrator
  * 画出游戏的各种对象，如坦克，子弹，爆炸、墙等
  */
 public class GamePaint {
@@ -25,6 +21,8 @@ public class GamePaint {
 	private List<Prop> props;           //道具集合
 	private List<Wall> walls;           //墙集合
 	private List<Boom> booms;           //爆炸集合
+	
+	private DataAdmin admin = DataAdmin.getAdmin();
 	
 	public GamePaint() {
 		dataInit();
@@ -40,8 +38,8 @@ public class GamePaint {
 	
 	//游戏数据初始化
 	public void dataInit() {
-		myTanks = GameData.getMyTanks();
-		bullets = GameData.getBullets();
+		myTanks = admin.getMyTanks();
+		bullets = admin.getBullets();
 	}
 	
 	private void drawTank(Graphics g) {
