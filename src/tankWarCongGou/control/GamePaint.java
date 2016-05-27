@@ -26,7 +26,7 @@ public class GamePaint {
 	//private DataAdmin admin = DataAdmin.getAdmin();
 	
 	public GamePaint() {
-		dataInit();
+		
 	}
 	
 	public void draw(Graphics g) {
@@ -63,8 +63,8 @@ public class GamePaint {
 	}
 	
 	private void drawBullet(Graphics g) {
-		for(Bullet bullet : bullets) {
-			bullet.draw(g);
+		for(int i=0; i<bullets.size(); i++) {
+			bullets.get(i).draw(g);
 		}
 	}
 	

@@ -48,7 +48,7 @@ public class Bullet {
 				break;
 			}
 		}
-		overBorder();
+		
 	}
 	
 	public void draw(Graphics g) {
@@ -60,10 +60,12 @@ public class Bullet {
 		g.fillRect(x, y, WIDTH, HEIGHT);
 		g.setColor(c);
 		move();
+		overBorder();
 	}
 	
 	public void overBorder() {
-		if (x > GamePanel.WIDTH || x < 0 || y < 0 || y > GamePanel.HEIGHT ) {
+		System.out.println(x +"hei"+y);
+		if (x > GamePanel.WIDTH | x < 0 | y < 0 | y > GamePanel.HEIGHT ) {
 			listener.bulletOverBorder(this);
 		} 
 	}
