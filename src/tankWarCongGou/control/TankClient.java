@@ -30,8 +30,9 @@ public class TankClient {
 	 * 游戏数据初始化
 	 */
 	private void dataInit() {
-		gameFactory = new GameFactory();
 		admin = new DataAdmin();
+		listener = new GameListener(admin);
+		gameFactory = new GameFactory(listener);
 		admin.setMyTanks(gameFactory.getMyTanks(2));
 	}
 	
@@ -39,7 +40,7 @@ public class TankClient {
 	 * 游戏模块初始化
 	 */
 	private void moduleInit() {
-		listener = new GameListener(admin);
+		
 		keyMonitor = new KeyMonitor(admin);
 		gamePaint = new GamePaint(admin);
 	}

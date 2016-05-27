@@ -41,11 +41,11 @@ public abstract  class Tank {
 	//坦克身上的监听器
 	private GameListener gameListener;
 
-	public Tank() {
+	public Tank(GameListener listener) {
 		this.speed = 5;
 		this.motionStatus = false;  
 		this.live = true;
-//		gameListener = new GameListener();
+		this.gameListener = listener;
 		up = true;
 	}
 	
