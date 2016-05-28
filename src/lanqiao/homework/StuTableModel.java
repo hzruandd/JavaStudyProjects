@@ -1,3 +1,4 @@
+package lanqiao.homework;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;

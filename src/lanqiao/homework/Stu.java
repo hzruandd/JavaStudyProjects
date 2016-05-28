@@ -1,3 +1,4 @@
+package lanqiao.homework;
 
 public class Stu {
 	private int stu_id;

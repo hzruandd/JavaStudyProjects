@@ -1,3 +1,4 @@
+package lanqiao.homework;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -48,6 +49,7 @@ public class Login {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 578, 436);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		frame.getContentPane().setLayout(null);
 		
 		user_account = new JTextField();
@@ -56,6 +58,38 @@ public class Login {
 		user_account.setColumns(10);
 		
 		JButton login = new JButton("登陆");
+		
+		login.setBounds(121, 308, 93, 23);
+		frame.getContentPane().add(login);
+		
+		JButton resetting = new JButton("重置");
+		resetting.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				user_account.setText("");
+				user_pwd.setText("");
+			}
+		});
+		resetting.setBounds(301, 308, 93, 23);
+		frame.getContentPane().add(resetting);
+		
+		JLabel label = new JLabel("账号：");
+		label.setFont(new Font("宋体", Font.PLAIN, 16));
+		label.setBounds(135, 138, 66, 33);
+		frame.getContentPane().add(label);
+		
+		JLabel label_1 = new JLabel("密码：");
+		label_1.setFont(new Font("宋体", Font.PLAIN, 16));
+		label_1.setBounds(135, 223, 54, 33);
+		frame.getContentPane().add(label_1);
+		
+		user_pwd = new JPasswordField();
+		user_pwd.setBounds(224, 233, 155, 23);
+		frame.getContentPane().add(user_pwd);
+		
+		JLabel error_login = new JLabel("");
+		error_login.setBounds(368, 184, 184, 39);
+		frame.getContentPane().add(error_login);
+		
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -75,7 +109,7 @@ public class Login {
 						frame.dispose();
 					}
 					else {
-						JOptionPane.showMessageDialog(null, "用户名或密码错误!");
+						error_login.setText("用户名或密码错误请重新输入！");
 					}
 					
 				} catch (SQLException e) {
@@ -84,31 +118,5 @@ public class Login {
 				}
 			}
 		});
-		login.setBounds(121, 308, 93, 23);
-		frame.getContentPane().add(login);
-		
-		JButton resetting = new JButton("重置");
-		resetting.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				user_account.setText("");
-				user_pwd.setText("");
-			}
-		});
-		resetting.setBounds(276, 308, 93, 23);
-		frame.getContentPane().add(resetting);
-		
-		JLabel label = new JLabel("账号：");
-		label.setFont(new Font("宋体", Font.PLAIN, 16));
-		label.setBounds(135, 138, 66, 33);
-		frame.getContentPane().add(label);
-		
-		JLabel label_1 = new JLabel("密码：");
-		label_1.setFont(new Font("宋体", Font.PLAIN, 16));
-		label_1.setBounds(135, 223, 54, 33);
-		frame.getContentPane().add(label_1);
-		
-		user_pwd = new JPasswordField();
-		user_pwd.setBounds(224, 233, 155, 23);
-		frame.getContentPane().add(user_pwd);
 	}
 }

@@ -1,3 +1,4 @@
+package lanqiao.homework;
 import java.awt.CardLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
