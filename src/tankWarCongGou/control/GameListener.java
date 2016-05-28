@@ -5,7 +5,7 @@ import java.awt.event.KeyListener;
 
 import tankWarCongGou.entity.Bullet;
 import tankWarCongGou.entity.Direction;
-import tankWarCongGou.model.GameAction;
+import tankWarCongGou.model.KeyAction;
 
 /**
  * 
@@ -14,19 +14,19 @@ import tankWarCongGou.model.GameAction;
  */
 public class GameListener implements KeyListener {
 	private DataAdmin admin;
-	private GameAction gameAction;
+	private KeyAction gameAction;
 	
 	public GameListener(DataAdmin admin) {
 		this.admin = admin;
-		gameAction = new GameAction(admin);
+		gameAction = new KeyAction(admin);
 	}
 	
 	/**
 	 * 坦克开火后生成一颗子弹
-	 * @param x
+	 * @param x 
 	 * @param y
-	 * @param camp
-	 * @param dir
+	 * @param camp 子弹的阵营
+	 * @param dir 子弹的方向
 	 */
 	public void fireAction(int x, int y, boolean camp, Direction dir) {
 		Bullet bullet = new Bullet(x, y, camp, dir);

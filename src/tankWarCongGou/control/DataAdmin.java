@@ -2,6 +2,7 @@ package tankWarCongGou.control;
 
 import java.util.List;
 
+import tankWarCongGou.entity.AITank;
 import tankWarCongGou.entity.Bullet;
 import tankWarCongGou.entity.MyTank;
 import tankWarCongGou.model.GameData;
@@ -49,9 +50,20 @@ public class DataAdmin {
 		gameData.setMyTanks(myTanks);
 	}
 	
+	public List<AITank> getAITanks() {
+		return gameData.getAiTanks();
+	}
+	
+	public void setAITanks(List<AITank> aiTanks)  {
+		gameData.setAiTanks(aiTanks);
+	}
+	
 	public void dataAddListener(GameListener listener) {
 		for (int i=0; i<getMyTanks().size(); i++) {
 			getMyTanks().get(i).setGameListener(listener);
+		}
+		for (int i=0; i<getAITanks().size(); i++) {
+			getAITanks().get(i).setGameListener(listener);
 		}
 	}
 	 

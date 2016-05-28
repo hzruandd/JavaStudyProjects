@@ -12,12 +12,12 @@ import tankWarCongGou.entity.MyTank;
  * @author Doctor邓
  *	游戏监听类，用于监听用户的操作，
  */
-public class GameAction {
+public class KeyAction {
 	private List<MyTank> myTanks;
 	private MyTank myTank1 = null;   //玩家一
 	private MyTank myTank2 = null;   //玩家二
 	
-	public GameAction(DataAdmin admin) {
+	public KeyAction(DataAdmin admin) {
 		this.myTanks = admin.getMyTanks();
 
 		if (myTanks.size()!= 0 && myTanks.size() == 1) {
@@ -36,7 +36,6 @@ public class GameAction {
 			
 			switch(e.getKeyCode()) {
 			case KeyEvent.VK_W:
-				System.out.println("111");
 				myTank1.setMotionStatus(true);
 				myTank1.setDir(Direction.Up);
 				break;

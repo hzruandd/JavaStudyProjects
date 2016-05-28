@@ -33,6 +33,7 @@ public class TankClient {
 		admin = new DataAdmin();
 		gameFactory = new GameFactory();
 		admin.setMyTanks(gameFactory.getMyTanks(2));
+		admin.setAITanks(gameFactory.getAITanks(5));
 	}
 	
 	/**

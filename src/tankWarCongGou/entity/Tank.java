@@ -1,8 +1,10 @@
 package tankWarCongGou.entity;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import tankWarCongGou.control.GameListener;
+import tankWarCongGou.view.GamePanel;
 
 /**
  * 
@@ -52,24 +54,81 @@ public abstract  class Tank {
 	/**
 	 * 坦克移动的方法
 	 */
-	public abstract void move();
+	public void move() {
+		// TODO 自动生成的方法存根
+		setOldX(getX());
+		setOldY(getY());
+		
+		//当坦克状态为可移动时，才能移动坦克
+		if (isMotionStatus()) {
+			//通过坦克方向来决定坦克的移动
+			switch(getDir()) {
+			case Up:
+				setY(getY() - getSpeed());
+				break;
+			case Right:
+				setX(getX() + getSpeed());
+				break;
+			case Down:
+				setY(getY() + getSpeed());
+				break;
+			case Left:
+				setX(getX() - getSpeed());
+				break;
+			}
+		}
+		hitWall();
+	}
 	
 	/**
 	 * 坦克开火的方法
 	 */
-	public abstract void fire();
+	public void fire() {
+		// TODO 自动生成的方法存根
+		int bulletX = getX() + getWIDTH()/2;
+		int bulletY = getY() + getHEIGHT()/2;
+		getGameListener().fireAction(bulletX, bulletY, isCamp(), getDir());
+	}
 	
 	/**
 	 * 坦克画自己方法
 	 */
 	public abstract void draw(Graphics g);
 	
-	public abstract void hitWall();
+	/**
+	 * 判断坦克是否超过游戏的边界，并对坦克超过边界后进行处理
+	 */
+	public void hitWall() {
 
-	//设置坦克具体的方向
-	public void setDirection () {
-	
+		if (getX() < 0) {
+			setX(0);
+		}
+		
+		if (getX() + getWIDTH() > GamePanel.WIDTH) {
+			setX(GamePanel.WIDTH - getWIDTH());
+		}
+		
+		if (getY() < 0) {
+			setY(0);
+		} 
+		
+		if (getY() + 2*getHEIGHT()> GamePanel.HEIGHT) {
+			setY(GamePanel.HEIGHT - 2*getHEIGHT());
+		}
 	}
+	
+	/**
+	 * 获得坦克在游戏中所在区域
+	 * @return 坦克所占的游戏空间
+	 */
+	public Rectangle getRect() {
+		return new Rectangle(x, y, WIDTH, HEIGHT);
+	}
+
+//	//设置坦克具体的方向
+//	public void setDirection () {
+//	
+//	}
 	
 	public int getSpeed() {
 		return speed;

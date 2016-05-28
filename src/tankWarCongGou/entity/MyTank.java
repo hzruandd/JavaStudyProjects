@@ -19,42 +19,6 @@ public class MyTank extends Tank {
 		setCamp(true);
 		setDir(Direction.Up);
 	}
-	
-	@Override
-	public void move() {
-		// TODO 自动生成的方法存根
-		setOldX(getX());
-		setOldY(getY());
-		
-		//当坦克状态为可移动时，才能移动坦克
-		if (isMotionStatus()) {
-			//通过坦克方向来决定坦克的移动
-			switch(getDir()) {
-			case Up:
-				setY(getY() - getSpeed());
-				break;
-			case Right:
-				setX(getX() + getSpeed());
-				break;
-			case Down:
-				setY(getY() + getSpeed());
-				break;
-			case Left:
-				setX(getX() - getSpeed());
-				break;
-			}
-		}
-		hitWall();
-	}
-
-	
-	@Override
-	public void fire() {
-		// TODO 自动生成的方法存根
-		int bulletX = getX() + getWIDTH()/2;
-		int bulletY = getY() + getHEIGHT()/2;
-		getGameListener().fireAction(bulletX, bulletY, isCamp(), getDir());
-	}
 
 	@Override
 	public void draw(Graphics g) {
@@ -74,23 +38,23 @@ public class MyTank extends Tank {
 		
 	}
 
-	@Override
-	public void hitWall() {
-
-		if (getX() < 0) {
-			setX(0);
-		}
-		
-		if (getX() + getWIDTH() > GamePanel.WIDTH) {
-			setX(GamePanel.WIDTH - getWIDTH());
-		}
-		
-		if (getY() < 0) {
-			setY(0);
-		} 
-		
-		if (getY() + 2*getHEIGHT()> GamePanel.HEIGHT) {
-			setY(GamePanel.HEIGHT - 2*getHEIGHT());
-		}
-	}
+//	@Override
+//	public void hitWall() {
+//
+//		if (getX() < 0) {
+//			setX(0);
+//		}
+//		
+//		if (getX() + getWIDTH() > GamePanel.WIDTH) {
+//			setX(GamePanel.WIDTH - getWIDTH());
+//		}
+//		
+//		if (getY() < 0) {
+//			setY(0);
+//		} 
+//		
+//		if (getY() + 2*getHEIGHT()> GamePanel.HEIGHT) {
+//			setY(GamePanel.HEIGHT - 2*getHEIGHT());
+//		}
+//	}
 }

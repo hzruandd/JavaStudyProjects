@@ -3,7 +3,7 @@ package tankWarCongGou.control;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import tankWarCongGou.model.GameAction;
+import tankWarCongGou.model.KeyAction;
 import tankWarCongGou.model.GameData;
 
 /**
@@ -13,11 +13,11 @@ import tankWarCongGou.model.GameData;
  */
 public class KeyMonitor extends KeyAdapter {
 	private DataAdmin admin;
-	private GameAction gameAction;
+	private KeyAction gameAction;
 	
 	public KeyMonitor(DataAdmin admin) {
 		this.admin = admin;
-		gameAction = new GameAction(admin);
+		gameAction = new KeyAction(admin);
 	}
 	
 	//按键被按下的监听方法

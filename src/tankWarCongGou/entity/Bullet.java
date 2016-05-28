@@ -19,7 +19,7 @@ public class Bullet {
 	private boolean live;
 	private boolean camp;
 	private final int SPEED = 8;
-	private Direction dir = Direction.Down;
+	private Direction dir;
 	
 	private GameListener listener;
 	

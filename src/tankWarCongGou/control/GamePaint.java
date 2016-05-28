@@ -50,7 +50,8 @@ public class GamePaint {
 	 * 画图数据初始化
 	 */
 	public void dataInit() {
-		myTanks = admin .getMyTanks();
+		myTanks = admin.getMyTanks();
+		aiTanks = admin.getAITanks();
 		bullets = admin.getBullets();
 	}
 	
@@ -59,9 +60,9 @@ public class GamePaint {
 			myTank.draw(g);
 		}
 		
-//		for(AITank aiTank : aiTanks) {
-//			aiTank.draw(g);
-//		}
+		for(AITank aiTank : aiTanks) {
+			aiTank.draw(g);
+		}
 	}
 	
 	private void drawBullet(Graphics g) {
