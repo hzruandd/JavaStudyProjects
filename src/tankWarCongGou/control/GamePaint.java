@@ -22,11 +22,13 @@ public class GamePaint {
 	private List<Prop> props;           //道具集合
 	private List<Wall> walls;           //墙集合
 	private List<Boom> booms;           //爆炸集合
+	private ImpactDetection impact;
 	
 	private DataAdmin admin;
 	
 	public GamePaint(DataAdmin admin) {
 		this.admin = admin;
+		impact = new ImpactDetection(admin);
 	}
 	
 	public void draw(Graphics g) {
@@ -35,8 +37,9 @@ public class GamePaint {
 		drawBullet(g);
 		drawData(g);
 //		drawWall(g);
-//		drawBoom(g);
+		drawBoom(g);
 //		drawProp(g);
+		impact.bulletTOtank();
 	}
 	
 	public void drawData(Graphics g) {
@@ -53,15 +56,16 @@ public class GamePaint {
 		myTanks = admin.getMyTanks();
 		aiTanks = admin.getAITanks();
 		bullets = admin.getBullets();
+		booms = admin.getBooms();
 	}
 	
 	private void drawTank(Graphics g) {
-		for(MyTank myTank : myTanks) {
-			myTank.draw(g);
+		for(int i=0; i<myTanks.size(); i++) {
+			myTanks.get(i).draw(g);
 		}
 		
-		for(AITank aiTank : aiTanks) {
-			aiTank.draw(g);
+		for(int i=0; i<aiTanks.size(); i++) {
+			aiTanks.get(i).draw(g);
 		}
 	}
 	
@@ -77,11 +81,11 @@ public class GamePaint {
 //		}
 //	}
 //	
-//	private void drawBoom(Graphics g) {
-//		for(Boom boom : booms) {
-//			boom.draw(g);
-//		}
-//	}
+	private void drawBoom(Graphics g) {
+		for(int i=0; i<booms.size(); i++) {
+			booms.get(i).draw(g);
+		}
+	}
 //	
 //	private void drawProp(Graphics g) {
 //		for(Prop prop : props) {

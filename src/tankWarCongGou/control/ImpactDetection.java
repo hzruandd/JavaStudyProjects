@@ -19,6 +19,7 @@ public class ImpactDetection {
 	
 	public ImpactDetection(DataAdmin admin) {
 		this.admin = admin;
+		dataInit();
 	}
 	
 	/**
@@ -30,10 +31,47 @@ public class ImpactDetection {
 		bullets = admin.getBullets();
 	}
 	
+	/**
+	 * 子弹和坦克之间的碰撞检测
+	 */
 	public  void bulletTOtank() {
-		List<AITank> aiTanks = admin.getAITanks();
-		if (admin.getAITanks().size() >=1 ) {
-			
+		//当游戏中坦克和子弹都存在时开始子弹和坦克的碰撞检测
+		if (aiTanks.size() >= 1 && bullets.size() >=1 ) {
+			for (int i=0; i< aiTanks.size(); i++) {
+				AITank aiTank = aiTanks.get(i);
+				
+				for (int j=0; j< bullets.size(); j++) {
+					Bullet bullet = bullets.get(j);
+					//当子弹和坦克阵营相同时退出此次循环，不开始碰撞检测
+					if (aiTank.isCamp() == bullet.isCamp()) continue;
+					//检测是否发生碰撞
+					if (aiTank.getRect().intersects(bullet.getRect())) {
+//						aiTank.setLive(false);
+//						bullet.setLive(false);
+						bullet.bulletBoom();
+						aiTanks.remove(aiTank);
+						bullets.remove(bullet);
+					}
+				}
+			}
+		}
+		
+		if (myTanks.size() >= 1 && bullets.size() >=1 ) {
+			for (int i=0; i< myTanks.size(); i++) {
+				MyTank myTank = myTanks.get(i);
+				
+				for (int j=0; j< bullets.size(); j++) {
+					Bullet bullet = bullets.get(j);
+					//当子弹和坦克阵营相同时退出此次循环，不开始碰撞检测
+					if (myTank.isCamp() == bullet.isCamp()) continue;
+					//检测是否发生碰撞
+					if (myTank.getRect().intersects(bullet.getRect())) {
+						bullet.bulletBoom();
+						myTanks.remove(myTank);
+						bullets.remove(bullet);
+					}
+				}
+			}
 		}
 	}
 }

@@ -2,6 +2,7 @@ package tankWarCongGou.entity;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import tankWar.gameView.GamePanel;
 import tankWarCongGou.control.GameListener;
@@ -63,11 +64,28 @@ public class Bullet {
 		overBorder();
 	}
 	
+	/**
+	 * 判断子弹是否出界，出界则告诉监听器
+	 */
 	public void overBorder() {
 		if (x > tankWarCongGou.view.GamePanel.WIDTH | x < 0 | y < 0 | 
 				y >  tankWarCongGou.view.GamePanel.HEIGHT) {
 			listener.bulletOverBorder(this);
 		} 
+	}
+	
+	public void bulletBoom() {
+		int boomX = x + WIDTH;
+		int boomY = y + HEIGHT;
+		listener.boomAction(boomX, boomY);
+	}
+	
+	/**
+	 * 获得子弹游戏中的所占空间
+	 * @return
+	 */
+	public Rectangle getRect() {
+		return new Rectangle(x, y, WIDTH, HEIGHT);
 	}
 	
 	public void setListener(GameListener listener) {

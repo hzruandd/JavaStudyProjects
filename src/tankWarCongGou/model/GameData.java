@@ -60,4 +60,24 @@ public class GameData {
 	public void setWalls(List<Wall> walls) {
 		this.walls = walls;
 	}
+
+	public List<Prop> getProps() {
+		return props;
+	}
+
+	public void setProps(List<Prop> props) {
+		this.props = props;
+	}
+
+	public List<Boom> getBooms() {
+		return booms;
+	}
+
+	public void setBooms(List<Boom> booms) {
+		this.booms = booms;
+	}
+
+	public void setBullets(List<Bullet> bullets) {
+		this.bullets = bullets;
+	}
 }

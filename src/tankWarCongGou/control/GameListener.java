@@ -3,6 +3,7 @@ package tankWarCongGou.control;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import tankWarCongGou.entity.Boom;
 import tankWarCongGou.entity.Bullet;
 import tankWarCongGou.entity.Direction;
 import tankWarCongGou.model.KeyAction;
@@ -38,6 +39,16 @@ public class GameListener implements KeyListener {
 		admin.removeBullet(bullet);
 	}
 
+	public void boomAction(int x, int y) {
+		Boom boom = new Boom(x, y);
+		boom.setListener(this);
+		admin.addBoom(boom);
+	}
+	
+	public void boomEnd(Boom boom) {
+		admin.removeBoom(boom);
+	}
+	
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO 自动生成的方法存根
