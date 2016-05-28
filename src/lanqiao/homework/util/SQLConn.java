@@ -10,21 +10,46 @@ public class SQLConn {
 	private static final String PWD = "123456";
 	private static Connection conn = null;
 	
-	private SQLConn() {
-		
-	}
-	
-	@SuppressWarnings("finally")
-	public  static Connection getConn() {
+	/**
+	 * 建立JDBC-ORACLE的桥接器
+	 */
+	static {
 		try {
 			Class.forName(JDBC_DRIVER);
+		} catch (ClassNotFoundException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 获取数据库的链接
+	 * @return 返回数据库的连接对象
+	 */
+	@SuppressWarnings("finally")
+	public  Connection getConn() {
+		try {
 			conn = DriverManager.getConnection(URL, USER, PWD);
 			//System.out.println("连接成功");
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		} finally {
 			return conn;
+		}
+	}
+	
+	/**
+	 * 关闭数据库的连接
+	 */
+	public void close() {
+		if (conn != null) {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
 		}
 	}
 }

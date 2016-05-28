@@ -3,22 +3,27 @@ package lanqiao.homework.vo;
 public class Stu {
 	private int stu_id;
 	private int info_id;
+	private int class_id;
 	private String stu_name;
 	private int stu_age;
 	private String stu_sex;
 	private String stu_address;
 	
-	public Stu(int stu_id,int info_id, String stu_name, int stu_age, String stu_sex, String stu_address) {
+	public Stu(int stu_id,int info_id, int class_id, String stu_name, int stu_age, String stu_sex, String stu_address) {
 		super();
 		this.info_id = info_id;
 		this.stu_id = stu_id;
+		this.class_id = class_id;
 		this.stu_name = stu_name;
 		this.stu_age = stu_age;
 		this.stu_sex = stu_sex;
 		this.stu_address = stu_address;
 	}
 
-	//将学生信息转化为对象数组
+	/**
+	 * 将学生信息转化为对象数组
+	 * @return 返回学生信息的对象数组
+	 */
 	public Object[] stuToArray() {
 		Object[] object = {stu_id, stu_name, stu_age, stu_sex, stu_address};
 		return object;
@@ -78,6 +83,14 @@ public class Stu {
 
 	public void setStu_address(String stu_address) {
 		this.stu_address = stu_address;
+	}
+
+	public int getClass_id() {
+		return class_id;
+	}
+
+	public void setClass_id(int class_id) {
+		this.class_id = class_id;
 	}
 	
 

@@ -4,17 +4,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 import lanqiao.homework.util.SQLConn;
 import lanqiao.homework.vo.Stu;
 
 public class JdbcUtil {
-	//private SQLConn sqlConn = new SQLConn();
+	private SQLConn sqlConn = new SQLConn();
 	private Connection conn;
 	private Statement sql;
 	public JdbcUtil() {
-		conn = SQLConn.getConn();
+		conn = sqlConn.getConn();
 	}
 	
 	//验证用户名和密码
