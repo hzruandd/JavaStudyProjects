@@ -1,4 +1,4 @@
-package lanqiao.homework;
+package lanqiao.homework.view;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import lanqiao.homework.bussiness.JdbcUtil;
 
 public class Login {
 

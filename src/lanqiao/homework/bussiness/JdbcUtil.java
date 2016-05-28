@@ -1,10 +1,13 @@
-package lanqiao.homework;
+package lanqiao.homework.bussiness;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import lanqiao.homework.util.SQLConn;
+import lanqiao.homework.vo.Stu;
 
 public class JdbcUtil {
 	//private SQLConn sqlConn = new SQLConn();

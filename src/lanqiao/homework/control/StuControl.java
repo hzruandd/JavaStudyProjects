@@ -1,9 +1,12 @@
-package lanqiao.homework;
+package lanqiao.homework.control;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTable;
+
+import lanqiao.homework.bussiness.JdbcUtil;
+import lanqiao.homework.vo.Stu;
 
 public class StuControl {
 	//private List<Stu> stuList;

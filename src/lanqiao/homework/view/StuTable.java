@@ -1,4 +1,4 @@
-package lanqiao.homework;
+package lanqiao.homework.view;
 import java.awt.Color;
 import java.util.List;
 

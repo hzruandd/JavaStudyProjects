@@ -1,4 +1,4 @@
-package lanqiao.homework;
+package lanqiao.homework.util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

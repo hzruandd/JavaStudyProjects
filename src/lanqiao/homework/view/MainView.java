@@ -1,4 +1,4 @@
-package lanqiao.homework;
+package lanqiao.homework.view;
 import java.awt.CardLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -14,6 +14,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+
+import lanqiao.homework.control.StuControl;
+import lanqiao.homework.vo.Stu;
+
 import javax.swing.JScrollPane;
 
 public class MainView extends JFrame {

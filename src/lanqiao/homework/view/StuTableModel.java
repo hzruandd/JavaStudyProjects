@@ -1,7 +1,9 @@
-package lanqiao.homework;
+package lanqiao.homework.view;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
+
+import lanqiao.homework.control.StuControl;
 
 public class StuTableModel extends AbstractTableModel {
 	//private List<Stu> stuList = StuControl.getStuControl().getStuList();
