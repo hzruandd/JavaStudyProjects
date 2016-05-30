@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 import lanqiao.homework.dao.SqlCURDDao;
-import lanqiao.homework.util.SQLConn;
+import lanqiao.homework.util.impl.SQLConn;
 import lanqiao.homework.vo.Stu;
 /**
  * 对学生信息实现增、删、改、查操作的具体实现类

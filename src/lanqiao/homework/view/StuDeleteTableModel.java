@@ -6,8 +6,7 @@ import lanqiao.homework.control.StuControl;
 public class StuDeleteTableModel extends AbstractTableModel {
 	
 	String[] columns = {"学号", "姓名", "年龄", "性别", "地址", "班级号"};
-	private Object[][] stuDataList;
-	//private List<Stu> stuList = StuControl.getStuControl().getStuList();
+	private Object[][] stuDataList;	//private List<Stu> stuList = StuControl.getStuControl().getStuList();
 	private StuBussiness stuBussiness = new StuBussiness();
 	
 	@Override

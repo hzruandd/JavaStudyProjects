@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Vector;
 import lanqiao.homework.dao.CommanCURD;
-import lanqiao.homework.util.SQLConn;
+import lanqiao.homework.util.impl.SQLConn;
 
 /**
  * 对班级信息实现增、删、改、查的实现类

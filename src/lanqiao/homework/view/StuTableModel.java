@@ -10,10 +10,9 @@ import lanqiao.homework.control.StuControl;
 
 public class StuTableModel extends AbstractTableModel {
 	
-	String[] columns = {"学号", "姓名", "年龄", "性别", "地址", "班级号"};
-	private Object[][] stuDataList = StuControl.getStuControl().getTableData();
-	//private List<Stu> stuList = StuControl.getStuControl().getStuList();
+	private String[] columns = {"学号", "姓名", "年龄", "性别", "地址", "班级号"};
 	private StuBussiness stuBussiness = new StuBussiness();
+	private Object[][] stuDataList = stuBussiness.getTableData();
 	
 	@Override
 	public String getColumnName(int arg0) {

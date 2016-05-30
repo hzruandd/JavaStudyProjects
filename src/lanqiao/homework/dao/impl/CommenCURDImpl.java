@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Vector;
 
 import lanqiao.homework.dao.CommanCURD;
-import lanqiao.homework.util.SQLConn;
+import lanqiao.homework.util.impl.SQLConn;
 import lanqiao.homework.vo.Stu;
 
 public class CommenCURDImpl implements CommanCURD{
@@ -62,7 +62,7 @@ public class CommenCURDImpl implements CommanCURD{
 			for (int i=0; i<str.size(); i++) {
 				ps.setString(i + 1, str.get(i));
 			}
-			int j = ps.executeUpdate(sql);
+			int j = ps.executeUpdate();
 			if (j==0) return false;
 			return true;
 		} catch (SQLException e) {
@@ -80,7 +80,7 @@ public class CommenCURDImpl implements CommanCURD{
 			for (int i=0; i<str.size(); i++) {
 				ps.setString(i + 1, str.get(i));
 			}
-			ResultSet rs = ps.executeQuery(sql);
+			ResultSet rs = ps.executeQuery();
 			ResultSetMetaData metaData = rs.getMetaData();
 			
 			while(rs.next()) {

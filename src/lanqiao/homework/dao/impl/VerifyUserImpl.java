@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import lanqiao.homework.dao.VerifyUserDao;
-import lanqiao.homework.util.SQLConn;
+import lanqiao.homework.util.impl.SQLConn;
 
 public class VerifyUserImpl implements VerifyUserDao{
 

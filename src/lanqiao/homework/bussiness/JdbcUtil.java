@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import lanqiao.homework.util.SQLConn;
+import lanqiao.homework.util.impl.SQLConn;
 import lanqiao.homework.vo.Stu;
 
 public class JdbcUtil {
