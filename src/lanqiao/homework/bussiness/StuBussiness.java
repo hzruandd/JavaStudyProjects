@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-import lanqiao.homework.control.StuControl;
 import lanqiao.homework.dao.CommanCURD;
 import lanqiao.homework.dao.impl.CommenCURDImpl;
+import lanqiao.homework.unless.StuControl;
 import lanqiao.homework.vo.Stu;
 import lanqiao.homework.vo.StuClass;
 

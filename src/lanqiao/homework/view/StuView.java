@@ -22,7 +22,7 @@ import javax.swing.border.EmptyBorder;
 
 import lanqiao.homework.bussiness.ClassBussiness;
 import lanqiao.homework.bussiness.StuBussiness;
-import lanqiao.homework.control.StuControl;
+import lanqiao.homework.unless.StuControl;
 import lanqiao.homework.vo.Stu;
 import lanqiao.homework.vo.StuClass;
 import java.awt.event.MouseAdapter;

@@ -1,11 +1,10 @@
-package lanqiao.homework.dao.impl;
+package lanqiao.homework.unless;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import lanqiao.homework.dao.SqlCURDDao;
 import lanqiao.homework.util.impl.SQLConn;
 import lanqiao.homework.vo.Stu;
 /**

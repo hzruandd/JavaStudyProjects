@@ -1,7 +1,8 @@
 package lanqiao.homework.view;
 import javax.swing.table.AbstractTableModel;
+
 import lanqiao.homework.bussiness.StuBussiness;
-import lanqiao.homework.control.StuControl;
+import lanqiao.homework.unless.StuControl;
 
 public class StuDeleteTableModel extends AbstractTableModel {
 	

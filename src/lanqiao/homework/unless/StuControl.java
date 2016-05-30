@@ -1,11 +1,10 @@
-package lanqiao.homework.control;
+package lanqiao.homework.unless;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTable;
 
-import lanqiao.homework.bussiness.JdbcUtil;
 import lanqiao.homework.vo.Stu;
 
 public class StuControl {
