@@ -1,32 +1,26 @@
 package lanqiao.homework.view;
 import java.awt.CardLayout;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import java.awt.Color;
-import javax.swing.border.LineBorder;
-
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import lanqiao.homework.bussiness.ClassBussiness;
 import lanqiao.homework.bussiness.StuBussiness;
 import lanqiao.homework.control.StuControl;
 import lanqiao.homework.vo.Stu;
 import lanqiao.homework.vo.StuClass;
-
-import javax.swing.JScrollPane;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JRadioButton;
-import javax.swing.ButtonGroup;
 
 public class StuView extends JFrame {
 
@@ -49,6 +43,7 @@ public class StuView extends JFrame {
 	private JComboBox boxClass_id;
 	private StuBussiness stuBussiness;
 	private ClassBussiness classBussiness;
+	private JTable deleteTable;
 	
 	public StuView() {
 		stuBussiness = new StuBussiness();
@@ -81,7 +76,7 @@ public class StuView extends JFrame {
 		contentPane.add(searchStu);
 		
 		JPanel menu = new JPanel();
-		menu.setBounds(0, 10, 609, 308);
+		menu.setBounds(0, 10, 609, 355);
 		contentPane.add(menu);
 		menu.setLayout(menuLayout);
 		
@@ -157,31 +152,46 @@ public class StuView extends JFrame {
 		menu.add(delPane, "delPane");
 		delPane.setLayout(null);
 		
-		JButton delStuButton = new JButton("删除");
+		JButton delStuButton = new JButton("删除表格中的所有学生");
 		
-		delStuButton.setBounds(238, 242, 93, 23);
+		delStuButton.setBounds(212, 322, 153, 23);
 		delPane.add(delStuButton);
 		
 		delStuText = new JTextField();
-		delStuText.setBounds(204, 165, 156, 23);
+		delStuText.setBounds(212, 43, 156, 23);
 		delPane.add(delStuText);
 		delStuText.setColumns(10);
 		
-		JLabel label_5 = new JLabel("请输入要删除的学生的学号");
-		label_5.setBounds(204, 109, 216, 23);
+		JLabel label_5 = new JLabel("搜索");
+		label_5.setBounds(276, 10, 36, 23);
 		delPane.add(label_5);
+		
+		
+		deleteTable = new JTable();
+		//deleteTable.setBounds(10, 76, 589, 163);
+		deleteTable.setModel(stuTableModel);
+		//delPane.add(deleteTable);
+		
+		JScrollPane deleteScrollPane = new JScrollPane(deleteTable);
+		deleteScrollPane.setBounds(10, 76, 589, 198);
+		delPane.add(deleteScrollPane);
+		
+		JButton delSearchButton = new JButton("开始查询");
+		
+		delSearchButton.setBounds(434, 43, 93, 23);
+		delPane.add(delSearchButton);
 		
 		JPanel alterPane = new JPanel();
 		menu.add(alterPane, "alterPane");
 		alterPane.setLayout(null);
 		
 		stuIdAlter = new JTextField();
-		stuIdAlter.setBounds(28, 82, 172, 21);
+		stuIdAlter.setBounds(193, 46, 172, 21);
 		alterPane.add(stuIdAlter);
 		stuIdAlter.setColumns(10);
 		
 		JLabel label_6 = new JLabel("请输入要修改的学生的学号");
-		label_6.setBounds(39, 41, 172, 31);
+		label_6.setBounds(193, 5, 172, 31);
 		alterPane.add(label_6);
 		
 		JLabel lblNewLabel = new JLabel("姓名");
@@ -222,12 +232,12 @@ public class StuView extends JFrame {
 		
 		JButton button = new JButton("开始修改");
 		
-		button.setBounds(250, 81, 93, 23);
+		button.setBounds(412, 302, 93, 23);
 		alterPane.add(button);
 		
 		JButton button_1 = new JButton("提交修改");
 		
-		button_1.setBounds(396, 81, 93, 23);
+		button_1.setBounds(289, 302, 93, 23);
 		alterPane.add(button_1);
 		
 		JPanel searchPane = new JPanel();
@@ -250,9 +260,9 @@ public class StuView extends JFrame {
 		table = new JTable();
 		table.setModel(stuTableModel);
 		
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(40, 10, 550, 250);
-		searchPane.add(scrollPane);
+		JScrollPane searchScrollPane = new JScrollPane(table);
+		searchScrollPane.setBounds(40, 10, 550, 250);
+		searchPane.add(searchScrollPane);
 		
 		updateClassSelect();
 		
@@ -294,7 +304,6 @@ public class StuView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				menuLayout.show(menu, "searchPane");
 				stuTableModel.updateDate();
-				//scrollPane.repaint();
 			}
 		});
 		
@@ -339,6 +348,13 @@ public class StuView extends JFrame {
 				else {
 					JOptionPane.showMessageDialog(null, "修改失败，请重新输入!");
 				}
+			}
+		});
+		
+		delSearchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String user_input = delStuText.getText();
+				stuTableModel.setData(stuBussiness.getSearchData(user_input));
 			}
 		});
 	}

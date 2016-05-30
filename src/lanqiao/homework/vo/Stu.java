@@ -28,7 +28,7 @@ public class Stu {
 	 * @return 返回学生信息的对象数组
 	 */
 	public Object[] stuToArray() {
-		Object[] object = {stu_id, stu_name, stu_age, stu_sex, stu_address};
+		Object[] object = {stu_id, stu_name, stu_age, stu_sex, stu_address, class_id};
 		return object;
 	}
 	
