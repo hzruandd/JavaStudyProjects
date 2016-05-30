@@ -27,7 +27,7 @@ public class SQLConn {
 	 * @return 返回数据库的连接对象
 	 */
 	@SuppressWarnings("finally")
-	public  Connection getConn() {
+	public static Connection getConn() {
 		try {
 			conn = DriverManager.getConnection(URL, USER, PWD);
 			//System.out.println("连接成功");

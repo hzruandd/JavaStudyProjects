@@ -9,8 +9,11 @@ public class Stu {
 	private String stu_sex;
 	private String stu_address;
 	
+	public Stu(){
+		
+	} 
+	
 	public Stu(int stu_id,int info_id, int class_id, String stu_name, int stu_age, String stu_sex, String stu_address) {
-		super();
 		this.info_id = info_id;
 		this.stu_id = stu_id;
 		this.class_id = class_id;

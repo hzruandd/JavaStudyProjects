@@ -13,13 +13,14 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import lanqiao.homework.bussiness.JdbcUtil;
+import lanqiao.homework.bussiness.VerifyUser;
 
 public class Login {
 
 	private JFrame frame;
 	private JTextField user_account;
 	private JPasswordField user_pwd;
-	private JdbcUtil jdbc = new JdbcUtil();
+	private VerifyUser verifyUser;
 
 	/**
 	 * Launch the application.
@@ -65,12 +66,7 @@ public class Login {
 		frame.getContentPane().add(login);
 		
 		JButton resetting = new JButton("重置");
-		resetting.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				user_account.setText("");
-				user_pwd.setText("");
-			}
-		});
+		
 		resetting.setBounds(301, 308, 93, 23);
 		frame.getContentPane().add(resetting);
 		
@@ -92,31 +88,34 @@ public class Login {
 		error_login.setBounds(368, 184, 184, 39);
 		frame.getContentPane().add(error_login);
 		
+		resetting.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				user_account.setText("");
+				user_pwd.setText("");
+				error_login.setText("");
+			}
+		});
+		
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try {
-					if (jdbc.verifyUser(user_account.getText(), user_pwd.getText())) {
-						
-						EventQueue.invokeLater(new Runnable() {
-							public void run() {
-								try {
-									MainView frame = new MainView();
-									frame.setVisible(true);
-								} catch (Exception e) {
-									e.printStackTrace();
-								}
-							}
-						});
-						
-						frame.dispose();
-					}
-					else {
-						error_login.setText("用户名或密码错误请重新输入！");
-					}
+				verifyUser = new VerifyUser();
+				if (verifyUser.verify(user_account.getText(), user_pwd.getText())) {
 					
-				} catch (SQLException e) {
-					// TODO 自动生成的 catch 块
-					e.printStackTrace();
+					EventQueue.invokeLater(new Runnable() {
+						public void run() {
+							try {
+								StuView frame = new StuView();
+								frame.setVisible(true);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+					});
+					
+					frame.dispose();
+				}
+				else {
+					error_login.setText("用户名或密码错误请重新输入！");
 				}
 			}
 		});

@@ -6,7 +6,7 @@ import java.util.Vector;
  * @author Doctor邓
  *
  */
-public interface SqlCURD {
+public interface SqlCURDDao {
 	/**
 	 * 向数据库添加信息
 	 * @return 添加成功，返回true，添加失败，返回false
@@ -24,7 +24,7 @@ public interface SqlCURD {
 	public boolean update(Object obj);
 	/**
 	 * 查询数据库中的信息
-	 * @return 返回一个对象数组
+	 * @return 返回一个对象数组,如果查找失败返回的对象数组为null
 	 */
 	public Vector search(Object obj );
 }

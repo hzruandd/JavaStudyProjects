@@ -5,14 +5,18 @@ package lanqiao.homework.vo;
  * @author Doctor邓
  *
  */
-public class stuClass {
+public class StuClass {
 	private int class_id;
 	private String class_name;
 	private String class_desc;
 	
-	public stuClass(int class_id, String class_name) {
+	public StuClass(){
+		
+	}
+	public StuClass(int class_id, String class_name, String class_desc) {
 		this.class_id = class_id;
 		this.class_name = class_name;
+		this.class_desc = class_desc;
 	}
 
 	/**

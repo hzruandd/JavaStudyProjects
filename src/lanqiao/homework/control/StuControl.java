@@ -41,7 +41,7 @@ public class StuControl {
 	
 	public void addStu(int stu_id, String stu_name, int stu_age, String stu_sex, String stu_address) {
 		int info_id = stu_id;
-		Stu stu = new Stu(stu_id, info_id, stu_name, stu_age, stu_sex, stu_address);
+		Stu stu = new Stu(stu_id, info_id,stu_id, stu_name, stu_age, stu_sex, stu_address);
 		try {
 			jdbc.addStu(stu);
 		} catch (SQLException e) {

@@ -1,35 +1,49 @@
 package lanqiao.homework.dao.impl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.List;
 import java.util.Vector;
-
-import lanqiao.homework.dao.SqlCURD;
+import lanqiao.homework.dao.CommanCURD;
+import lanqiao.homework.util.SQLConn;
 
 /**
  * 对班级信息实现增、删、改、查的实现类
  * @author Doctor邓
  *
  */
-public class ClassCURDImpl implements SqlCURD {
-
-	@Override
-	public boolean add(Object obj) {
-		return false;
+public class ClassCURDImpl implements CommanCURD{
+	private Connection conn;
+	private PreparedStatement ps;
+	
+	public ClassCURDImpl() {
+		conn = SQLConn.getConn();
 	}
-
-
+	
 	@Override
-	public boolean delete(Object obj) {
-		return false;
-	}
+	public boolean add(String sql, List<String> str) {
 
-	@Override
-	public boolean update(Object obj) {
 		return false;
 	}
 
 	@Override
-	public Vector search(Object obj) {
-		return new Vector();
+	public boolean delete(String sql, List<String> str) {
+		// TODO 自动生成的方法存根
+		return false;
 	}
+
+	@Override
+	public boolean update(String sql, List<String> str) {
+		// TODO 自动生成的方法存根
+		return false;
+	}
+
+	@Override
+	public Vector search(String sql, List<String> str) {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+
 
 }

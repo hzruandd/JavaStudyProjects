@@ -46,7 +46,7 @@ public class JdbcUtil {
 				int stu_age = rs.getInt("stu_age");
 				String stu_sex = rs.getString("stu_sex"); 
 				String stu_address = rs.getString("stu_address");
-				stuList.add(new Stu(stu_id, info_id, stu_name, stu_age, stu_sex, stu_address));
+				stuList.add(new Stu(stu_id, info_id, stu_id,stu_name, stu_age, stu_sex, stu_address));
 			}
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
@@ -140,7 +140,7 @@ public class JdbcUtil {
 			int stu_age = rs.getInt("stu_age");
 			String stu_sex = rs.getString("stu_sex"); 
 			String stu_address = rs.getString("stu_address");
-			stu = new Stu(stu_id, info_id, stu_name, stu_age, stu_sex, stu_address);
+			stu = new Stu(stu_id, info_id,stu_id, stu_name, stu_age, stu_sex, stu_address);
 			return stu;
 		}
 		else {

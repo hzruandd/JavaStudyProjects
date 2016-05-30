@@ -3,6 +3,7 @@ import java.awt.CardLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,21 +16,24 @@ import javax.swing.JTable;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 
+import lanqiao.homework.bussiness.ClassBussiness;
+import lanqiao.homework.bussiness.StuBussiness;
 import lanqiao.homework.control.StuControl;
 import lanqiao.homework.vo.Stu;
+import lanqiao.homework.vo.StuClass;
 
 import javax.swing.JScrollPane;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 
-public class MainView extends JFrame {
+public class StuView extends JFrame {
 
 	private JPanel contentPane;
-	/**
-	 * Launch the application.
-	 */
 	private JButton addStu;
 	private JTextField stuName;
 	private JTextField stuAge;
-	private JTextField stuSex;
 	private JTextField stuAddress;
 	private JTextField stuId;
 	private JTextField delStuText;
@@ -41,14 +45,17 @@ public class MainView extends JFrame {
 	private JTable table;
 	private JTextField pageNo;
 	private StuTableModel stuTableModel = new StuTableModel();
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JComboBox boxClass_id;
+	private StuBussiness stuBussiness;
+	private ClassBussiness classBussiness;
 	
-	/**
-	 * Create the frame.
-	 */
-	public MainView() {
+	public StuView() {
+		stuBussiness = new StuBussiness();
+		classBussiness = new ClassBussiness();
 		CardLayout menuLayout = new CardLayout();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 635, 473);
+		setBounds(100, 100, 637, 474);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -97,11 +104,6 @@ public class MainView extends JFrame {
 		addPane.add(stuAge);
 		stuAge.setColumns(10);
 		
-		stuSex = new JTextField();
-		stuSex.setBounds(452, 104, 66, 21);
-		addPane.add(stuSex);
-		stuSex.setColumns(10);
-		
 		stuAddress = new JTextField();
 		stuAddress.setBounds(21, 193, 143, 21);
 		addPane.add(stuAddress);
@@ -131,6 +133,25 @@ public class MainView extends JFrame {
 		JLabel label_4 = new JLabel("地址");
 		label_4.setBounds(32, 161, 54, 15);
 		addPane.add(label_4);
+		
+		boxClass_id = new JComboBox();
+		boxClass_id.setBounds(213, 193, 74, 21);
+		addPane.add(boxClass_id);
+		
+		JLabel label_8 = new JLabel("班级号");
+		label_8.setBounds(213, 161, 103, 15);
+		addPane.add(label_8);
+		
+		JRadioButton menRadioButton = new JRadioButton("男");
+		buttonGroup.add(menRadioButton);
+		menRadioButton.setSelected(true);
+		menRadioButton.setBounds(424, 103, 48, 23);
+		addPane.add(menRadioButton);
+		
+		JRadioButton womenRadioButton = new JRadioButton("女");
+		buttonGroup.add(womenRadioButton);
+		womenRadioButton.setBounds(474, 103, 61, 23);
+		addPane.add(womenRadioButton);
 		
 		JPanel delPane = new JPanel();
 		menu.add(delPane, "delPane");
@@ -226,21 +247,18 @@ public class MainView extends JFrame {
 		searchPane.add(pageNo);
 		pageNo.setColumns(10);
 		
-		//table = new JTable(StuControl.getStuControl().getTableData(), StuControl.getStuControl().getTableRow());
 		table = new JTable();
 		table.setModel(stuTableModel);
 		
-		//table.setToolTipText("fd dsaf ");
-		//table.setBorder(new LineBorder(new Color(255, 160, 122), 3));
-		//table.setBackground(new Color(60, 179, 113));
-		//table.setBounds(10, 111, 257, -107);
-		//searchPane.add(table);
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(40, 10, 550, 250);
 		searchPane.add(scrollPane);
 		
+		updateClassSelect();
+		
 		addStu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				updateClassSelect();
 				menuLayout.show(menu, "addPane");
 			}
 		});
@@ -254,12 +272,15 @@ public class MainView extends JFrame {
 		
 		addStuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				int stu_id = Integer.parseInt(stuId.getText());
+				int class_id = Integer.parseInt(boxClass_id.getSelectedItem().toString());
 				String stu_name = stuName.getText();
 				int stu_age = Integer.parseInt(stuAge.getText());
-				String stu_sex = stuSex.getText();
+				String stu_sex  = menRadioButton.isSelected()?"男":"女";
 				String stu_address = stuAddress.getText();
-				StuControl.getStuControl().addStu(stu_id, stu_name, stu_age, stu_sex, stu_address);
+				Stu stu = new Stu(stu_id, stu_id, class_id, stu_name, stu_age, stu_sex, stu_address);
+				stuBussiness.addStu(stu);
 			}
 		});
 		
@@ -311,7 +332,7 @@ public class MainView extends JFrame {
 				String stu_sex = stuSexAlter.getText();
 				String stu_address = stuAddressAlter.getText();
 				System.out.println(stu_address);
-				stu = new Stu(stu_id, stu_id, stu_name, stu_age, stu_sex, stu_address);
+				stu = new Stu(stu_id, stu_id,stu_id, stu_name, stu_age, stu_sex, stu_address);
 				if (StuControl.getStuControl().alterStu(stu)) {
 					JOptionPane.showMessageDialog(null, "修改成功!");
 				}
@@ -320,5 +341,13 @@ public class MainView extends JFrame {
 				}
 			}
 		});
+	}
+	
+	public void updateClassSelect() {
+		boxClass_id.removeAllItems();
+		List<StuClass> stuClass = classBussiness.searchClass();
+		for (int i=0; i<stuClass.size(); i++) {
+			boxClass_id.addItem(new String(String.valueOf(stuClass.get(i).getClass_id())));
+		}
 	}
 }

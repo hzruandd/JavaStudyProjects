@@ -5,7 +5,7 @@ package lanqiao.homework.dao;
  * @author Doctor邓
  *
  */
-public interface VerifyUser {
+public interface VerifyUserDao {
 	/**
 	 * 验证用户的用户名和密码是否与数据库中的匹配
 	 * @param account  用户名
