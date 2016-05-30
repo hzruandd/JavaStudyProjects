@@ -7,7 +7,9 @@ package lanqiao.homework.util;
 public interface InputCheckUp {
 	/**
 	 * 
-	 * @return 输入合法，返回true。输入不合法返回false
+	 * @param input    用户的输入信息
+	 * @param symbol   对用户输入信息进行相关操作的标识
+	 * @return         用户输入合法，返回true。不合法返回 false.
 	 */
-	public boolean checkInput(String input);
+	public boolean checkInput(String input, String symbol);
 }
