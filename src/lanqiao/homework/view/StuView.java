@@ -24,6 +24,8 @@ import javax.swing.border.EmptyBorder;
 
 import lanqiao.homework.bussiness.ClassBussiness;
 import lanqiao.homework.bussiness.StuBussiness;
+import lanqiao.homework.bussiness.tableModel.ClassTableModel;
+import lanqiao.homework.bussiness.tableModel.StuTableModel;
 import lanqiao.homework.vo.Stu;
 import lanqiao.homework.vo.StuClass;
 import javax.swing.JMenuBar;

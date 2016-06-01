@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 import lanqiao.homework.bussiness.ClassBussiness;
+import lanqiao.homework.bussiness.tableModel.ClassTableModel;
 import lanqiao.homework.vo.StuClass;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;

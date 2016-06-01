@@ -32,7 +32,7 @@ public interface CommanCURD {
 	public boolean update(String sql, List<String> str);
 	/**
 	 * 向数据库查询信息
-	 * @param sql   自定义的添查询QL语句
+	 * @param sql   自定义的添查询SQL语句
 	 * @param str   自定义的查询的字段信息的列表
 	 * @return		返回一个对象数组
 	 */

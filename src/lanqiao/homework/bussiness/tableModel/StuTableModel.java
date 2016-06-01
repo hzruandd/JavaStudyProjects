@@ -1,14 +1,18 @@
-package lanqiao.homework.view;
+package lanqiao.homework.bussiness.tableModel;
+import java.util.List;
+
+import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableColumnModel;
 
 import lanqiao.homework.bussiness.StuBussiness;
 import lanqiao.homework.unless.StuControl;
 
-public class StuDeleteTableModel extends AbstractTableModel {
+public class StuTableModel extends AbstractTableModel {
 	
-	String[] columns = {"学号", "姓名", "年龄", "性别", "地址", "班级号"};
-	private Object[][] stuDataList;	//private List<Stu> stuList = StuControl.getStuControl().getStuList();
+	private String[] columns = {"学号", "姓名", "年龄", "性别", "地址", "班级号"};
 	private StuBussiness stuBussiness = new StuBussiness();
+	private Object[][] stuDataList = stuBussiness.getTableData();
 	
 	@Override
 	public String getColumnName(int arg0) {
