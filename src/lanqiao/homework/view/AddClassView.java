@@ -1,5 +1,6 @@
 package lanqiao.homework.view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,35 +11,41 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 
 import lanqiao.homework.bussiness.ClassBussiness;
 import lanqiao.homework.vo.StuClass;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class AddClassView {
 
 	private JFrame frame;
-	private JTextField addClass_id;
-	private JTextField addClass_name;
+	private JTextField class_idAlter;
+	private JTextField class_nameAlter;
 	private ClassBussiness classBussiness;
 	private boolean blockDelete = true;
 	private boolean blockAdd = true;
 	private boolean blockUpdate = true;
-	private JTextArea addClass_desc;
+	private JTextArea class_descAlter;
+	private JTable classTable;
+	private ClassTableModel classTableModel = new ClassTableModel();
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AddClassView window = new AddClassView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//				
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
@@ -52,67 +59,98 @@ public class AddClassView {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 375, 534);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setFrame(new JFrame());
+		getFrame().setTitle("班级信息管理");
+		getFrame().setBounds(100, 100, 375, 534);
+//		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getFrame().getContentPane().setLayout(null);
 		
 		JButton addClassButton = new JButton("添加");
 		
 		addClassButton.setBounds(35, 439, 93, 23);
-		frame.getContentPane().add(addClassButton);
+		getFrame().getContentPane().add(addClassButton);
 		
-		addClass_id = new JTextField();
-		addClass_id.setBounds(35, 239, 93, 21);
-		frame.getContentPane().add(addClass_id);
-		addClass_id.setColumns(10);
-		addClass_id.setEditable(false);
+		class_idAlter = new JTextField();
+		class_idAlter.setBounds(35, 239, 93, 21);
+		getFrame().getContentPane().add(class_idAlter);
+		class_idAlter.setColumns(10);
+		class_idAlter.setEditable(false);
 		
 		JLabel lblNewLabel = new JLabel("班级ID");
 		lblNewLabel.setBounds(35, 206, 66, 23);
-		frame.getContentPane().add(lblNewLabel);
+		getFrame().getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("班级名字");
 		lblNewLabel_1.setBounds(214, 210, 54, 15);
-		frame.getContentPane().add(lblNewLabel_1);
+		getFrame().getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("班级描述");
 		lblNewLabel_2.setBounds(34, 284, 54, 26);
-		frame.getContentPane().add(lblNewLabel_2);
+		getFrame().getContentPane().add(lblNewLabel_2);
 		
-		addClass_name = new JTextField();
-		addClass_name.setBounds(190, 239, 129, 21);
-		frame.getContentPane().add(addClass_name);
-		addClass_name.setColumns(10);
-		addClass_name.setEditable(false);
+		class_nameAlter = new JTextField();
+		class_nameAlter.setBounds(190, 239, 129, 21);
+		getFrame().getContentPane().add(class_nameAlter);
+		class_nameAlter.setColumns(10);
+		class_nameAlter.setEditable(false);
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(519, 142, 4, 24);
-		frame.getContentPane().add(textArea);
+		getFrame().getContentPane().add(textArea);
 		
-		addClass_desc = new JTextArea();
-		addClass_desc.setBounds(31, 320, 288, 93);
-		addClass_desc.setEditable(false);
-		frame.getContentPane().add(addClass_desc);
+		class_descAlter = new JTextArea();
+		class_descAlter.setBounds(31, 320, 288, 93);
+		class_descAlter.setEditable(false);
+		getFrame().getContentPane().add(class_descAlter);
 		
 		JButton deleteClassButton = new JButton("删除");
 		
 		deleteClassButton.setBounds(138, 439, 93, 23);
-		frame.getContentPane().add(deleteClassButton);
+		getFrame().getContentPane().add(deleteClassButton);
 		
 		JButton updateClassButton = new JButton("修改");
 		
 		updateClassButton.setBounds(241, 439, 93, 23);
-		frame.getContentPane().add(updateClassButton);
+		getFrame().getContentPane().add(updateClassButton);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(10, 10, 339, 186);
-		frame.getContentPane().add(panel);
+		getFrame().getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 0, 326, 170);
-		panel.add(scrollPane);
+		classTable = new JTable();
+//		classTable.setModel(new DefaultTableModel(
+//				classBussiness.getClassTableData(),
+//			new String[] {
+//				"\u73ED\u7EA7\u53F7", "\u73ED\u7EA7\u540D\u79F0", "\u73ED\u7EA7\u63CF\u8FF0"
+//			}
+//		) {
+//			/**
+//			 * 
+//			 */
+//			private static final long serialVersionUID = 7966435074951683450L;
+//			Class[] columnTypes = new Class[] {
+//				String.class, String.class, String.class
+//			};
+//			public Class getColumnClass(int columnIndex) {
+//				return columnTypes[columnIndex];
+//			}
+//			boolean[] columnEditables = new boolean[] {
+//				false, false, false
+//			};
+//			public boolean isCellEditable(int row, int column) {
+//				return columnEditables[column];
+//			}
+//		});
+		classTable.setModel(classTableModel);
+		classTableModel.update();
+		classTable.setSelectionBackground(Color.GREEN);
+		classTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		
+		JScrollPane classPane = new JScrollPane(classTable);
+		classPane.setBounds(0, 0, 326, 170);
+		panel.add(classPane);
 		
 		addClassButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -122,14 +160,18 @@ public class AddClassView {
 					blockAdd = false;
 				}
 				else {
-					int class_id = Integer.parseInt(addClass_id.getText());
-					String class_name = addClass_name.getText();
-					String class_desc = addClass_desc.getText();
+					int class_id = Integer.parseInt(class_idAlter.getText());
+					String class_name = class_nameAlter.getText();
+					String class_desc = class_descAlter.getText();
 					classBussiness.addClass(new StuClass(class_id, class_name, class_desc));
 					setBlock(false, false, false);
 					clear(true, true, true);
 					blockAdd= true;
 				}
+				/**
+				 * 添加班级后更新表格信息
+				 */
+				classTableModel.update();
 		
 			}
 		});
@@ -143,46 +185,92 @@ public class AddClassView {
 					blockDelete = false;
 				}
 				else {					
-					if (!addClass_id.getText().equals("")) {
-						int class_id = Integer.parseInt(addClass_id.getText());
+					if (!class_idAlter.getText().equals("")) {
+						int class_id = Integer.parseInt(class_idAlter.getText());
 						classBussiness.deleteClass(class_id);
 						clear(true, true, true);
 						setBlock(false, false, false);
 						blockDelete = true;
 					}
 				}
+				/**
+				 * 添加班级后更新表格信息
+				 */
+				classTableModel.update();
 			}
 		});
 		
 		updateClassButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				/**
+				 * 当class_idAlter的内容为空时，直接退出
+				 */
+				if (class_idAlter.getText().equals("") && null == class_idAlter.getText() )  return;
+				
 				if (blockUpdate) {
-					setBlock(true, false, false);
-					clear(true, true, true);
+					setBlock(false, true, true);
 					blockUpdate = false;
 				}
 				else {					
-					if (!addClass_id.getText().equals("") && null != addClass_id.getText() ) {
-						int class_id = Integer.parseInt(addClass_id.getText());
-						classBussiness.deleteClass(class_id);
+					if (!class_idAlter.getText().equals("") && null != class_idAlter.getText() ) {
+						int class_id = Integer.parseInt(class_idAlter.getText());
+						String class_name = class_nameAlter.getText();
+						String class_desc = class_descAlter.getText();
+						StuClass stuClass = new StuClass(class_id, class_name, class_desc);
+						classBussiness.updataClass(stuClass);
 						clear(true, true, true);
 						setBlock(false, false, false);
 						blockUpdate = true;
 					}
 				}
+				/**
+				 * 添加班级后更新表格信息
+				 */
+				classTableModel.update();
+			}
+		});
+		
+		classTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				updateClassInfo();
 			}
 		});
 	}
 	
 	public void setBlock(boolean id, boolean name, boolean desc) {
-		addClass_id.setEditable(id);
-		addClass_name.setEditable(name);
-		addClass_desc.setEditable(desc);
+		class_idAlter.setEditable(id);
+		class_nameAlter.setEditable(name);
+		class_descAlter.setEditable(desc);
 	}
 	
 	public void clear(boolean id, boolean name, boolean desc) {
-		addClass_id.setText("");
-		addClass_name.setText("");
-		addClass_desc.setText("");
+		class_idAlter.setText("");
+		class_nameAlter.setText("");
+		class_descAlter.setText("");
+	}
+	
+
+	/**
+	 * 鼠标选中classable表格时，更新显示单个班级信息区域的学生的信息
+	 */
+	public void updateClassInfo() {
+		int i = classTable.getSelectedRow();
+		
+		int class_id = Integer.parseInt(classTable.getModel().getValueAt(i, 0).toString());
+		String class_name = classTable.getModel().getValueAt(i, 1).toString();
+		String class_desc = classTable.getModel().getValueAt(i, 2).toString();
+
+		class_idAlter.setText(String.valueOf(class_id));
+		class_nameAlter.setText(class_name);
+		class_descAlter.setText(class_desc);
+	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
 	}
 }

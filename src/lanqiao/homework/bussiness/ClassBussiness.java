@@ -33,11 +33,12 @@ public class ClassBussiness {
 	}
 	
 	public boolean updataClass(StuClass stuClass) {
-		String sql = "UPDATE TABLE stu_class SET class_name = ?, class_desc = ?";
+		String sql = "UPDATE stu_class SET class_name = ?, class_desc = ? WHERE class_id = ?";
 		List<String> dataStr = new ArrayList<String>();
 		dataStr.add(stuClass.getClass_name());
 		dataStr.add(stuClass.getClass_desc());
-		return commanCURD.add(sql, dataStr);
+		dataStr.add(String.valueOf(stuClass.getClass_id()));
+		return commanCURD.update(sql, dataStr);
 	}
 	
 	public List<StuClass> searchClass() {
@@ -71,5 +72,22 @@ public class ClassBussiness {
 		String class_name = str[1];
 		String class_desc = str[2];
 		return new StuClass(class_id, class_name, class_desc);
+	}
+	
+	
+	/**
+	 * 获取所有的班级信息，并将其转换为二维对象数组的形式
+	 * @return  返回包含所有班级信息的二维对象数组
+	 */
+	public Object[][] getClassTableData() {
+		List<StuClass> stuClassList = searchClass();
+		Object[][] stuClassData;
+		if (stuClassList.size() == 0) return stuClassData = new Object[3][];
+		
+		stuClassData = new Object[stuClassList.size()][];
+		for (int i=0; i<stuClassData.length; i++) {
+			stuClassData[i] = stuClassList.get(i).classToArray();
+		}
+		return stuClassData;
 	}
 }

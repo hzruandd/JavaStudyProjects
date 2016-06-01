@@ -217,7 +217,7 @@ public class StuBussiness {
 		StuClass stuClass = new ClassBussiness().searchClassById(class_id);
 		if (0 != stuClass.getClass_id()) {
 			stuClassData = new Object[1][];
-			stuClassData[0] = stuClass.stuToArray();
+			stuClassData[0] = stuClass.classToArray();
 			return stuClassData;
 		}
 		return stuClassData = new Object[0][];

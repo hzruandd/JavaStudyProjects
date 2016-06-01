@@ -23,7 +23,7 @@ public class StuClass {
 	 * 将班级信息转化为一个对象数组
 	 * @return 返回班级信息的对象数组
 	 */
-	public Object[] stuToArray() {
+	public Object[] classToArray() {
 		Object[] object = {class_id, class_name, class_desc};
 		return object;
 	}

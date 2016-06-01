@@ -1,8 +1,11 @@
 package lanqiao.homework.view;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +14,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -22,11 +24,9 @@ import javax.swing.border.EmptyBorder;
 
 import lanqiao.homework.bussiness.ClassBussiness;
 import lanqiao.homework.bussiness.StuBussiness;
-import lanqiao.homework.unless.StuControl;
 import lanqiao.homework.vo.Stu;
 import lanqiao.homework.vo.StuClass;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import javax.swing.JMenuBar;
 
 public class StuView extends JFrame {
 
@@ -66,12 +66,12 @@ public class StuView extends JFrame {
 		contentPane.setLayout(null);
 		
 		addStu = new JButton("增加学生");
-		addStu.setBounds(10, 522, 93, 23);
+		addStu.setBounds(0, 522, 93, 23);
 		contentPane.add(addStu);
 		
 		JButton delStu = new JButton("查找、修改、删除学生信息");
 		
-		delStu.setBounds(247, 522, 248, 23);
+		delStu.setBounds(135, 522, 201, 23);
 		contentPane.add(delStu);
 		
 		JPanel menu = new JPanel();
@@ -265,6 +265,16 @@ public class StuView extends JFrame {
 		updateClassSelect(boxClass_id);
 		updateClassSelect(class_idAlter);
 		
+		JButton btnNewButton = new JButton("添加修改班级信息");
+		btnNewButton.setBounds(372, 522, 174, 23);
+		contentPane.add(btnNewButton);
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AddClassView window = new AddClassView();
+				window.getFrame().setVisible(true);
+			}
+		});
 		addStu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				updateClassSelect(boxClass_id);

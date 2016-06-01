@@ -2,6 +2,7 @@ package lanqiao.homework.view;
 
 import javax.swing.table.AbstractTableModel;
 
+import lanqiao.homework.bussiness.ClassBussiness;
 import lanqiao.homework.bussiness.StuBussiness;
 /**
  * 显示班级信息表格的Model
@@ -12,6 +13,7 @@ public class ClassTableModel extends AbstractTableModel {
 
 	private String[] columns = {"班级号", "班级名称", "班级描述"};
 	private StuBussiness stuBussiness = new StuBussiness();
+	private ClassBussiness classBussiness = new ClassBussiness();
 	private Object[][] classData = new Object[1][3];
 	
 	@Override
@@ -47,6 +49,11 @@ public class ClassTableModel extends AbstractTableModel {
 	
 	public void clear() {
 		classData = new Object[1][3];
+		this.fireTableDataChanged();
+	}
+	
+	public void update() {
+		classData  = classBussiness.getClassTableData();
 		this.fireTableDataChanged();
 	}
 
