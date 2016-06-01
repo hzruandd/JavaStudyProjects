@@ -13,7 +13,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
-import lanqiao.homework.bussiness.ClassBussiness;
+import lanqiao.homework.bussiness.StuClassAction;
 import lanqiao.homework.bussiness.tableModel.ClassTableModel;
 import lanqiao.homework.vo.StuClass;
 import javax.swing.JTable;
@@ -21,38 +21,24 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class AddClassView {
+public class StuClassAdministrateView {
 
 	private JFrame frame;
 	private JTextField class_idAlter;
 	private JTextField class_nameAlter;
-	private ClassBussiness classBussiness;
+	private StuClassAction classBussiness;
 	private boolean blockDelete = true;
 	private boolean blockAdd = true;
 	private boolean blockUpdate = true;
 	private JTextArea class_descAlter;
 	private JTable classTable;
 	private ClassTableModel classTableModel = new ClassTableModel();
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//				
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
 	/**
 	 * Create the application.
 	 */
-	public AddClassView() {
-		classBussiness = new ClassBussiness();
+	public StuClassAdministrateView() {
+		classBussiness = new StuClassAction();
 		initialize();
 	}
 
@@ -120,29 +106,6 @@ public class AddClassView {
 		panel.setLayout(null);
 		
 		classTable = new JTable();
-//		classTable.setModel(new DefaultTableModel(
-//				classBussiness.getClassTableData(),
-//			new String[] {
-//				"\u73ED\u7EA7\u53F7", "\u73ED\u7EA7\u540D\u79F0", "\u73ED\u7EA7\u63CF\u8FF0"
-//			}
-//		) {
-//			/**
-//			 * 
-//			 */
-//			private static final long serialVersionUID = 7966435074951683450L;
-//			Class[] columnTypes = new Class[] {
-//				String.class, String.class, String.class
-//			};
-//			public Class getColumnClass(int columnIndex) {
-//				return columnTypes[columnIndex];
-//			}
-//			boolean[] columnEditables = new boolean[] {
-//				false, false, false
-//			};
-//			public boolean isCellEditable(int row, int column) {
-//				return columnEditables[column];
-//			}
-//		});
 		classTable.setModel(classTableModel);
 		classTableModel.update();
 		classTable.setSelectionBackground(Color.GREEN);

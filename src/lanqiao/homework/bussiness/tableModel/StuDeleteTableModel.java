@@ -1,14 +1,14 @@
 package lanqiao.homework.bussiness.tableModel;
 import javax.swing.table.AbstractTableModel;
 
-import lanqiao.homework.bussiness.StuBussiness;
+import lanqiao.homework.bussiness.StuAction;
 import lanqiao.homework.unless.StuControl;
 
 public class StuDeleteTableModel extends AbstractTableModel {
 	
 	String[] columns = {"学号", "姓名", "年龄", "性别", "地址", "班级号"};
 	private Object[][] stuDataList;	//private List<Stu> stuList = StuControl.getStuControl().getStuList();
-	private StuBussiness stuBussiness = new StuBussiness();
+	private StuAction stuBussiness = new StuAction();
 	
 	@Override
 	public String getColumnName(int arg0) {

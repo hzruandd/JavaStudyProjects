@@ -8,10 +8,10 @@ import lanqiao.homework.dao.impl.CommenCURDImpl;
 import lanqiao.homework.vo.Stu;
 import lanqiao.homework.vo.StuClass;
 
-public class ClassBussiness {
+public class StuClassAction {
 	private CommanCURD commanCURD;
 	
-	public ClassBussiness() {
+	public StuClassAction() {
 		commanCURD = new CommenCURDImpl();
 	}
 	

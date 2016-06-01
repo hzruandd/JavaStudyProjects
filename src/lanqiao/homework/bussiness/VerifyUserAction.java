@@ -8,7 +8,7 @@ import lanqiao.homework.dao.impl.VerifyUserImpl;
  * @author Doctor邓
  *
  */
-public class VerifyUser {
+public class VerifyUserAction {
 	private VerifyUserDao verify;
 	
 	public boolean verify(String account, String pwd) {

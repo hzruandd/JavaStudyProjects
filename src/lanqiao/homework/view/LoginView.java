@@ -12,15 +12,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import lanqiao.homework.bussiness.VerifyUser;
+import lanqiao.homework.bussiness.VerifyUserAction;
 import lanqiao.homework.unless.JdbcUtil;
 
-public class Login {
+public class LoginView {
 
 	private JFrame frame;
 	private JTextField user_account;
 	private JPasswordField user_pwd;
-	private VerifyUser verifyUser;
+	private VerifyUserAction verifyUser;
 
 	/**
 	 * Launch the application.
@@ -29,7 +29,7 @@ public class Login {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login window = new Login();
+					LoginView window = new LoginView();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class Login {
 	/**
 	 * Create the application.
 	 */
-	public Login() {
+	public LoginView() {
 		initialize();
 	}
 
@@ -98,13 +98,13 @@ public class Login {
 		
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				verifyUser = new VerifyUser();
+				verifyUser = new VerifyUserAction();
 				if (verifyUser.verify(user_account.getText(), user_pwd.getText())) {
 					
 					EventQueue.invokeLater(new Runnable() {
 						public void run() {
 							try {
-								StuView frame = new StuView();
+								StuAdministrateView frame = new StuAdministrateView();
 								frame.setVisible(true);
 							} catch (Exception e) {
 								e.printStackTrace();

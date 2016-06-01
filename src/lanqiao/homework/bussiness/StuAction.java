@@ -15,10 +15,10 @@ import lanqiao.homework.vo.StuClass;
  * @author Doctor邓
  *
  */
-public class StuBussiness {
+public class StuAction {
 	private CommanCURD commanCURD;
 	
-	public StuBussiness() {
+	public StuAction() {
 		commanCURD = new CommenCURDImpl();
 	}
 	
@@ -140,7 +140,7 @@ public class StuBussiness {
 	}
 	
 	/**
-	 * 学生表格信息初始化
+	 * 获取所有学生信息得二维数组对象的表现形式
 	 * @return 返回显示一个包含所有学生信息的二维对象数组
 	 */
 	public Object[][] getTableData() {
@@ -214,7 +214,7 @@ public class StuBussiness {
 		Object[][] stuClassData;
 		Stu stu = searchStuById(stu_id);
 		int class_id = stu.getClass_id();
-		StuClass stuClass = new ClassBussiness().searchClassById(class_id);
+		StuClass stuClass = new StuClassAction().searchClassById(class_id);
 		if (0 != stuClass.getClass_id()) {
 			stuClassData = new Object[1][];
 			stuClassData[0] = stuClass.classToArray();

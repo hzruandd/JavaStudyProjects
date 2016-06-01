@@ -22,15 +22,15 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 
-import lanqiao.homework.bussiness.ClassBussiness;
-import lanqiao.homework.bussiness.StuBussiness;
+import lanqiao.homework.bussiness.StuClassAction;
+import lanqiao.homework.bussiness.StuAction;
 import lanqiao.homework.bussiness.tableModel.ClassTableModel;
 import lanqiao.homework.bussiness.tableModel.StuTableModel;
 import lanqiao.homework.vo.Stu;
 import lanqiao.homework.vo.StuClass;
 import javax.swing.JMenuBar;
 
-public class StuView extends JFrame {
+public class StuAdministrateView extends JFrame {
 
 	private JPanel contentPane;
 	private JButton addStu;
@@ -42,8 +42,8 @@ public class StuView extends JFrame {
 	private StuTableModel stuTableModel = new StuTableModel();
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JComboBox boxClass_id;
-	private StuBussiness stuBussiness;
-	private ClassBussiness classBussiness;
+	private StuAction stuBussiness;
+	private StuClassAction classBussiness;
 	private JTable deleteTable;
 	private JTextField stu_idAlter;
 	private JTextField stu_nameAlter;
@@ -56,9 +56,9 @@ public class StuView extends JFrame {
 	private JRadioButton stu_sexWomenAlter;
 	private JComboBox class_idAlter;
 	
-	public StuView() {
-		stuBussiness = new StuBussiness();
-		classBussiness = new ClassBussiness();
+	public StuAdministrateView() {
+		stuBussiness = new StuAction();
+		classBussiness = new StuClassAction();
 		CardLayout menuLayout = new CardLayout();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 637, 629);
@@ -273,7 +273,7 @@ public class StuView extends JFrame {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AddClassView window = new AddClassView();
+				StuClassAdministrateView window = new StuClassAdministrateView();
 				window.getFrame().setVisible(true);
 			}
 		});
