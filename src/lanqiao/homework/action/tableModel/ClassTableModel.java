@@ -1,9 +1,9 @@
-package lanqiao.homework.bussiness.tableModel;
+package lanqiao.homework.action.tableModel;
 
 import javax.swing.table.AbstractTableModel;
 
-import lanqiao.homework.bussiness.StuClassAction;
-import lanqiao.homework.bussiness.StuAction;
+import lanqiao.homework.action.StuAction;
+import lanqiao.homework.action.StuClassAction;
 /**
  * 显示班级信息表格的Model
  * @author Doctor邓

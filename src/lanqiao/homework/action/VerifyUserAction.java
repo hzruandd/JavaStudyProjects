@@ -1,4 +1,4 @@
-package lanqiao.homework.bussiness;
+package lanqiao.homework.action;
 
 import lanqiao.homework.dao.VerifyUserDao;
 import lanqiao.homework.dao.impl.VerifyUserImpl;

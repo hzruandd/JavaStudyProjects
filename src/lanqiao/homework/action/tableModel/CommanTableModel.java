@@ -1,4 +1,4 @@
-package lanqiao.homework.bussiness.tableModel;
+package lanqiao.homework.action.tableModel;
 
 import javax.swing.table.AbstractTableModel;
 /**

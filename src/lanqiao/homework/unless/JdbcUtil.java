@@ -5,11 +5,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import lanqiao.homework.util.impl.SQLConn;
+import lanqiao.homework.util.impl.DBUtil;
 import lanqiao.homework.vo.Stu;
 
 public class JdbcUtil {
-	private SQLConn sqlConn = new SQLConn();
+	private DBUtil sqlConn = new DBUtil();
 	private Connection conn;
 	private Statement sql;
 	public JdbcUtil() {

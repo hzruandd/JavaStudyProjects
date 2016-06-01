@@ -7,7 +7,7 @@ import java.sql.Connection;
  * @author Doctor邓
  *
  */
-public interface GetSQLConn {
+public interface SqlUtil {
 	/**
 	 * 
 	 * @return 返回一个数据库的连接对象

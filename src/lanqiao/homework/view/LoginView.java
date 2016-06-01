@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import lanqiao.homework.bussiness.VerifyUserAction;
+import lanqiao.homework.action.VerifyUserAction;
 import lanqiao.homework.unless.JdbcUtil;
 
 public class LoginView {

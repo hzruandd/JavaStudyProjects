@@ -5,7 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import lanqiao.homework.util.impl.SQLConn;
+import lanqiao.homework.util.SqlUtil;
+import lanqiao.homework.util.impl.DBUtil;
 import lanqiao.homework.vo.Stu;
 /**
  * 对学生信息实现增、删、改、查操作的具体实现类
@@ -16,9 +17,10 @@ public class StuCURDImpl implements SqlCURDDao {
 	
 	private Connection conn;
 	private PreparedStatement ps;
+	private SqlUtil sqlUtil = new DBUtil();
 	
 	public StuCURDImpl() {
-		conn = SQLConn.getConn();
+		conn = sqlUtil.getConn();
 	}
 
 //	//判断数据库中是否有此学生

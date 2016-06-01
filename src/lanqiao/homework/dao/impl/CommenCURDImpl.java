@@ -9,16 +9,18 @@ import java.util.List;
 import java.util.Vector;
 
 import lanqiao.homework.dao.CommanCURD;
-import lanqiao.homework.util.impl.SQLConn;
-import lanqiao.homework.vo.Stu;
+import lanqiao.homework.util.SqlUtil;
+import lanqiao.homework.util.impl.DBCPUtil;
 
 public class CommenCURDImpl implements CommanCURD{
 	
 	private Connection conn;
 	private PreparedStatement ps;
+	private SqlUtil sqlUtil;
 	
 	public CommenCURDImpl() {
-		conn = SQLConn.getConn();
+		sqlUtil = new DBCPUtil();
+		conn = sqlUtil.getConn();
 	}
 	
 	@Override

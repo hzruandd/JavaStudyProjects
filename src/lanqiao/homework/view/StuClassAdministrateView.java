@@ -13,8 +13,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
-import lanqiao.homework.bussiness.StuClassAction;
-import lanqiao.homework.bussiness.tableModel.ClassTableModel;
+import lanqiao.homework.action.StuClassAction;
+import lanqiao.homework.action.tableModel.ClassTableModel;
 import lanqiao.homework.vo.StuClass;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;

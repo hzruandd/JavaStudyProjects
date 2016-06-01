@@ -3,7 +3,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class SQLConn {
+import lanqiao.homework.util.SqlUtil;
+
+/**
+ * 使用最普通的方式来获取数据库连接
+ * @author Doctor邓
+ *
+ */
+public class DBUtil implements SqlUtil{
 	private static final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
 	private static final String URL = "jdbc:oracle:thin:@119.29.223.16:1521:orcl";
 	private static final String USER = "hr";
@@ -27,7 +34,7 @@ public class SQLConn {
 	 * @return 返回数据库的连接对象
 	 */
 	@SuppressWarnings("finally")
-	public static Connection getConn() {
+	public Connection getConn() {
 		try {
 			conn = DriverManager.getConnection(URL, USER, PWD);
 			//System.out.println("连接成功");

@@ -1,10 +1,11 @@
-package lanqiao.homework.bussiness;
+package lanqiao.homework.action;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTable;
-import lanqiao.homework.bussiness.tableModel.CommanTableModel;
+
+import lanqiao.homework.action.tableModel.CommanTableModel;
 import lanqiao.homework.vo.Stu;
 import lanqiao.homework.vo.StuClass;
 

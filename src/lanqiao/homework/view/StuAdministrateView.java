@@ -22,10 +22,10 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 
-import lanqiao.homework.bussiness.StuClassAction;
-import lanqiao.homework.bussiness.StuAction;
-import lanqiao.homework.bussiness.tableModel.ClassTableModel;
-import lanqiao.homework.bussiness.tableModel.StuTableModel;
+import lanqiao.homework.action.StuAction;
+import lanqiao.homework.action.StuClassAction;
+import lanqiao.homework.action.tableModel.ClassTableModel;
+import lanqiao.homework.action.tableModel.StuTableModel;
 import lanqiao.homework.vo.Stu;
 import lanqiao.homework.vo.StuClass;
 import javax.swing.JMenuBar;

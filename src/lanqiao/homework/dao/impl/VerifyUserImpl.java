@@ -6,15 +6,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import lanqiao.homework.dao.VerifyUserDao;
-import lanqiao.homework.util.impl.SQLConn;
+import lanqiao.homework.util.SqlUtil;
+import lanqiao.homework.util.impl.DBCPUtil;
+import lanqiao.homework.util.impl.DBUtil;
 
 public class VerifyUserImpl implements VerifyUserDao{
 
 	private Connection conn;
 	private PreparedStatement ps;
+	private SqlUtil sqlUtil;
 	
 	public VerifyUserImpl() {
-		conn = SQLConn.getConn();
+		sqlUtil = new DBCPUtil();
+		conn = sqlUtil.getConn();
 	}
 	
 	@Override
