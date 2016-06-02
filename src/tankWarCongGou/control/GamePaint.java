@@ -57,6 +57,7 @@ public class GamePaint {
 		aiTanks = admin.getAITanks();
 		bullets = admin.getBullets();
 		booms = admin.getBooms();
+		
 	}
 	
 	private void drawTank(Graphics g) {

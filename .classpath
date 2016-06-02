@@ -8,5 +8,8 @@
 	<classpathentry kind="lib" path="lib/commons-dbcp2-2.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-1.2.jar"/>
 	<classpathentry kind="lib" path="lib/commons-pool2-2.4.2.jar"/>
+	<classpathentry kind="lib" path="lib/c3p0-0.9.5.2.jar"/>
+	<classpathentry kind="lib" path="lib/c3p0-oracle-thin-extras-0.9.5.2.jar"/>
+	<classpathentry kind="lib" path="lib/mchange-commons-java-0.2.11.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
