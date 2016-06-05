@@ -61,13 +61,17 @@ public class DataAdmin {
 		gameData.setAiTanks(aiTanks);
 	}
 	
+	public void addAITank(AITank aiTank) {
+		gameData.getAiTanks().add(aiTank);
+	}
+	
 	public void dataAddListener(GameListener listener) {
 		for (int i=0; i<getMyTanks().size(); i++) {
 			getMyTanks().get(i).setGameListener(listener);
 		}
-		for (int i=0; i<getAITanks().size(); i++) {
-			getAITanks().get(i).setGameListener(listener);
-		}
+//		for (int i=0; i<getAITanks().size(); i++) {
+//			getAITanks().get(i).setGameListener(listener);
+//		}
 	}
 
 	public void addBoom(Boom boom) {

@@ -42,6 +42,7 @@ public class ImpactDetection {
 		bulletTOWall();
 		tankTOWall();
 		tankTOProp();
+		bulletTObullet();
 	}
 	
 	
@@ -106,6 +107,13 @@ public class ImpactDetection {
 				Bullet bullet = bullets.get(j);
 				
 				if(bullet.getRect().intersects(wall.getRect())) {
+					/**
+					 * 当子弹的Dps大于或等于墙的Armor时墙会消失,并产生爆炸
+					 */
+					if (bullet.getDps() > wall.getArmor()) {
+						walls.remove(wall);
+					}
+					bullet.bulletBoom();
 					bullets.remove(bullet);
 				}
 			}
@@ -156,6 +164,26 @@ public class ImpactDetection {
 				}
 			}
 		}
-		
+	}
+	/**
+	 * 子弹和子弹间的碰撞检测
+	 */
+	public void bulletTObullet() {
+		for (int i=0; i<bullets.size(); i++) {
+			Bullet bullet1 = bullets.get(i);
+			for (int j=0; j<bullets.size(); j++) {
+				Bullet bullet2 = bullets.get(j);
+				
+				/**
+				 * 当坦克阵营不同时才进行碰撞检测
+				 */
+				if (bullet1.isCamp() != bullet2.isCamp()) {
+					if (bullet1.getRect().intersects(bullet2.getRect())) {
+						bullet1.bulletBoom();
+						bullet2.bulletBoom();
+					}
+				}
+			}
+		}
 	}
 }

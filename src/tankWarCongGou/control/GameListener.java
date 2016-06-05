@@ -6,6 +6,7 @@ import java.awt.event.KeyListener;
 import tankWarCongGou.entity.Boom;
 import tankWarCongGou.entity.Bullet;
 import tankWarCongGou.entity.Direction;
+import tankWarCongGou.entity.Tank;
 import tankWarCongGou.model.KeyAction;
 
 /**
@@ -29,8 +30,8 @@ public class GameListener implements KeyListener {
 	 * @param camp 子弹的阵营
 	 * @param dir 子弹的方向
 	 */
-	public void fireAction(int x, int y, boolean camp, Direction dir) {
-		Bullet bullet = new Bullet(x, y, camp, dir);
+	public void fireAction(int x, int y, boolean camp, Direction dir, Tank ourTank) {
+		Bullet bullet = new Bullet(x, y, camp, dir, ourTank);
 		bullet.setListener(this);
 		admin.addBullet(bullet);
 	}

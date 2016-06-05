@@ -23,16 +23,24 @@ public class Bullet {
 	private boolean camp;
 	private final int SPEED = 10;
 	private Direction dir;
-	
+	/**
+	 * 记录子弹是哪个坦克发出的
+	 */
+	private Tank ourTank;
 	private GameListener listener;
 	private Image redWall = Toolkit.getDefaultToolkit().getImage("image/bullet.png");
+	/**
+	 * 子弹的威力值
+	 */
+	private int dps = 1;
 	
-	public Bullet(int x, int y, boolean camp, Direction dir) {
+	public Bullet(int x, int y, boolean camp, Direction dir, Tank ourTank) {
 		this.x = x;
 		this.y = y;
 		this.camp = camp;
 		this.live = true;
 		this.dir = dir;
+		this.ourTank = ourTank;
 	}
 	
 	public void move() {
@@ -70,6 +78,7 @@ public class Bullet {
 		if (x > tankWarCongGou.view.GamePanel.WIDTH | x < 0 | y < 0 | 
 				y >  tankWarCongGou.view.GamePanel.HEIGHT) {
 			listener.bulletOverBorder(this);
+			ourTank.setBulletMax(ourTank.getBulletMax() + 1);
 		} 
 	}
 	
@@ -77,6 +86,7 @@ public class Bullet {
 		int boomX = x + WIDTH;
 		int boomY = y + HEIGHT;
 		listener.boomAction(boomX, boomY);
+		ourTank.setBulletMax(ourTank.getBulletMax() + 1);
 	}
 	
 	/**
@@ -131,4 +141,15 @@ public class Bullet {
 		return SPEED;
 	}
 
+	public int getDps() {
+		return dps;
+	}
+
+	public void setDps(int dps) {
+		this.dps = dps;
+	}
+
+	public Tank getOurTank() {
+		return ourTank;
+	}
 }

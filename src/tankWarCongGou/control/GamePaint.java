@@ -70,7 +70,9 @@ public class GamePaint {
 		for(int i=0; i<myTanks.size(); i++) {
 			myTanks.get(i).draw(g);
 		}
-		
+		if (aiTanks.size() <=1 ) {
+			return ;
+		}
 		for(int i=0; i<aiTanks.size(); i++) {
 			aiTanks.get(i).draw(g);
 		}

@@ -45,11 +45,11 @@ public abstract  class Tank {
 	private GameListener gameListener;
 
 	public Tank() {
-		this.speed = 5;
+		this.speed = 4;
 		this.motionStatus = false;  
 		this.live = true;
-//		this.gameListener = listener;
 		up = true;
+		bulletMax = 1;  //默认只能同时打一发子弹
 	}
 	
 	/**
@@ -85,12 +85,16 @@ public abstract  class Tank {
 	 * 坦克开火的方法
 	 */
 	public void fire() {
-		// TODO 自动生成的方法存根
+		/**
+		 * 当坦克的弹夹为空时，直接退出，无法开火
+		 */
+		if (bulletMax==0) return;
 		int bulletX = getX() + getWIDTH()/2 -5;
 		int bulletY = getY() + getHEIGHT()/2 -5;
 		if (live) {
-			getGameListener().fireAction(bulletX, bulletY, isCamp(), getDir());
+			gameListener.fireAction(bulletX, bulletY, isCamp(), getDir(), this);
 		}
+		bulletMax -= 1;
 	}
 	
 	/**
@@ -204,6 +208,10 @@ public abstract  class Tank {
 
 	public void setCamp(boolean camp) {
 		this.camp = camp;
+	}
+
+	public void setBulletMax(int bulletMax) {
+		this.bulletMax = bulletMax;
 	}
 
 	public int getWIDTH() {

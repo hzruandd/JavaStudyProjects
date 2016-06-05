@@ -69,6 +69,14 @@ public class GameFactory {
 		return aiTanks;
 	}
 	
+	public AITank getAITank() {
+		int j = random.nextInt(3);
+		int x = aiPosition[j][0];
+		int y = aiPosition[j][1];
+		AITank aiTank = new AITank(x, y);
+		return aiTank;
+	}
+	
 	public List<Wall> getWalls(GameMap map) {
 		List<Wall> wallList = new ArrayList<>();
 		int[][] gameMap = map.getMap1();
