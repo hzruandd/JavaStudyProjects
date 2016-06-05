@@ -22,12 +22,13 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 
-import lanqiao.homework.action.StuAction;
-import lanqiao.homework.action.StuClassAction;
 import lanqiao.homework.action.tableModel.ClassTableModel;
 import lanqiao.homework.action.tableModel.StuTableModel;
-import lanqiao.homework.vo.Stu;
-import lanqiao.homework.vo.StuClass;
+import lanqiao.homework.bussiness.StuAction;
+import lanqiao.homework.bussiness.StuClassAction;
+import lanqiao.homework.entity.Stu;
+import lanqiao.homework.entity.StuClass;
+
 import javax.swing.JMenuBar;
 
 public class StuAdministrateView extends JFrame {
@@ -172,13 +173,6 @@ public class StuAdministrateView extends JFrame {
 		deleteTable.setModel(stuTableModel);
 		deleteTable.setSelectionBackground(Color.GREEN);
 		deleteTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		deleteTable.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				updateClassTable();
-				updateStuInfo();
-			}
-		});
 		
 		JScrollPane deleteScrollPane = new JScrollPane(deleteTable);
 		deleteScrollPane.setBounds(10, 76, 589, 123);
@@ -270,13 +264,28 @@ public class StuAdministrateView extends JFrame {
 		JButton btnNewButton = new JButton("添加修改班级信息");
 		btnNewButton.setBounds(372, 522, 174, 23);
 		contentPane.add(btnNewButton);
-		
+		/**
+		 * 删除班级操作后更新班级信息表格
+		 */
+		deleteTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				updateClassTable();
+				updateStuInfo();
+			}
+		});
+		/**
+		 * 弹出班级信息管理窗口
+		 */
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				StuClassAdministrateView window = new StuClassAdministrateView();
 				window.getFrame().setVisible(true);
 			}
 		});
+		/**
+		 * 转入到添加学生界面时，更新选择班级的ComBox的选项
+		 */
 		addStu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				updateClassSelect(boxClass_id);
@@ -290,7 +299,9 @@ public class StuAdministrateView extends JFrame {
 				
 			}
 		});
-		
+		/**
+		 * 添加学生操作事件
+		 */
 		addStuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -300,11 +311,14 @@ public class StuAdministrateView extends JFrame {
 				int stu_age = Integer.parseInt(stuAge.getText());
 				String stu_sex  = menRadioButton.isSelected()?"男":"女";
 				String stu_address = stuAddress.getText();
+				//System.out.println(stu_id + "ABC"+class_id+ stu_name+ stu_age+ stu_sex+ stu_address);
 				Stu stu = new Stu(stu_id, stu_id, class_id, stu_name, stu_age, stu_sex, stu_address);
 				stuBussiness.addStu(stu);
 			}
 		});
-		
+		/**
+		 * 删除学生操作事件
+		 */
 		delStuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/**
@@ -346,14 +360,18 @@ public class StuAdministrateView extends JFrame {
 			
 			}
 		});
-		
+		/**
+		 * 通过用户的输入，动态显示学生表格信息
+		 */
 		delSearchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String user_input = delStuText.getText();
 				stuTableModel.setData(stuBussiness.getSearchData(user_input));
 			}
 		});
-		
+		/**
+		 * 修改学生信息操作事件
+		 */
 		alterStuBotton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -372,8 +390,13 @@ public class StuAdministrateView extends JFrame {
 				String stu_address = stu_addressAlter.getText();
 				Stu stu = new Stu(stu_id, stu_id, class_id, stu_name, stu_age, stu_sex, stu_address);
 				stuBussiness.updataStu(stu);
-				
+				/**
+				 * 修改成功后更新学生表格信息
+				 */
 				stuTableModel.updateDate();
+				/**
+				 * 修改成功后，重置学生信息区域信息
+				 */
 				resetStuInfo();
 			}
 		});
@@ -416,17 +439,17 @@ public class StuAdministrateView extends JFrame {
 		stu_idAlter.setText(String.valueOf(stu_id));
 		stu_nameAlter.setText(stu_name);
 		stu_ageAlter.setText(String.valueOf(stu_age));
+		
 		if ("男".equals(stu_sex)) {
 			stu_sexMenAlter.setSelected(true);
 		} else {
 			stu_sexWomenAlter.setSelected(true);
 		}
+		
 		stu_addressAlter.setText(stu_address);
 		int comBoxLength = class_idAlter.getItemCount();
-//		System.out.println(comBoxLength);
 		for (int j=0; j<comBoxLength; j++) {
 			Object item = class_idAlter.getItemAt(j);
-//			System.out.println(Integer.parseInt(item.toString()));
 			if (class_id == Integer.parseInt(item.toString())) {
 				class_idAlter.setSelectedIndex(j);
 			}

@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import lanqiao.homework.action.VerifyUserAction;
+import lanqiao.homework.bussiness.VerifyUserAction;
 import lanqiao.homework.unless.JdbcUtil;
 
 public class LoginView {
@@ -88,6 +88,9 @@ public class LoginView {
 		error_login.setBounds(368, 184, 184, 39);
 		frame.getContentPane().add(error_login);
 		
+		/**
+		 * 重置用户的输入
+		 */
 		resetting.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				user_account.setText("");
@@ -96,6 +99,9 @@ public class LoginView {
 			}
 		});
 		
+		/**
+		 * 验证用户名和密码是否正确
+		 */
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				verifyUser = new VerifyUserAction();
@@ -111,7 +117,9 @@ public class LoginView {
 							}
 						}
 					});
-					
+					/**
+					 * 登陆成功后，释放登陆窗口
+					 */
 					frame.dispose();
 				}
 				else {

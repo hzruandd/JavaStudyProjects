@@ -5,8 +5,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import lanqiao.homework.entity.Stu;
 import lanqiao.homework.util.impl.DBUtil;
-import lanqiao.homework.vo.Stu;
 
 public class JdbcUtil {
 	private DBUtil sqlConn = new DBUtil();

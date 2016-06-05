@@ -1,18 +1,18 @@
-package lanqiao.homework.action;
+package lanqiao.homework.bussiness;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
-import lanqiao.homework.dao.CommanCURD;
-import lanqiao.homework.dao.impl.CommenCURDImpl;
-import lanqiao.homework.vo.Stu;
-import lanqiao.homework.vo.StuClass;
+import lanqiao.homework.dao.CommanCURDDao;
+import lanqiao.homework.dao.impl.CommenCURDDaoImpl;
+import lanqiao.homework.entity.Stu;
+import lanqiao.homework.entity.StuClass;
 
 public class StuClassAction {
-	private CommanCURD commanCURD;
+	private CommanCURDDao commanCURD;
 	
 	public StuClassAction() {
-		commanCURD = new CommenCURDImpl();
+		commanCURD = new CommenCURDDaoImpl();
 	}
 	
 	public boolean addClass(StuClass stuClass) {
@@ -22,7 +22,7 @@ public class StuClassAction {
 		dataStr.add(String.valueOf(stuClass.getClass_id()));
 		dataStr.add(stuClass.getClass_name());
 		dataStr.add(stuClass.getClass_desc());
-		return commanCURD.add(sql, dataStr);
+		return commanCURD.insert(sql, dataStr);
 	}
 	
 	public boolean deleteClass(int class_id) {
@@ -41,12 +41,16 @@ public class StuClassAction {
 		return commanCURD.update(sql, dataStr);
 	}
 	
+	/**
+	 * 查询所有班级信息
+	 * @return 返回包含所有班级对象的List集合
+	 */
 	public List<StuClass> searchClass() {
 		String sql = "SELECT class_id, class_name, class_desc FROM stu_class";
 		List<String> dataStr = new ArrayList<String>();
 		List<StuClass> classList = new ArrayList<StuClass>();
 		
-		Vector<String[]> vector = commanCURD.search(sql, dataStr);
+		Vector<String[]> vector = commanCURD.select(sql, dataStr);
 		if(vector.size()== 0) return classList;
 		
 		for (String[] str : vector) {
@@ -64,7 +68,7 @@ public class StuClassAction {
 		String sql = "SELECT class_id, class_name, class_desc FROM stu_class WHERE class_id = ?";
 		List<String> dataStr = new ArrayList<String>();
 		dataStr.add(String.valueOf(class_id));
-		Vector<String[]> vector = commanCURD.search(sql, dataStr);
+		Vector<String[]> vector = commanCURD.select(sql, dataStr);
 		
 		if (vector.size() != 1) return new StuClass();
 		String[] str = vector.get(0);

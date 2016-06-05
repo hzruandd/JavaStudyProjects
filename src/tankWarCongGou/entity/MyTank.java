@@ -2,15 +2,23 @@ package tankWarCongGou.entity;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-
-import tankWarCongGou.control.GameListener;
-import tankWarCongGou.view.GamePanel;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 public class MyTank extends Tank {
-
-	private HPbar hpBar;
 	
+	/**
+	 * 坦克的血条累
+	 */
+	private HPbar hpBar = new HPbar();
+	Image up = Toolkit.getDefaultToolkit().createImage("image/myTankUp.gif");
+	Image down = Toolkit.getDefaultToolkit().createImage("image/myTankDown.gif");
+	Image left = Toolkit.getDefaultToolkit().createImage("image/myTankLeft.gif");
+	Image right = Toolkit.getDefaultToolkit().createImage("image/myTankRight.gif");
+	/**
+	 * 坦克的生命值
+	 */
+	private int life;
 	public MyTank(int x, int y) {
 		//super(listener);
 		//初始化坦克的初始位置
@@ -18,43 +26,53 @@ public class MyTank extends Tank {
 		setY(y);
 		setCamp(true);
 		setDir(Direction.Up);
+		life = 100;
 	}
 
+	//Image gameMenu= Toolkit.getDefaultToolkit().createImage("image/myTankUp.png");
 	@Override
 	public void draw(Graphics g) {
 		//当坦克不存活时，直接退出
 		if (!isLive()) {
 			return ;
 		} 
-		
-		Color c = g.getColor();
-		g.setColor(Color.blue);
-		g.fillRect(getX(), getY(), getWIDTH(), getHEIGHT());
-		g.setColor(c);
+		g.drawImage(selectImage(), getX(), getY(), null);
+		hpBar.draw(g);
 		move();
 	}
 	
-	class HPbar {
-		
+	public Image selectImage() {
+		switch(getDir()) {
+			case Up: 
+				return up;
+			case Down: 
+				return down;
+			case Left: 
+				return left;
+			case Right: 
+				return right;
+			default:
+				return up;
+		}
 	}
 
-//	@Override
-//	public void hitWall() {
-//
-//		if (getX() < 0) {
-//			setX(0);
-//		}
-//		
-//		if (getX() + getWIDTH() > GamePanel.WIDTH) {
-//			setX(GamePanel.WIDTH - getWIDTH());
-//		}
-//		
-//		if (getY() < 0) {
-//			setY(0);
-//		} 
-//		
-//		if (getY() + 2*getHEIGHT()> GamePanel.HEIGHT) {
-//			setY(GamePanel.HEIGHT - 2*getHEIGHT());
-//		}
-//	}
+	//坦克的血条类
+	private class HPbar {
+		public void draw(Graphics g) {
+			Color c = g.getColor();
+			g.setColor(Color.RED);
+			g.drawRect(getX()+5, getY()-10, getWIDTH()-10, 5);
+			int width = (getWIDTH()-10) * life /100;
+			g.fillRect(getX()+5, getY()-10, width, 5);
+			g.setColor(c);
+		}
+	}
+
+	public int getLife() {
+		return life;
+	}
+
+	public void setLife(int life) {
+		this.life = life;
+	}
 }

@@ -13,9 +13,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
-import lanqiao.homework.action.StuClassAction;
 import lanqiao.homework.action.tableModel.ClassTableModel;
-import lanqiao.homework.vo.StuClass;
+import lanqiao.homework.bussiness.StuClassAction;
+import lanqiao.homework.entity.StuClass;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseAdapter;
@@ -49,7 +50,6 @@ public class StuClassAdministrateView {
 		setFrame(new JFrame());
 		getFrame().setTitle("班级信息管理");
 		getFrame().setBounds(100, 100, 375, 534);
-//		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getFrame().getContentPane().setLayout(null);
 		
 		JButton addClassButton = new JButton("添加");

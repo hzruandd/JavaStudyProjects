@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.List;
 
+import javax.swing.JPanel;
+
 import tankWarCongGou.entity.AITank;
 import tankWarCongGou.entity.Boom;
 import tankWarCongGou.entity.Bullet;
@@ -29,17 +31,20 @@ public class GamePaint {
 	public GamePaint(DataAdmin admin) {
 		this.admin = admin;
 		impact = new ImpactDetection(admin);
+		dataInit();
 	}
 	
 	public void draw(Graphics g) {
-		dataInit();
 		drawTank(g);
 		drawBullet(g);
 		drawData(g);
-//		drawWall(g);
+		drawWall(g);
 		drawBoom(g);
-//		drawProp(g);
-		impact.bulletTOtank();
+		drawProp(g);
+		/**
+		 * 碰撞检测
+		 */
+		impact.impactCheck();
 	}
 	
 	public void drawData(Graphics g) {
@@ -57,7 +62,8 @@ public class GamePaint {
 		aiTanks = admin.getAITanks();
 		bullets = admin.getBullets();
 		booms = admin.getBooms();
-		
+		walls = admin.getWalls();
+		props = admin.getProps();
 	}
 	
 	private void drawTank(Graphics g) {
@@ -76,23 +82,24 @@ public class GamePaint {
 		}
 	}
 	
-//	private void drawWall(Graphics g) {
-//		for(Wall wall : walls) {
-//			wall.draw(g);
-//		}
-//	}
-//	
 	private void drawBoom(Graphics g) {
 		for(int i=0; i<booms.size(); i++) {
 			booms.get(i).draw(g);
 		}
 	}
-//	
-//	private void drawProp(Graphics g) {
-//		for(Prop prop : props) {
-//			prop.draw(g);
-//		}
-//	}
+	
+	private void drawWall(Graphics g) {
+		for (int i=0; i<walls.size(); i++) {
+			walls.get(i).draw(g);
+		}
+	}
+	
+	
+	private void drawProp(Graphics g) {
+		for(int i=0; i<props.size(); i++) {
+			props.get(i).draw(g);
+		}
+	}
 
 
 //	public void setMyTanks(List<MyTank> myTanks) {

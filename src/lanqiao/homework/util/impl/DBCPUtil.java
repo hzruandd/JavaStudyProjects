@@ -18,7 +18,7 @@ import lanqiao.homework.util.SqlUtil;
 public class DBCPUtil implements SqlUtil{
 	/** 数据源, static */
 	private static DataSource DS;
-	
+	/** 配置文件   */
 	private static final String configFile = "config/dbcp.properties";
 
 	/**
@@ -41,12 +41,12 @@ public class DBCPUtil implements SqlUtil{
 			/**
 			 * 将JDBC的自动提交事务设置为false
 			 */
-			try {
-				conn.setAutoCommit(false);
-			} catch (SQLException e) {
-				// TODO 自动生成的 catch 块
-				e.printStackTrace();
-			}
+//			try {
+//				conn.setAutoCommit(false);
+//			} catch (SQLException e) {
+//				// TODO 自动生成的 catch 块
+//				e.printStackTrace();
+//			}
 			return conn;
 		}
 		return conn;

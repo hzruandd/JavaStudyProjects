@@ -8,14 +8,14 @@ import java.util.Vector;
  * @author Doctor邓
  *
  */
-public interface CommanCURD {
+public interface CommanCURDDao {
 	/**
 	 * 向数据库添加信息
 	 * @param sql   自定义的添加SQL语句
 	 * @param str   自定义的添加的字段信息的列表
 	 * @return		添加成功返回true，失败返回false
 	 */
-	public boolean add(String sql, List<String> str);
+	public boolean insert(String sql, List<String> str);
 	/**
 	 * 向数据库删除信息
 	 * @param sql   自定义的删除SQL语句
@@ -36,5 +36,5 @@ public interface CommanCURD {
 	 * @param str   自定义的查询的字段信息的列表
 	 * @return		返回一个对象数组
 	 */
-	public Vector search(String sql, List<String> str);
+	public Vector select(String sql, List<String> str);
 }

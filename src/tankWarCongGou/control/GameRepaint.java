@@ -19,7 +19,7 @@ public class GameRepaint implements Runnable{
 		while(true) {
 			try {
 				gamePanel.repaint();
-				Thread.sleep(30);
+				Thread.sleep(45);
 			} catch (InterruptedException e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();

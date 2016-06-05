@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.swing.JTable;
 
-import lanqiao.homework.vo.Stu;
+import lanqiao.homework.entity.Stu;
 
 public class StuControl {
 	//private List<Stu> stuList;

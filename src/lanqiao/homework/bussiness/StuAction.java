@@ -1,14 +1,14 @@
-package lanqiao.homework.action;
+package lanqiao.homework.bussiness;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-import lanqiao.homework.dao.CommanCURD;
-import lanqiao.homework.dao.impl.CommenCURDImpl;
+import lanqiao.homework.dao.CommanCURDDao;
+import lanqiao.homework.dao.impl.CommenCURDDaoImpl;
+import lanqiao.homework.entity.Stu;
+import lanqiao.homework.entity.StuClass;
 import lanqiao.homework.unless.StuControl;
-import lanqiao.homework.vo.Stu;
-import lanqiao.homework.vo.StuClass;
 
 /**
  * 对学生信息实现更、删、改、查做出相应反应的业务类
@@ -16,10 +16,10 @@ import lanqiao.homework.vo.StuClass;
  *
  */
 public class StuAction {
-	private CommanCURD commanCURD;
+	private CommanCURDDao commanCURD;
 	
 	public StuAction() {
-		commanCURD = new CommenCURDImpl();
+		commanCURD = new CommenCURDDaoImpl();
 	}
 	
 	/**
@@ -31,7 +31,7 @@ public class StuAction {
 		String addStuSql = "INSERT INTO stu (stu_id, info_id, class_id) VALUES("
 		+ "?, ?, ?)";
 		String addStuInfoSql = "INSERT INTO stu_info (info_id, stu_name, stu_age, stu_sex, stu_address) "
-				+ "VALUES(?, ?, ?, ?, ?)";
+				+ " VALUES(?, ?, ?, ?, ?)";
 		List<String> stuStr = new ArrayList<String>();
 		List<String> stuInfoStr = new ArrayList<String>();
 		
@@ -44,17 +44,17 @@ public class StuAction {
 		stuInfoStr.add(String.valueOf(stu.getStu_age()));
 		stuInfoStr.add(stu.getStu_sex());
 		stuInfoStr.add(stu.getStu_address());
-		if (commanCURD.add(addStuInfoSql, stuInfoStr) && commanCURD.add(addStuSql, stuStr)) {
-			return true;
-		}
+		commanCURD.insert(addStuInfoSql, stuInfoStr);
+	    commanCURD.insert(addStuSql, stuStr);
+		
 		return false;
 		
 	}
 	
 	/**
 	 * 通过学生的ID来删除学生
-	 * @param stu_id
-	 * @return
+	 * @param stu_id 要删除的学生的ID
+	 * @return 返回true删除成功，false删除失败
 	 */
 	public boolean deleteStu(int stu_id) {
 		String stuSql = "DELETE FROM stu WHERE stu_id = ?";
@@ -98,7 +98,7 @@ public class StuAction {
 		List<String> dataStr = new ArrayList<String>();
 		List<Stu> stuList = new ArrayList<Stu>();
 		
-		Vector<String[]> vector = commanCURD.search(sql, dataStr);
+		Vector<String[]> vector = commanCURD.select(sql, dataStr);
 		if(vector.size()== 0) return stuList;
 		
 		for (String[] str : vector) {
@@ -126,7 +126,7 @@ public class StuAction {
 				+ " INNER JOIN stu_info ON stu.info_id = stu_info.info_id WHERE stu.stu_id = ?";
 		List<String> dataStr = new ArrayList<String>();
 		dataStr.add(String.valueOf(stu_id));
-		Vector<String[]> vector = commanCURD.search(sql, dataStr);
+		Vector<String[]> vector = commanCURD.select(sql, dataStr);
 		
 		if (vector.size() != 1) return new Stu();
 		String[] str = vector.get(0);

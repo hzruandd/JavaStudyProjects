@@ -1,6 +1,7 @@
 package tankWarCongGou.entity;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
 
 import tankWarCongGou.control.GameListener;
@@ -18,8 +19,8 @@ public abstract  class Tank {
 	private int x;
 	private int y;
 	//坦克的宽度和高度
-	private final int WIDTH = 30;
-	private final int HEIGHT = 30;
+	public static final int WIDTH = 50;
+	public static final int HEIGHT = 50;
 	//坦克在碰撞墙前的坐标
 	private int oldX;
 	private int oldY;
@@ -85,9 +86,11 @@ public abstract  class Tank {
 	 */
 	public void fire() {
 		// TODO 自动生成的方法存根
-		int bulletX = getX() + getWIDTH()/2;
-		int bulletY = getY() + getHEIGHT()/2;
-		getGameListener().fireAction(bulletX, bulletY, isCamp(), getDir());
+		int bulletX = getX() + getWIDTH()/2 -5;
+		int bulletY = getY() + getHEIGHT()/2 -5;
+		if (live) {
+			getGameListener().fireAction(bulletX, bulletY, isCamp(), getDir());
+		}
 	}
 	
 	/**
@@ -112,8 +115,8 @@ public abstract  class Tank {
 			setY(0);
 		} 
 		
-		if (getY() + 2*getHEIGHT()> GamePanel.HEIGHT) {
-			setY(GamePanel.HEIGHT - 2*getHEIGHT());
+		if (getY() + getHEIGHT() + 20> GamePanel.HEIGHT) {
+			setY(GamePanel.HEIGHT - getHEIGHT() - 20);
 		}
 	}
 	
@@ -129,6 +132,7 @@ public abstract  class Tank {
 //	public void setDirection () {
 //	
 //	}
+	
 	
 	public int getSpeed() {
 		return speed;
@@ -221,5 +225,9 @@ public abstract  class Tank {
 	public void setGameListener(GameListener gameListener) {
 		this.gameListener = gameListener;
 	}
+
+//	public void setTankImage(Image tankImage) {
+//		this.tankImage = tankImage;
+//	}
 
 }

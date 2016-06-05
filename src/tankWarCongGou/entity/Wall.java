@@ -2,7 +2,9 @@ package tankWarCongGou.entity;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 
 /**
  * 
@@ -12,23 +14,25 @@ import java.awt.Rectangle;
 public class Wall {
 	private int x;
 	private int y;
-	private final int WIDTH = 60;
-	private final int HEIGHT = 40;
-	
+	private final int WIDTH = 50;
+	private final int HEIGHT = 50;
+	private int wallMark;
+	private Image image = Toolkit.getDefaultToolkit().getImage("image/wall.png");
+	Image[] images = {
+			Toolkit.getDefaultToolkit().getImage("image/wall.png"),
+		    Toolkit.getDefaultToolkit().getImage("image/wallWhite.png")
+	};
 	public Wall() {
-		
+		wallMark=0; //墙默认为红墙
 	}
 	
-	public Wall(int x, int y) {
+	public Wall(int x, int y, int wallMark) {
 		this.x = x;
 		this.y = y;
+		this.wallMark = wallMark;
 	}
-	
 	public void draw(Graphics g) {
-		Color c = g.getColor();
-		g.setColor(Color.WHITE);
-		g.fillRect(x, y, WIDTH, HEIGHT);
-		g.setColor(c);
+		g.drawImage(images[wallMark], x, y, WIDTH, HEIGHT,	null);
 	}
 	
 	/**
@@ -37,6 +41,10 @@ public class Wall {
 	 */
 	public Rectangle getRect() {
 		return new Rectangle(x, y, WIDTH, HEIGHT);
+	}
+
+	public void setWallMark(int wallMark) {
+		this.wallMark = wallMark;
 	} 
 
 }

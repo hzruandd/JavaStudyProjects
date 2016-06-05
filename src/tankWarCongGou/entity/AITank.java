@@ -2,7 +2,11 @@ package tankWarCongGou.entity;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.Random;
+
+import javax.swing.ImageIcon;
 
 import tankWarCongGou.control.GameListener;
 
@@ -17,6 +21,13 @@ public class AITank extends Tank {
 	private final int MINSTEP = 3;
 	private final int MAXSTEP = 20;
 	
+	private final Image up = Toolkit.getDefaultToolkit().createImage("image/aiTankUp.gif");
+	private final Image left = Toolkit.getDefaultToolkit().createImage("image/aiTankLeft.gif");
+	private final Image down = Toolkit.getDefaultToolkit().createImage("image/aiTankDown.gif");
+	private final Image right = Toolkit.getDefaultToolkit().createImage("image/aiTankRight.gif");
+	public AITank() {
+		
+	}
 	public AITank(int x, int y) {
 		super();
 		setX(x);
@@ -24,18 +35,31 @@ public class AITank extends Tank {
 		setCamp(false);
 		setMotionStatus(true);
 		setDir(Direction.Down);
+		setSpeed(3);
 	}
 	
 	@Override
 	public void draw(Graphics g) {
-		//获取前景色
-		Color c = g.getColor();
-		g.setColor(Color.MAGENTA);
-		g.fillOval(getX(), getY(), getWIDTH(), getHEIGHT());
-		g.setColor(c);
+		
+		g.drawImage(selectImage(), getX(), getY(),  null);
 		move();
 		aiMove();
 		aiFire();
+	}
+	
+	public Image selectImage(){
+		switch(getDir()) {
+		case Up: 
+			return up;
+		case Down: 
+			return down;
+		case Left: 
+			return left;
+		case Right: 
+			return right;
+		default:
+			return up;
+		}
 	}
 
 	/**

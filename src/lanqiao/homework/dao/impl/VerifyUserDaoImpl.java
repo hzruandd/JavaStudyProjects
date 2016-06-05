@@ -9,14 +9,18 @@ import lanqiao.homework.dao.VerifyUserDao;
 import lanqiao.homework.util.SqlUtil;
 import lanqiao.homework.util.impl.DBCPUtil;
 import lanqiao.homework.util.impl.DBUtil;
-
-public class VerifyUserImpl implements VerifyUserDao{
+/**
+ * 验证用户名和密码
+ * @author Doctor邓
+ *
+ */
+public class VerifyUserDaoImpl implements VerifyUserDao{
 
 	private Connection conn;
 	private PreparedStatement ps;
 	private SqlUtil sqlUtil;
 	
-	public VerifyUserImpl() {
+	public VerifyUserDaoImpl() {
 		sqlUtil = new DBCPUtil();
 		conn = sqlUtil.getConn();
 	}
@@ -36,7 +40,6 @@ public class VerifyUserImpl implements VerifyUserDao{
 			}
 			return false;
 		} catch (SQLException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 			return false;
 		}

@@ -5,6 +5,8 @@ import java.util.List;
 import tankWarCongGou.entity.AITank;
 import tankWarCongGou.entity.Bullet;
 import tankWarCongGou.entity.MyTank;
+import tankWarCongGou.entity.Prop;
+import tankWarCongGou.entity.Wall;
 
 /**
  * 
@@ -16,6 +18,8 @@ public class ImpactDetection {
 	private List<MyTank> myTanks;
 	private List<AITank> aiTanks;
 	private List<Bullet> bullets;
+	private List<Wall> walls;
+	private List<Prop> props;
 	
 	public ImpactDetection(DataAdmin admin) {
 		this.admin = admin;
@@ -29,12 +33,22 @@ public class ImpactDetection {
 		myTanks = admin.getMyTanks();
 		aiTanks = admin.getAITanks();
 		bullets = admin.getBullets();
+		walls = admin.getWalls();
+		props = admin.getProps();
 	}
+	
+	public void impactCheck() {
+		bulletTOtank();
+		bulletTOWall();
+		tankTOWall();
+		tankTOProp();
+	}
+	
 	
 	/**
 	 * 子弹和坦克之间的碰撞检测
 	 */
-	public  void bulletTOtank() {
+	public void bulletTOtank() {
 		//当游戏中坦克和子弹都存在时开始子弹和坦克的碰撞检测
 		if (aiTanks.size() >= 1 && bullets.size() >=1 ) {
 			for (int i=0; i< aiTanks.size(); i++) {
@@ -46,8 +60,8 @@ public class ImpactDetection {
 					if (aiTank.isCamp() == bullet.isCamp()) continue;
 					//检测是否发生碰撞
 					if (aiTank.getRect().intersects(bullet.getRect())) {
-//						aiTank.setLive(false);
-//						bullet.setLive(false);
+						aiTank.setLive(false);
+						bullet.setLive(false);
 						bullet.bulletBoom();
 						aiTanks.remove(aiTank);
 						bullets.remove(bullet);
@@ -66,12 +80,82 @@ public class ImpactDetection {
 					if (myTank.isCamp() == bullet.isCamp()) continue;
 					//检测是否发生碰撞
 					if (myTank.getRect().intersects(bullet.getRect())) {
+						
+						myTank.setLife(myTank.getLife() - 20);
+						if (myTank.getLife() ==0) {
+							myTank.setLive(false);
+							myTanks.remove(myTank);
+						}
+						bullet.setLive(false);
 						bullet.bulletBoom();
-						myTanks.remove(myTank);
 						bullets.remove(bullet);
 					}
 				}
 			}
 		}
+	}
+	
+	/**
+	 * 子弹和墙之间的碰撞检测
+	 */
+	public void bulletTOWall() {
+		for (int i=0; i<walls.size(); i++) {
+			Wall wall = walls.get(i);
+			
+			for (int j=0; j<bullets.size(); j++) {
+				Bullet bullet = bullets.get(j);
+				
+				if(bullet.getRect().intersects(wall.getRect())) {
+					bullets.remove(bullet);
+				}
+			}
+		}
+	}
+	
+	/**
+	 * 坦克和墙之间的碰撞检测
+	 */
+	public void tankTOWall() {
+		for (int i=0; i<myTanks.size(); i++) {
+			MyTank myTank = myTanks.get(i);
+			for (int j=0; j<walls.size(); j++) {
+				Wall wall = walls.get(j);
+				
+				if (myTank.getRect().intersects(wall.getRect())) {
+					myTank.setX(myTank.getOldX());
+					myTank.setY(myTank.getOldY());
+				}
+			}
+		}
+		
+		for (int i=0; i<aiTanks.size(); i++) {
+			AITank aiTank = aiTanks.get(i);
+			for (int j=0; j<walls.size(); j++) {
+				Wall wall = walls.get(j);
+				
+				if (aiTank.getRect().intersects(wall.getRect())) {
+					aiTank.setX(aiTank.getOldX());
+					aiTank.setY(aiTank.getOldY());
+				}
+			}
+		}
+	}
+
+	/**
+	 * 坦克和道具间的碰撞检测
+	 */
+	public void tankTOProp() {
+		for (int i=0; i<myTanks.size(); i++) {
+			MyTank myTank = myTanks.get(i);
+			for (int j=0; j<props.size(); j++) {
+				Prop prop = props.get(j);
+				
+				if (myTank.getRect().intersects(prop.getRect())) {
+					prop.function(myTank);
+					props.remove(prop);
+				}
+			}
+		}
+		
 	}
 }

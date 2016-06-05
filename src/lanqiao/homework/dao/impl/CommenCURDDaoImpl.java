@@ -7,24 +7,27 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
-
-import lanqiao.homework.dao.CommanCURD;
+import lanqiao.homework.dao.CommanCURDDao;
 import lanqiao.homework.util.SqlUtil;
 import lanqiao.homework.util.impl.DBCPUtil;
-
-public class CommenCURDImpl implements CommanCURD{
+/**
+ * 通用的数据库CURD操作的实现类
+ * @author Doctor邓
+ *
+ */
+public class CommenCURDDaoImpl implements CommanCURDDao{
 	
 	private Connection conn;
 	private PreparedStatement ps;
 	private SqlUtil sqlUtil;
 	
-	public CommenCURDImpl() {
+	public CommenCURDDaoImpl() {
 		sqlUtil = new DBCPUtil();
 		conn = sqlUtil.getConn();
 	}
 	
 	@Override
-	public boolean add(String sql, List<String> str) {
+	public boolean insert(String sql, List<String> str) {
 		try {
 			ps = conn.prepareStatement(sql);
 			for (int i=0; i<str.size(); i++) {
@@ -75,7 +78,7 @@ public class CommenCURDImpl implements CommanCURD{
 
 	@SuppressWarnings("finally")
 	@Override
-	public Vector<String[]> search(String sql, List<String> str) {
+	public Vector<String[]> select(String sql, List<String> str) {
 		Vector<String[]> vector = new Vector<String[]>();
 		try {
 			ps = conn.prepareStatement(sql);

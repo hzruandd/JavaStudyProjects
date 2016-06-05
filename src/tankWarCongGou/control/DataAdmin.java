@@ -6,6 +6,8 @@ import tankWarCongGou.entity.AITank;
 import tankWarCongGou.entity.Boom;
 import tankWarCongGou.entity.Bullet;
 import tankWarCongGou.entity.MyTank;
+import tankWarCongGou.entity.Prop;
+import tankWarCongGou.entity.Wall;
 import tankWarCongGou.model.GameData;
 /**
  * 
@@ -81,8 +83,21 @@ public class DataAdmin {
 	public List<Boom> getBooms() {
 		return gameData.getBooms();
 	}
-	 
 	
-//	d
+	public List<Wall> getWalls() {
+		return gameData.getWalls();
+	}
+	
+	public void setWalls(List<Wall> walls) {
+		gameData.setWalls(walls);
+	}
+	
+    public void addProp(Prop prop) {
+    	gameData.getProps().add(prop);
+    }
+    
+    public List<Prop> getProps() {
+    	return gameData.getProps();
+    }
 	
 }

@@ -2,7 +2,9 @@ package tankWarCongGou.entity;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 
 import tankWar.gameView.GamePanel;
 import tankWarCongGou.control.GameListener;
@@ -19,10 +21,11 @@ public class Bullet {
 	private final int HEIGHT = 10;
 	private boolean live;
 	private boolean camp;
-	private final int SPEED = 8;
+	private final int SPEED = 10;
 	private Direction dir;
 	
 	private GameListener listener;
+	private Image redWall = Toolkit.getDefaultToolkit().getImage("image/bullet.png");
 	
 	public Bullet(int x, int y, boolean camp, Direction dir) {
 		this.x = x;
@@ -51,15 +54,11 @@ public class Bullet {
 		}
 		
 	}
-	
 	public void draw(Graphics g) {
 		
 		if (!live) return;
 		
-		Color c = g.getColor();
-		g.setColor(Color.green);
-		g.fillRect(x, y, WIDTH, HEIGHT);
-		g.setColor(c);
+		g.drawImage(redWall, getX(), getY(), WIDTH, HEIGHT, null);
 		move();
 		overBorder();
 	}

@@ -5,9 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import lanqiao.homework.entity.Stu;
 import lanqiao.homework.util.SqlUtil;
 import lanqiao.homework.util.impl.DBUtil;
-import lanqiao.homework.vo.Stu;
 /**
  * 对学生信息实现增、删、改、查操作的具体实现类
  * @author Doctor邓

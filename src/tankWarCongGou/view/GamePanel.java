@@ -2,6 +2,8 @@ package tankWarCongGou.view;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
@@ -19,12 +21,6 @@ public class GamePanel extends JPanel{
 	public GamePanel(GamePaint gamePaint) {
 		X = 0;
 		Y = 0;
-//		gamePaint = new GamePaint();
-//		this.myTanks = myTanks;
-//		this.bullets = bullets;
-//		this.props = props;
-//		this.walls = walls;
-//		this.booms = booms;
 		this.gamePaint = gamePaint;
 		init();
 	}
@@ -47,7 +43,6 @@ public class GamePanel extends JPanel{
 	public void update(Graphics g) {
 		g.setColor(Color.black);
 		gamePaint.draw(g);
-		
 	}
 
 //	public List<MyTank> getMyTanks() {

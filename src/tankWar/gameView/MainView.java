@@ -95,7 +95,6 @@ public class MainView extends AGameView{
 		jframe.addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent e)
 			{
-				//RankView.dispose();
 				System.exit(0);
 			}
 		});

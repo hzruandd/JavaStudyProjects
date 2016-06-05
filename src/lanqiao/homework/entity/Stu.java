@@ -1,5 +1,9 @@
-package lanqiao.homework.vo;
-
+package lanqiao.homework.entity;
+/**
+ * 学生信息实体类
+ * @author Doctor邓
+ *
+ */
 public class Stu {
 	private int stu_id;
 	private int info_id;

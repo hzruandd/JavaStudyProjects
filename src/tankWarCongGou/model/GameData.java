@@ -7,7 +7,9 @@ import tankWarCongGou.entity.Boom;
 import tankWarCongGou.entity.Bullet;
 import tankWarCongGou.entity.MyTank;
 import tankWarCongGou.entity.Prop;
+import tankWarCongGou.entity.Tank;
 import tankWarCongGou.entity.Wall;
+import tankWarCongGou.view.GamePanel;
 
 /**
  * 

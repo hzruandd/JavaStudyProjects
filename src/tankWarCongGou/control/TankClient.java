@@ -1,9 +1,8 @@
 package tankWarCongGou.control;
 
-import tankWarCongGou.model.GameData;
+import tankWarCongGou.entity.GameMap;
 import tankWarCongGou.model.GameFactory;
 import tankWarCongGou.view.GameFrame;
-import tankWarCongGou.view.GamePanel;
 
 /**
  * 
@@ -19,6 +18,7 @@ public class TankClient {
 	private GameListener listener ;
 	private KeyMonitor keyMonitor;
 	private GamePaint gamePaint;
+	private GameAssist gameAssist;
 	
 	public TankClient() {
 		dataInit();
@@ -34,6 +34,7 @@ public class TankClient {
 		gameFactory = new GameFactory();
 		admin.setMyTanks(gameFactory.getMyTanks(2));
 		admin.setAITanks(gameFactory.getAITanks(5));
+		admin.setWalls(gameFactory.getWalls(new GameMap()));
 	}
 	
 	/**
@@ -44,6 +45,8 @@ public class TankClient {
 //		keyMonitor = new KeyMonitor(admin);
 		gamePaint = new GamePaint(admin);
 		admin.dataAddListener(listener);
+		gameAssist = new GameAssist(admin);
+		gameAssist.start();
 	}
 	
 	/**
@@ -54,7 +57,6 @@ public class TankClient {
 	}
 	
 	public static void main(String[] args) {
-		// TODO 自动生成的方法存根
 		TankClient gameRun = new TankClient();
 	}
 

@@ -1,4 +1,4 @@
-package lanqiao.homework.vo;
+package lanqiao.homework.entity;
 /**
  * 管理员实体类
  * @author Doctor邓

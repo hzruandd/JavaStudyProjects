@@ -1,4 +1,4 @@
-package lanqiao.homework.action;
+package lanqiao.homework.bussiness;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import javax.swing.JTable;
 
 import lanqiao.homework.action.tableModel.CommanTableModel;
-import lanqiao.homework.vo.Stu;
-import lanqiao.homework.vo.StuClass;
+import lanqiao.homework.entity.Stu;
+import lanqiao.homework.entity.StuClass;
 
 /**
  * 对表格模型进行操作的业务类

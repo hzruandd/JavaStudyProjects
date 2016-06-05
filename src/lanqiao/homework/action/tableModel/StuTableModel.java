@@ -5,7 +5,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableColumnModel;
 
-import lanqiao.homework.action.StuAction;
+import lanqiao.homework.bussiness.StuAction;
 import lanqiao.homework.unless.StuControl;
 
 public class StuTableModel extends AbstractTableModel {

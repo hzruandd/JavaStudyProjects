@@ -1,4 +1,4 @@
-package lanqiao.homework.vo;
+package lanqiao.homework.entity;
 
 /**
  * 班级信息实体类
