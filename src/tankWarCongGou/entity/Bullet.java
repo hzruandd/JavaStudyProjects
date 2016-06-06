@@ -32,15 +32,16 @@ public class Bullet {
 	/**
 	 * 子弹的威力值
 	 */
-	private int dps = 1;
+	private int dps;
 	
-	public Bullet(int x, int y, boolean camp, Direction dir, Tank ourTank) {
+	public Bullet(int x, int y, boolean camp, Direction dir, Tank ourTank, int dps) {
 		this.x = x;
 		this.y = y;
 		this.camp = camp;
 		this.live = true;
 		this.dir = dir;
 		this.ourTank = ourTank;
+		this.dps = dps;
 	}
 	
 	public void move() {
@@ -81,7 +82,9 @@ public class Bullet {
 			ourTank.setBulletMax(ourTank.getBulletMax() + 1);
 		} 
 	}
-	
+	/**
+	 * 子弹爆炸,告诉监听器，且让其坦克的弹夹+1
+	 */
 	public void bulletBoom() {
 		int boomX = x + WIDTH;
 		int boomY = y + HEIGHT;

@@ -30,8 +30,8 @@ public class GameListener implements KeyListener {
 	 * @param camp 子弹的阵营
 	 * @param dir 子弹的方向
 	 */
-	public void fireAction(int x, int y, boolean camp, Direction dir, Tank ourTank) {
-		Bullet bullet = new Bullet(x, y, camp, dir, ourTank);
+	public void fireAction(int x, int y, boolean camp, Direction dir, Tank ourTank, int dps) {
+		Bullet bullet = new Bullet(x, y, camp, dir, ourTank, dps);
 		bullet.setListener(this);
 		admin.addBullet(bullet);
 	}

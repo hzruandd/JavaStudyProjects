@@ -15,8 +15,8 @@ import tankWarCongGou.view.GamePanel;
 public class GameHome {
 	private int x;
 	private int y;
-	private final int WIDTH = 50;
-	private final int HEIGHT = 50;
+	public static final int WIDTH = 50;
+	public static final int HEIGHT = 50;
 	private boolean live;
 	private final Image LIVE = Toolkit.getDefaultToolkit().createImage("image/home/homeLive.png");
 	private final Image DEAD = Toolkit.getDefaultToolkit().createImage("image/home/homeDead.png");

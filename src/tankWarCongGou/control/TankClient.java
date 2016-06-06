@@ -2,6 +2,7 @@ package tankWarCongGou.control;
 
 import tankWarCongGou.control.gameAssist.GameAssistAI;
 import tankWarCongGou.control.gameAssist.GameAssistProp;
+import tankWarCongGou.control.gameAssist.GameAssistWall;
 import tankWarCongGou.entity.GameMap;
 import tankWarCongGou.model.GameFactory;
 import tankWarCongGou.view.GameFrame;
@@ -21,6 +22,7 @@ public class TankClient {
 	private GamePaint gamePaint;
 	private GameAssistProp gameAssist;
 	private GameAssistAI aiAssist;
+	private GameAssistWall wallAssist;
 	
 	public TankClient() {
 		dataInit();
@@ -35,7 +37,7 @@ public class TankClient {
 		admin = new DataAdmin();
 		gameFactory = new GameFactory();
 		admin.setMyTanks(gameFactory.getMyTanks(2));
-		admin.setAITanks(gameFactory.getAITanks(6));
+		admin.setAITanks(gameFactory.getAITanks(3));
 		admin.setWalls(gameFactory.getWalls(new GameMap()));
 	}
 	
@@ -44,7 +46,6 @@ public class TankClient {
 	 */
 	private void moduleInit() {
 		listener = new GameListener(admin);
-//		keyMonitor = new KeyMonitor(admin);
 		gamePaint = new GamePaint(admin);
 		
 		admin.dataAddListener(listener);
@@ -53,6 +54,9 @@ public class TankClient {
 		
 		aiAssist = new GameAssistAI(admin, gameFactory, listener);
 		aiAssist.start();
+		
+		wallAssist = new GameAssistWall(admin);
+		wallAssist.start();
 	}
 	
 	/**

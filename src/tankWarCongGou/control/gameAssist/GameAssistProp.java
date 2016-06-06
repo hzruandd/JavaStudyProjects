@@ -17,10 +17,10 @@ public class GameAssistProp extends Thread {
 	public void run() {
 		while(true) {
 			try {
-				sleep(2000);
+				sleep(5000);
 				if (admin.getProps().size()==0) {
-					admin.getProps().add(new Prop(0));
-					sleep(10000);
+					admin.getProps().add(new Prop(admin));
+					sleep(15000);
 				}
 				if (admin.getProps().size() > 0) {
 					admin.getProps().clear();

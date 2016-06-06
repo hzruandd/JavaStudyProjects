@@ -77,11 +77,42 @@ public class GameFactory {
 		return aiTank;
 	}
 	
+	/**
+	 * 获得地图墙的信息的集合
+	 * @param map   指定的地图
+	 * @return   指定地图包含的墙的信息的集合
+	 */
 	public List<Wall> getWalls(GameMap map) {
 		List<Wall> wallList = new ArrayList<>();
+		/**
+		 * 初始化用户指定的地图的信息
+		 */
 		int[][] gameMap = map.getMap1();
 		for (int i=0; i<gameMap.length; i++) {
 			Wall wall = new Wall(gameMap[i][0], gameMap[i][1], gameMap[i][2]);
+			wallList.add(wall);
+		}
+		/**
+		 * 初始化不变的老家的地图的信息
+		 */
+		int[][] homeMap = map.getHomeMap();
+		for (int i=0; i<homeMap.length; i++) {
+			Wall wall = new Wall(homeMap[i][0], homeMap[i][1], homeMap[i][2]);
+			wallList.add(wall);
+		}
+		return wallList;
+	}
+	/**
+	 * 将指定的地图信息集合转化为地图墙的信息的集合
+	 * @param map   地图信息的集合
+	 * @return      包含指定地图信息的墙的集合
+	 */
+	public List<Wall> getWalls(int[][] map) {
+		List<Wall> wallList = new ArrayList<>();
+		
+		int[][] homeMap = map;
+		for (int i=0; i<homeMap.length; i++) {
+			Wall wall = new Wall(homeMap[i][0], homeMap[i][1], homeMap[i][2]);
 			wallList.add(wall);
 		}
 		return wallList;

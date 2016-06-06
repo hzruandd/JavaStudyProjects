@@ -85,6 +85,10 @@ public class DataAdmin {
 		}
 	}
 	
+	public void addWalls(List<Wall> wallList) {
+		gameData.getWalls().addAll(wallList);
+	}
+	
 	public List<Boom> getBooms() {
 		return gameData.getBooms();
 	}

@@ -9,9 +9,9 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 
 import tankWarCongGou.control.GameListener;
+import tankWarCongGou.view.GamePanel;
 
 public class AITank extends Tank {
-	private GameListener listener;
 	
 	//随机数产生器
 	public static Random random = new Random();
@@ -24,12 +24,7 @@ public class AITank extends Tank {
 	 * 用来表示为何种AI坦克的标识
 	 */
 	private int symbol;
-	
-	private final Image UP = Toolkit.getDefaultToolkit().createImage("image/aiTankUp.gif");
-	private final Image LEFT = Toolkit.getDefaultToolkit().createImage("image/aiTankLeft.gif");
-	private final Image DOWN = Toolkit.getDefaultToolkit().createImage("image/aiTankDown.gif");
-	private final Image RIGHT = Toolkit.getDefaultToolkit().createImage("image/aiTankRight.gif");
-	private final Image[][] imags = {
+	private final Image[][] images = {
 			{Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTank1Up.gif"),
 				Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTank1Down.gif"),
 				Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTank1Left.gif"),
@@ -40,10 +35,10 @@ public class AITank extends Tank {
 				Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTank2Left.gif"),
 				Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTank2Right.gif")
 			},
-			{Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTankRight.gif"),
-				Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTankRight.gif"),
-				Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTankRight.gif"),
-				Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTankRight.gif")
+			{Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTank3Up.gif"),
+				Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTank3Down.gif"),
+				Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTank3Left.gif"),
+				Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTank3Right.gif")
 			}
 	};
 	
@@ -73,15 +68,15 @@ public class AITank extends Tank {
 	public Image selectImage(){
 		switch(getDir()) {
 		case Up: 
-			return UP;
+			return images[symbol][0];
 		case Down: 
-			return DOWN;
+			return images[symbol][1];
 		case Left: 
-			return LEFT;
+			return images[symbol][2];
 		case Right: 
-			return RIGHT;
+			return images[symbol][3];
 		default:
-			return UP;
+			return images[symbol][0];
 		}
 	}
 
@@ -92,8 +87,47 @@ public class AITank extends Tank {
 			Direction[] dirs = Direction.values();
 			if (step == 0) {
 				step = random.nextInt(MAXSTEP - MINSTEP) + MINSTEP;
-				int rn = random.nextInt(dirs.length);
-				setDir(dirs[rn]);
+				/**
+				 * 随机设定坦克方向
+				 */
+				int i = random.nextInt(6);
+				if (i <3) {
+					setDir(Direction.Down);
+				} else if (i ==3) {
+					setDir(Direction.Up);
+				} else if (i ==4) {
+					setDir(Direction.Left);
+				} else if (i == 5) {
+					setDir(Direction.Right);
+				} 
+				
+				if (getY() >= GamePanel.HEIGHT - 20 - GameHome.HEIGHT - 20) {
+					int j = getX() - GamePanel.WIDTH/2;
+					if (j <= 0) {
+						int m = random.nextInt(6);
+						if (i <3) {
+							setDir(Direction.Right);
+						} else if (i ==3) {
+							setDir(Direction.Up);
+						} else if (i ==4) {
+							setDir(Direction.Left);
+						} else if (i == 5) {
+							setDir(Direction.Down);
+						} 
+					}
+					if (j > 0) {
+						int m = random.nextInt(6);
+						if (i <3) {
+							setDir(Direction.Left);
+						} else if (i ==3) {
+							setDir(Direction.Up);
+						} else if (i ==4) {
+							setDir(Direction.Right);
+						} else if (i == 5) {
+							setDir(Direction.Down);
+						} 
+					}
+				}
 				if (random.nextInt(20) < 3) {
 					setMotionStatus(false);
 				}
@@ -108,8 +142,21 @@ public class AITank extends Tank {
 	 * 自动为坦克随机开火
 	 */
 	public void aiFire() {
-		if (random.nextInt(100) < 5) {
-			fire();
+		if (getY() >= GamePanel.HEIGHT - 20 - GameHome.HEIGHT) {
+			if (random.nextInt(10) < 5) {
+				fire();
+			}
+		} else {
+			if (random.nextInt(100) < 5) {
+				fire();
+			}
 		}
+	}
+	
+	/**
+	 * 坦克自己爆炸
+	 */
+	public void boom() {
+		getGameListener().boomAction(getX(), getY());
 	}
 }

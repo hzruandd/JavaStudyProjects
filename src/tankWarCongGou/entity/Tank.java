@@ -34,6 +34,11 @@ public abstract  class Tank {
 	private boolean camp;
 	//坦克的子弹上限，决定了游戏最多能同时存在几个坦克发出的子弹
 	private int bulletMax;
+
+	/**
+	 * 坦克的dps即开抢后子弹的威力
+	 */
+	private int dps;
 	
 	//用于设置坦克具体方向的变量
 	private boolean up;
@@ -50,6 +55,7 @@ public abstract  class Tank {
 		this.live = true;
 		up = true;
 		bulletMax = 1;  //默认只能同时打一发子弹
+		dps = 1;        //默认坦克子弹的威力只能打穿红墙
 	}
 	
 	/**
@@ -88,11 +94,11 @@ public abstract  class Tank {
 		/**
 		 * 当坦克的弹夹为空时，直接退出，无法开火
 		 */
-		if (bulletMax==0) return;
+		if (bulletMax<1) return;
 		int bulletX = getX() + getWIDTH()/2 -5;
 		int bulletY = getY() + getHEIGHT()/2 -5;
 		if (live) {
-			gameListener.fireAction(bulletX, bulletY, isCamp(), getDir(), this);
+			gameListener.fireAction(bulletX, bulletY, isCamp(), getDir(), this, dps);
 		}
 		bulletMax--;
 	}
@@ -232,5 +238,13 @@ public abstract  class Tank {
 
 	public void setGameListener(GameListener gameListener) {
 		this.gameListener = gameListener;
+	}
+
+	public int getDps() {
+		return dps;
+	}
+
+	public void setDps(int dps) {
+		this.dps = dps;
 	}
 }

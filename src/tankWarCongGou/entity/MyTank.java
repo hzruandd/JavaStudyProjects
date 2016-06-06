@@ -6,11 +6,13 @@ import java.awt.Image;
 import java.awt.Toolkit;
 
 public class MyTank extends Tank {
-	
 	/**
 	 * 坦克的血条累
 	 */
 	private HPbar hpBar = new HPbar();
+	/**
+	 * 坦克对应方向的图片
+	 */
 	Image up = Toolkit.getDefaultToolkit().createImage("image/myTankUp.gif");
 	Image down = Toolkit.getDefaultToolkit().createImage("image/myTankDown.gif");
 	Image left = Toolkit.getDefaultToolkit().createImage("image/myTankLeft.gif");
@@ -24,7 +26,6 @@ public class MyTank extends Tank {
 	 */
 	private final int MAX_LIFE = 3;
 	public MyTank(int x, int y) {
-		//super(listener);
 		//初始化坦克的初始位置
 		setX(x);
 		setY(y);
@@ -33,7 +34,6 @@ public class MyTank extends Tank {
 		life = MAX_LIFE;
 	}
 
-	//Image gameMenu= Toolkit.getDefaultToolkit().createImage("image/myTankUp.png");
 	@Override
 	public void draw(Graphics g) {
 		//当坦克不存活时，直接退出
