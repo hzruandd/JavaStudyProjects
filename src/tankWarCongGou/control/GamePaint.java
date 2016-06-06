@@ -4,15 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.List;
 
-import javax.swing.JPanel;
-
 import tankWarCongGou.entity.AITank;
 import tankWarCongGou.entity.Boom;
 import tankWarCongGou.entity.Bullet;
+import tankWarCongGou.entity.GameHome;
 import tankWarCongGou.entity.MyTank;
 import tankWarCongGou.entity.Prop;
-import tankWarCongGou.entity.Wall;
-import tankWarCongGou.model.GameData; 
+import tankWarCongGou.entity.Wall; 
 /**
  * 画出游戏的各种对象，如坦克，子弹，爆炸、墙等
  */
@@ -24,8 +22,9 @@ public class GamePaint {
 	private List<Prop> props;           //道具集合
 	private List<Wall> walls;           //墙集合
 	private List<Boom> booms;           //爆炸集合
-	private ImpactDetection impact;
+	private GameHome home;              //家
 	
+	private ImpactDetection impact;
 	private DataAdmin admin;
 	
 	public GamePaint(DataAdmin admin) {
@@ -41,6 +40,7 @@ public class GamePaint {
 		drawWall(g);
 		drawBoom(g);
 		drawProp(g);
+		drawHome(g);
 		/**
 		 * 碰撞检测
 		 */
@@ -64,15 +64,14 @@ public class GamePaint {
 		booms = admin.getBooms();
 		walls = admin.getWalls();
 		props = admin.getProps();
+		home = admin.getGameHome();
 	}
 	
 	private void drawTank(Graphics g) {
 		for(int i=0; i<myTanks.size(); i++) {
 			myTanks.get(i).draw(g);
 		}
-		if (aiTanks.size() <=1 ) {
-			return ;
-		}
+		
 		for(int i=0; i<aiTanks.size(); i++) {
 			aiTanks.get(i).draw(g);
 		}
@@ -101,6 +100,10 @@ public class GamePaint {
 		for(int i=0; i<props.size(); i++) {
 			props.get(i).draw(g);
 		}
+	}
+	
+	private void drawHome(Graphics g) {
+		home.draw(g);
 	}
 
 

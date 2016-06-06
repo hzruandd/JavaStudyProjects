@@ -2,14 +2,14 @@ package tankWarCongGou.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import tankWarCongGou.entity.AITank;
 import tankWarCongGou.entity.Boom;
 import tankWarCongGou.entity.Bullet;
+import tankWarCongGou.entity.GameHome;
 import tankWarCongGou.entity.MyTank;
 import tankWarCongGou.entity.Prop;
-import tankWarCongGou.entity.Tank;
 import tankWarCongGou.entity.Wall;
-import tankWarCongGou.view.GamePanel;
 
 /**
  * 
@@ -24,6 +24,7 @@ public class GameData {
 	private List<Prop> props;           //道具集合
 	private List<Wall> walls;           //墙集合
 	private List<Boom> booms;           //爆炸集合
+	private GameHome gameHome;          //家
 	
 	public GameData() {
 		myTanks = new ArrayList<MyTank>();
@@ -32,7 +33,7 @@ public class GameData {
 		props = new ArrayList<Prop>();
 		walls = new ArrayList<Wall>();
 		booms = new ArrayList<Boom>();
-		
+		gameHome = new GameHome();
 	}
 	
 	public  List<Bullet> getBullets() {
@@ -81,5 +82,13 @@ public class GameData {
 
 	public void setBullets(List<Bullet> bullets) {
 		this.bullets = bullets;
+	}
+
+	public GameHome getGameHome() {
+		return gameHome;
+	}
+
+	public void setGameHome(GameHome gameHome) {
+		this.gameHome = gameHome;
 	}
 }

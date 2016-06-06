@@ -5,6 +5,7 @@ import java.util.List;
 import tankWarCongGou.entity.AITank;
 import tankWarCongGou.entity.Boom;
 import tankWarCongGou.entity.Bullet;
+import tankWarCongGou.entity.GameHome;
 import tankWarCongGou.entity.MyTank;
 import tankWarCongGou.entity.Prop;
 import tankWarCongGou.entity.Wall;
@@ -69,9 +70,9 @@ public class DataAdmin {
 		for (int i=0; i<getMyTanks().size(); i++) {
 			getMyTanks().get(i).setGameListener(listener);
 		}
-//		for (int i=0; i<getAITanks().size(); i++) {
-//			getAITanks().get(i).setGameListener(listener);
-//		}
+		for (int i=0; i<getAITanks().size(); i++) {
+			getAITanks().get(i).setGameListener(listener);
+		}
 	}
 
 	public void addBoom(Boom boom) {
@@ -102,6 +103,10 @@ public class DataAdmin {
     
     public List<Prop> getProps() {
     	return gameData.getProps();
+    }
+    
+    public GameHome getGameHome() {
+    	return gameData.getGameHome();
     }
 	
 }

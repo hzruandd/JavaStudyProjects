@@ -19,6 +19,10 @@ public class MyTank extends Tank {
 	 * 坦克的生命值
 	 */
 	private int life;
+	/**
+	 * 坦克最大生命值
+	 */
+	private final int MAX_LIFE = 3;
 	public MyTank(int x, int y) {
 		//super(listener);
 		//初始化坦克的初始位置
@@ -26,7 +30,7 @@ public class MyTank extends Tank {
 		setY(y);
 		setCamp(true);
 		setDir(Direction.Up);
-		life = 100;
+		life = MAX_LIFE;
 	}
 
 	//Image gameMenu= Toolkit.getDefaultToolkit().createImage("image/myTankUp.png");
@@ -62,7 +66,7 @@ public class MyTank extends Tank {
 			Color c = g.getColor();
 			g.setColor(Color.RED);
 			g.drawRect(getX()+5, getY()-10, getWIDTH()-10, 5);
-			int width = (getWIDTH()-10) * life /100;
+			int width = (getWIDTH()-10) * life /MAX_LIFE;
 			g.fillRect(getX()+5, getY()-10, width, 5);
 			g.setColor(c);
 		}
@@ -74,5 +78,9 @@ public class MyTank extends Tank {
 
 	public void setLife(int life) {
 		this.life = life;
+	}
+
+	public int getMAX_LIFE() {
+		return MAX_LIFE;
 	}
 }

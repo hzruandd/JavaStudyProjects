@@ -58,7 +58,7 @@ public class Boom {
 			step = 0;
 			return;
 		}
-		g.drawImage(imgs[step], x-imgs[0].getWidth(null)/2, y-imgs[0].getHeight(null)/2, null);
+		g.drawImage(imgs[step], x-imgs[step].getWidth(null)/2, y-imgs[step].getHeight(null)/2, null);
 		step ++;
 	}
 

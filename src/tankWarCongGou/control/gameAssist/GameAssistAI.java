@@ -1,5 +1,9 @@
 package tankWarCongGou.control.gameAssist;
 
+import java.util.List;
+
+import org.omg.Messaging.SyncScopeHelper;
+
 import tankWarCongGou.control.DataAdmin;
 import tankWarCongGou.control.GameListener;
 import tankWarCongGou.entity.AITank;
@@ -24,20 +28,19 @@ public class GameAssistAI extends Thread{
 	private final int AITankMaxValue = 6;
 	
 	public GameAssistAI(DataAdmin admin, GameFactory factory, GameListener listener) {
-		this.admin = admin;
 		this.factory = factory;
+		this.admin = admin;
 		this.listener = listener;
 	}
 	
 	public void run() {
 		try {
 			while (true) {
-				Thread.sleep(2000);
+				sleep(3000);
 				if (admin.getAITanks().size() <AITankMaxValue) {
 					AITank aiTank = factory.getAITank();
-					aiTank.setListener(listener);
-					//admin.getAITanks().add(aiTank);
-					admin.addAITank(aiTank);
+					aiTank.setGameListener(listener);
+					admin.getAITanks().add(aiTank);
 				}
 			}
 		} catch (InterruptedException e) {

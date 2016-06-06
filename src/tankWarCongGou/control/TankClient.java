@@ -35,6 +35,7 @@ public class TankClient {
 		admin = new DataAdmin();
 		gameFactory = new GameFactory();
 		admin.setMyTanks(gameFactory.getMyTanks(2));
+		admin.setAITanks(gameFactory.getAITanks(6));
 		admin.setWalls(gameFactory.getWalls(new GameMap()));
 	}
 	
@@ -45,11 +46,13 @@ public class TankClient {
 		listener = new GameListener(admin);
 //		keyMonitor = new KeyMonitor(admin);
 		gamePaint = new GamePaint(admin);
-		gameAssist = new GameAssistProp(admin);
-		//aiAssist = new GameAssistAI(admin, gameFactory, listener);
+		
 		admin.dataAddListener(listener);
-		//aiAssist.start();
+		gameAssist = new GameAssistProp(admin);
 		gameAssist.start();
+		
+		aiAssist = new GameAssistAI(admin, gameFactory, listener);
+		aiAssist.start();
 	}
 	
 	/**

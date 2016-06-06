@@ -94,7 +94,7 @@ public abstract  class Tank {
 		if (live) {
 			gameListener.fireAction(bulletX, bulletY, isCamp(), getDir(), this);
 		}
-		bulletMax -= 1;
+		bulletMax--;
 	}
 	
 	/**
@@ -233,9 +233,4 @@ public abstract  class Tank {
 	public void setGameListener(GameListener gameListener) {
 		this.gameListener = gameListener;
 	}
-
-//	public void setTankImage(Image tankImage) {
-//		this.tankImage = tankImage;
-//	}
-
 }

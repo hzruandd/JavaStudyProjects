@@ -23,8 +23,8 @@ public class Wall {
 	private int armor;
 	private Image image = Toolkit.getDefaultToolkit().getImage("image/wall.png");
 	Image[] images = {
-			Toolkit.getDefaultToolkit().getImage("image/wall.png"),
-		    Toolkit.getDefaultToolkit().getImage("image/wallWhite.png")
+			Toolkit.getDefaultToolkit().getImage("image/wall/wall.png"),
+		    Toolkit.getDefaultToolkit().getImage("image/wall/wallWhite.png")
 	};
 	public Wall() {
 		wallMark=0;      //墙默认为红墙

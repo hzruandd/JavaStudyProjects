@@ -17,12 +17,15 @@ public class GameAssistProp extends Thread {
 	public void run() {
 		while(true) {
 			try {
-				Thread.sleep(15000);
+				sleep(2000);
 				if (admin.getProps().size()==0) {
-					int x=400;
-					int y=400;
-					admin.addProp(new Prop(x, y, 0));
+					admin.getProps().add(new Prop(0));
+					sleep(10000);
 				}
+				if (admin.getProps().size() > 0) {
+					admin.getProps().clear();
+				}
+				
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

@@ -4,6 +4,7 @@ import java.util.List;
 
 import tankWarCongGou.entity.AITank;
 import tankWarCongGou.entity.Bullet;
+import tankWarCongGou.entity.GameHome;
 import tankWarCongGou.entity.MyTank;
 import tankWarCongGou.entity.Prop;
 import tankWarCongGou.entity.Wall;
@@ -20,6 +21,7 @@ public class ImpactDetection {
 	private List<Bullet> bullets;
 	private List<Wall> walls;
 	private List<Prop> props;
+	private GameHome home;
 	
 	public ImpactDetection(DataAdmin admin) {
 		this.admin = admin;
@@ -35,14 +37,19 @@ public class ImpactDetection {
 		bullets = admin.getBullets();
 		walls = admin.getWalls();
 		props = admin.getProps();
+		home = admin.getGameHome();
 	}
 	
+	/**
+	 * 碰撞检测方法集合
+	 */
 	public void impactCheck() {
 		bulletTOtank();
 		bulletTOWall();
 		tankTOWall();
 		tankTOProp();
 		bulletTObullet();
+		bulletTOhome();
 	}
 	
 	
@@ -82,7 +89,7 @@ public class ImpactDetection {
 					//检测是否发生碰撞
 					if (myTank.getRect().intersects(bullet.getRect())) {
 						
-						myTank.setLife(myTank.getLife() - 20);
+						myTank.setLife(myTank.getLife() - 1);
 						if (myTank.getLife() ==0) {
 							myTank.setLive(false);
 							myTanks.remove(myTank);
@@ -186,4 +193,18 @@ public class ImpactDetection {
 			}
 		}
 	}
+	/**
+	 * 子弹和老家间的碰撞检测
+	 */
+	public void bulletTOhome() {
+		for (int i=0; i<bullets.size(); i++) {
+			Bullet bullet = bullets.get(i);
+			if (bullet.getRect().intersects(home.getRect())) {
+				home.setLive(false);
+				bullet.bulletBoom();
+				bullets.remove(bullet);
+			}
+		}
+	}
+	
 }

@@ -20,11 +20,33 @@ public class AITank extends Tank {
 	//AI坦克每次移动步数的范围限制
 	private final int MINSTEP = 3;
 	private final int MAXSTEP = 20;
+	/**
+	 * 用来表示为何种AI坦克的标识
+	 */
+	private int symbol;
 	
-	private final Image up = Toolkit.getDefaultToolkit().createImage("image/aiTankUp.gif");
-	private final Image left = Toolkit.getDefaultToolkit().createImage("image/aiTankLeft.gif");
-	private final Image down = Toolkit.getDefaultToolkit().createImage("image/aiTankDown.gif");
-	private final Image right = Toolkit.getDefaultToolkit().createImage("image/aiTankRight.gif");
+	private final Image UP = Toolkit.getDefaultToolkit().createImage("image/aiTankUp.gif");
+	private final Image LEFT = Toolkit.getDefaultToolkit().createImage("image/aiTankLeft.gif");
+	private final Image DOWN = Toolkit.getDefaultToolkit().createImage("image/aiTankDown.gif");
+	private final Image RIGHT = Toolkit.getDefaultToolkit().createImage("image/aiTankRight.gif");
+	private final Image[][] imags = {
+			{Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTank1Up.gif"),
+				Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTank1Down.gif"),
+				Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTank1Left.gif"),
+				Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTank1Right.gif")
+			},
+			{Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTank2Up.gif"),
+				Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTank2Down.gif"),
+				Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTank2Left.gif"),
+				Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTank2Right.gif")
+			},
+			{Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTankRight.gif"),
+				Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTankRight.gif"),
+				Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTankRight.gif"),
+				Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTankRight.gif")
+			}
+	};
+	
 	public AITank() {
 		
 	}
@@ -36,6 +58,7 @@ public class AITank extends Tank {
 		setMotionStatus(true);
 		setDir(Direction.Down);
 		setSpeed(3);
+		symbol = random.nextInt(3);
 	}
 	
 	@Override
@@ -50,15 +73,15 @@ public class AITank extends Tank {
 	public Image selectImage(){
 		switch(getDir()) {
 		case Up: 
-			return up;
+			return UP;
 		case Down: 
-			return down;
+			return DOWN;
 		case Left: 
-			return left;
+			return LEFT;
 		case Right: 
-			return right;
+			return RIGHT;
 		default:
-			return up;
+			return UP;
 		}
 	}
 
@@ -86,12 +109,7 @@ public class AITank extends Tank {
 	 */
 	public void aiFire() {
 		if (random.nextInt(100) < 5) {
-			this.fire();
+			fire();
 		}
-	}
-
-
-	public void setListener(GameListener listener) {
-		this.listener = listener;
 	}
 }

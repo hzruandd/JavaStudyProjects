@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.util.Random;
 
 /**
  * 
@@ -17,15 +18,17 @@ public class Prop {
 	private int x;
 	private int y;
 	private int symbol;
+	private Random random = new Random();
 	
 	private Image[] images = {
 			Toolkit.getDefaultToolkit().createImage("image/prop/lifeProp.png"),
-			Toolkit.getDefaultToolkit().createImage("image/prop/wallProp.png")
+			Toolkit.getDefaultToolkit().createImage("image/prop/wallProp.png"),
+			Toolkit.getDefaultToolkit().createImage("image/prop/bombProp.png")
 	};
 	
-	public Prop(int x, int y, int symbol) {
-		this.x = x;
-		this.y = y;
+	public Prop(int symbol) {
+		x = random.nextInt(700) + 50;
+		y = random.nextInt(550) + 50;
 		this.symbol = symbol;
 	}
 	
@@ -35,7 +38,7 @@ public class Prop {
 	
 	public void function(MyTank myTank) {
 		if (symbol==0) {
-			myTank.setLife(100);
+			myTank.setLife(myTank.getMAX_LIFE());
 		}
 	}
 
