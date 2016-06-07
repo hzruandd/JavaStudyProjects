@@ -35,8 +35,8 @@ public class Prop {
 		this.admin = admin;
 		x = random.nextInt(700) + 50;
 		y = random.nextInt(550) + 50;
-		this.symbol = 1;
-//		this.symbol = random.nextInt(3);
+//		this.symbol = 1;
+		this.symbol = random.nextInt(3);
 	}
 	
 	public void draw(Graphics g) {
