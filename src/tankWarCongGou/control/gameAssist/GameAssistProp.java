@@ -15,8 +15,8 @@ public class GameAssistProp extends Thread {
 	}
 	
 	public void run() {
-		while(true) {
-			try {
+		try {
+			while(true) {
 				sleep(5000);
 				if (admin.getProps().size()==0) {
 					admin.getProps().add(new Prop(admin));
@@ -25,11 +25,13 @@ public class GameAssistProp extends Thread {
 				if (admin.getProps().size() > 0) {
 					admin.getProps().clear();
 				}
-				
-			} catch (InterruptedException e) {
-				e.printStackTrace();
 			}
+		} catch (InterruptedException e) {
+				e.printStackTrace();
 		}
 	}
-
+	
+	public void stopPropAssist() {
+		
+	}
 }

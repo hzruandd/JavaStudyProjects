@@ -10,6 +10,7 @@ import tankWarCongGou.entity.GameHome;
 import tankWarCongGou.entity.MyTank;
 import tankWarCongGou.entity.Prop;
 import tankWarCongGou.entity.Wall;
+import tankWarCongGou.entity.WallEffects;
 
 /**
  * 
@@ -25,6 +26,7 @@ public class GameData {
 	private List<Wall> walls;           //墙集合
 	private List<Boom> booms;           //爆炸集合
 	private GameHome gameHome;          //家
+	private WallEffects wallEffects;    //老家动画特效
 	
 	public GameData() {
 		myTanks = new ArrayList<MyTank>();
@@ -34,6 +36,11 @@ public class GameData {
 		walls = new ArrayList<Wall>();
 		booms = new ArrayList<Boom>();
 		gameHome = new GameHome();
+		wallEffects = new WallEffects();
+	}
+	
+	public WallEffects getWallEffects() {
+		return wallEffects;
 	}
 	
 	public  List<Bullet> getBullets() {

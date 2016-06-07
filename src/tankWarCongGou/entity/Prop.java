@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 import tankWarCongGou.control.DataAdmin;
+import tankWarCongGou.control.gameAssist.GameAssistStop;
 import tankWarCongGou.model.GameFactory;
 
 /**
@@ -28,15 +29,17 @@ public class Prop {
 	private Image[] images = {
 			Toolkit.getDefaultToolkit().createImage("image/prop/lifeProp.png"),
 			Toolkit.getDefaultToolkit().createImage("image/prop/wallProp.png"),
-			Toolkit.getDefaultToolkit().createImage("image/prop/bombProp.png")
+			Toolkit.getDefaultToolkit().createImage("image/prop/bombProp.png"),
+			Toolkit.getDefaultToolkit().createImage("image/prop/stopProp.png"),
+			Toolkit.getDefaultToolkit().createImage("image/prop/startProp.png")
 	};
 	
 	public Prop(DataAdmin admin) {
 		this.admin = admin;
 		x = random.nextInt(700) + 50;
 		y = random.nextInt(550) + 50;
-//		this.symbol = 1;
-		this.symbol = random.nextInt(3);
+		this.symbol = 4;
+//		this.symbol = random.nextInt(images.length);
 	}
 	
 	public void draw(Graphics g) {
@@ -44,28 +47,68 @@ public class Prop {
 	}
 	
 	public void function(MyTank myTank) {
-		if (symbol==0) {
-			myTank.setLife(myTank.getMAX_LIFE());
-		}
-		if (symbol==1) {
-			int[][] whiteHomeMap = new GameMap().getWhiteHomeMap();
-			List<Wall> wallList = new GameFactory().getWalls(whiteHomeMap);
-			admin.getWalls().addAll(wallList);
-		}
-		if (symbol ==2) {
-			/**
-			 * 所有ai坦克发生爆炸
-			 */
-			 for(int i=0; i<admin.getAITanks().size(); i++) {
-				 admin.getAITanks().get(i).boom();
-			 }
-			 /**
-			  * 清空所有ai坦克
-			  */
-			 admin.getAITanks().clear();
+		switch(symbol) {
+		case 0:
+			lifeFunction(myTank);
+			break;
+		case 1:
+			wallFunction();
+			break;
+		case 2:
+			boomFunction();
+			break;
+		case 3:
+			stopFunction();
+			break;
+		case 4:
+			starFunction(myTank);
+			break;
 		}
 	}
 
+	public void lifeFunction(MyTank myTank) {
+		myTank.setLife(myTank.getMAX_LIFE());
+	}
+	
+	public void wallFunction() {
+		int[][] whiteHomeMap = new GameMap().getWhiteHomeMap();
+		List<Wall> wallList = new GameFactory().getWalls(whiteHomeMap);
+		admin.getWalls().addAll(wallList);
+	}
+	
+	public void boomFunction() {
+		/**
+		 * 所有ai坦克发生爆炸
+		 */
+		 for(int i=0; i<admin.getAITanks().size(); i++) {
+			 admin.getAITanks().get(i).boom();
+		 }
+		 /**
+		  * 清空所有ai坦克
+		  */
+		 admin.getAITanks().clear();
+	}
+	
+	public void stopFunction() {
+		GameAssistStop stopGame = new GameAssistStop(admin, 1);
+		stopGame.start();
+	}
+	
+	public void starFunction(MyTank myTank) {
+		/**
+		 * 当坦克的移动速度为初始移动速度4时，提升移动速度
+		 * 再次获得start道具后，判断坦克的弹夹容量，如果为原弹夹数量1，则提升弹夹数量
+		 * 再次获得start道具后，判断坦克的子弹威力dps，如果为初始威力1，则提升子弹威力
+		 */
+		if (myTank.getSpeed() == 4) {
+			myTank.setSpeed(6);
+		} else if (myTank.getBulletMax() <= 1) {
+			myTank.setBulletMax(2);
+		} else if (myTank.getDps() == 1) {
+			myTank.setDps(2);
+		}
+	}
+	
 	public Rectangle getRect() {
 		return new Rectangle(x, y, WIDTH, HEIGHT);
 	}

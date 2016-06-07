@@ -10,7 +10,8 @@ import tankWarCongGou.entity.Bullet;
 import tankWarCongGou.entity.GameHome;
 import tankWarCongGou.entity.MyTank;
 import tankWarCongGou.entity.Prop;
-import tankWarCongGou.entity.Wall; 
+import tankWarCongGou.entity.Wall;
+import tankWarCongGou.entity.WallEffects; 
 /**
  * 画出游戏的各种对象，如坦克，子弹，爆炸、墙等
  */
@@ -23,8 +24,8 @@ public class GamePaint {
 	private List<Wall> walls;           //墙集合
 	private List<Boom> booms;           //爆炸集合
 	private GameHome home;              //家
-	
-	private ImpactDetection impact;
+	private WallEffects wallEffects;    //老家白墙切换到红墙特效
+	private ImpactDetection impact;     //碰撞检测
 	private DataAdmin admin;
 	
 	public GamePaint(DataAdmin admin) {
@@ -41,6 +42,7 @@ public class GamePaint {
 		drawBoom(g);
 		drawProp(g);
 		drawHome(g);
+		drawWallEffecits(g);
 		/**
 		 * 碰撞检测
 		 */
@@ -65,6 +67,7 @@ public class GamePaint {
 		walls = admin.getWalls();
 		props = admin.getProps();
 		home = admin.getGameHome();
+		wallEffects = admin.getWallEffects();
 	}
 	
 	private void drawTank(Graphics g) {
@@ -105,30 +108,8 @@ public class GamePaint {
 	private void drawHome(Graphics g) {
 		home.draw(g);
 	}
-
-
-//	public void setMyTanks(List<MyTank> myTanks) {
-//		this.myTanks = myTanks;
-//	}
-//
-//	public void setAiTanks(List<AITank> aiTanks) {
-//		this.aiTanks = aiTanks;
-//	}
-//
-//	public void setBullets(List<Bullet> bullets) {
-//		this.bullets = bullets;
-//	}
-//
-//	public void setProps(List<Prop> props) {
-//		this.props = props;
-//	}
-//
-//	public void setWalls(List<Wall> walls) {
-//		this.walls = walls;
-//	}
-//
-//	public void setBooms(List<Boom> booms) {
-//		this.booms = booms;
-//	}
 	
+	private void drawWallEffecits(Graphics g) {
+		wallEffects.draw(g);
+	}
 }

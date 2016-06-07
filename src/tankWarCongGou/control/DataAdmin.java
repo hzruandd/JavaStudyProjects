@@ -9,6 +9,7 @@ import tankWarCongGou.entity.GameHome;
 import tankWarCongGou.entity.MyTank;
 import tankWarCongGou.entity.Prop;
 import tankWarCongGou.entity.Wall;
+import tankWarCongGou.entity.WallEffects;
 import tankWarCongGou.model.GameData;
 /**
  * 
@@ -20,6 +21,10 @@ public class DataAdmin {
 	
 	public DataAdmin() {
 		gameData = new GameData();
+	}
+	
+	public WallEffects getWallEffects() {
+		return gameData.getWallEffects();
 	}
 	
 	public void addBullet(Bullet bullet) {

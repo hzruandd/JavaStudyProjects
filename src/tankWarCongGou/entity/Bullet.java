@@ -21,7 +21,7 @@ public class Bullet {
 	private final int HEIGHT = 10;
 	private boolean live;
 	private boolean camp;
-	private final int SPEED = 10;
+	private final int SPEED = 15;
 	private Direction dir;
 	/**
 	 * 记录子弹是哪个坦克发出的

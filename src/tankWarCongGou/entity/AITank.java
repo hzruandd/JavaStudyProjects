@@ -24,6 +24,10 @@ public class AITank extends Tank {
 	 * 用来表示为何种AI坦克的标识
 	 */
 	private int symbol;
+	/**
+	 * 表示AI坦克是否可以进行正常开火的标识
+	 */
+	private boolean stopStatus;
 	private final Image[][] images = {
 			{Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTank1Up.gif"),
 				Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTank1Down.gif"),
@@ -52,17 +56,41 @@ public class AITank extends Tank {
 		setCamp(false);
 		setMotionStatus(true);
 		setDir(Direction.Down);
-		setSpeed(3);
-		symbol = random.nextInt(3);
+		symbol = random.nextInt(images.length);
+		stopStatus = true;
+		dataInitBySymbol(symbol);
 	}
+	/**
+	 * 通过AI坦克的标识（所属种类），来对AI坦克的数据进行初始化
+	 * @param symbol
+	 */
+	public void dataInitBySymbol(int symbol) {
+		switch (symbol) {
+		case 0:
+			setSpeed(3);
+			break;
+		case 1:
+			setSpeed(1);
+			setBulletMax(2);
+			break;
+		case 2:
+			setSpeed(4);
+			break;
+		}
+	}
+	
 	
 	@Override
 	public void draw(Graphics g) {
-		
 		g.drawImage(selectImage(), getX(), getY(),  null);
-		move();
-		aiMove();
-		aiFire();
+		/**
+		 * 当坦克的移动开火状态为true时，AI坦克才可以移动和开火
+		 */
+		if (stopStatus) {
+			move();
+			aiMove();
+			aiFire();
+		}
 	}
 	
 	public Image selectImage(){
@@ -147,7 +175,7 @@ public class AITank extends Tank {
 				fire();
 			}
 		} else {
-			if (random.nextInt(100) < 5) {
+			if (random.nextInt(100) < 4) {
 				fire();
 			}
 		}
@@ -158,5 +186,11 @@ public class AITank extends Tank {
 	 */
 	public void boom() {
 		getGameListener().boomAction(getX(), getY());
+	}
+	public boolean isStopStatus() {
+		return stopStatus;
+	}
+	public void setStopStatus(boolean stopStatus) {
+		this.stopStatus = stopStatus;
 	}
 }

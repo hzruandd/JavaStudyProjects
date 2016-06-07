@@ -53,7 +53,26 @@ public class GameAssistWall extends Thread {
 						if (admin.getWalls().contains(homeWalls.get(i))) {
 							admin.getWalls().remove(homeWalls.get(i));						}
 					}
-					sleep(6000);
+					sleep(1000);
+					/**
+					 * 开启白墙和普通红墙间的切换特效
+					 */
+					int j=5;
+					while (true) {
+						admin.getWallEffects().setWall(true);
+						admin.getWallEffects().setWhiteWall(false);
+						sleep(180);
+						admin.getWallEffects().setWall(false);
+						admin.getWallEffects().setWhiteWall(true);
+						sleep(180);
+						if (j<0) {
+							break;
+						}
+						j--;
+					}
+					admin.getWallEffects().setWall(false);
+					admin.getWallEffects().setWhiteWall(false);
+					
 					/**
 					 * 清除老家中还存在的白色的墙
 					 */

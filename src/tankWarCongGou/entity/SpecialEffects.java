@@ -7,4 +7,8 @@ package tankWarCongGou.entity;
 public class SpecialEffects {
 	private int x;
 	private int y;
+	private int width;
+	private int height;
+	
+	
 }
