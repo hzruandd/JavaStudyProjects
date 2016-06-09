@@ -17,18 +17,19 @@ import tankWarCongGou.control.GameListener;
 public class Bullet {
 	private int x;
 	private int y;
-	private final int WIDTH = 10;
-	private final int HEIGHT = 10;
+	private final int WIDTH = 12;
+	private final int HEIGHT = 12;
 	private boolean live;
 	private boolean camp;
-	private final int SPEED = 15;
+	private final int SPEED = 12;
 	private Direction dir;
 	/**
 	 * 记录子弹是哪个坦克发出的
 	 */
 	private Tank ourTank;
 	private GameListener listener;
-	private Image redWall = Toolkit.getDefaultToolkit().getImage("image/bullet.png");
+	private Image bullet = Toolkit.getDefaultToolkit().getImage("image/bullet/bullet.png");
+	private Image superBullet = Toolkit.getDefaultToolkit().getImage("image/bullet/superBullet.png");
 	/**
 	 * 子弹的威力值
 	 */
@@ -66,8 +67,11 @@ public class Bullet {
 	public void draw(Graphics g) {
 		
 		if (!live) return;
-		
-		g.drawImage(redWall, getX(), getY(), WIDTH, HEIGHT, null);
+		if (dps == 1) {
+			g.drawImage(bullet, getX(), getY(), WIDTH, HEIGHT, null);
+		} else {
+			g.drawImage(superBullet, getX(), getY(), WIDTH, HEIGHT, null);
+		}
 		move();
 		overBorder();
 	}

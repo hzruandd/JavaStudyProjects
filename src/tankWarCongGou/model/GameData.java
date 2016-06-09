@@ -3,6 +3,7 @@ package tankWarCongGou.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import tankWarCongGou.entity.AICartoon;
 import tankWarCongGou.entity.AITank;
 import tankWarCongGou.entity.Boom;
 import tankWarCongGou.entity.Bullet;
@@ -27,6 +28,7 @@ public class GameData {
 	private List<Boom> booms;           //爆炸集合
 	private GameHome gameHome;          //家
 	private WallEffects wallEffects;    //老家动画特效
+	private AICartoon aiCartoon;        //AI坦克生成时动画
 	
 	public GameData() {
 		myTanks = new ArrayList<MyTank>();
@@ -37,7 +39,8 @@ public class GameData {
 		booms = new ArrayList<Boom>();
 		gameHome = new GameHome();
 		wallEffects = new WallEffects();
-	}
+		aiCartoon = new AICartoon();
+	} 
 	
 	public WallEffects getWallEffects() {
 		return wallEffects;
@@ -97,5 +100,13 @@ public class GameData {
 
 	public void setGameHome(GameHome gameHome) {
 		this.gameHome = gameHome;
+	}
+
+	public AICartoon getAiCartoon() {
+		return aiCartoon;
+	}
+
+	public void setAiCartoon(AICartoon aiCartoon) {
+		this.aiCartoon = aiCartoon;
 	}
 }

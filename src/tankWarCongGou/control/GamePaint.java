@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.List;
 
+import tankWarCongGou.entity.AICartoon;
 import tankWarCongGou.entity.AITank;
 import tankWarCongGou.entity.Boom;
 import tankWarCongGou.entity.Bullet;
@@ -25,6 +26,7 @@ public class GamePaint {
 	private List<Boom> booms;           //爆炸集合
 	private GameHome home;              //家
 	private WallEffects wallEffects;    //老家白墙切换到红墙特效
+	private AICartoon aiCartoon;        //aiTank生成时动画
 	private ImpactDetection impact;     //碰撞检测
 	private DataAdmin admin;
 	
@@ -35,14 +37,15 @@ public class GamePaint {
 	}
 	
 	public void draw(Graphics g) {
+		drawAICartoon(g);
 		drawTank(g);
 		drawBullet(g);
-		drawData(g);
 		drawWall(g);
 		drawBoom(g);
 		drawProp(g);
 		drawHome(g);
 		drawWallEffecits(g);
+		drawData(g);
 		/**
 		 * 碰撞检测
 		 */
@@ -68,6 +71,7 @@ public class GamePaint {
 		props = admin.getProps();
 		home = admin.getGameHome();
 		wallEffects = admin.getWallEffects();
+		aiCartoon = admin.getAICartoon();
 	}
 	
 	private void drawTank(Graphics g) {
@@ -111,5 +115,9 @@ public class GamePaint {
 	
 	private void drawWallEffecits(Graphics g) {
 		wallEffects.draw(g);
+	}
+	
+	private void drawAICartoon(Graphics g) {
+		aiCartoon.draw(g);
 	}
 }

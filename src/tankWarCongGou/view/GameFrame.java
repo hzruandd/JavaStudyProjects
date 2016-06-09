@@ -53,10 +53,4 @@ public class GameFrame extends JFrame {
 	public GamePanel getGamePanel() {
 		return gamePanel;
 	}
-
-//	public void setTankPanel(GamePanel gamePanel) {
-//		this.gamePanel = gamePanel;
-//	}
-	
-
 }

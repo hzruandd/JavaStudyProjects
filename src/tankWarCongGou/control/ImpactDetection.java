@@ -66,10 +66,13 @@ public class ImpactDetection {
 					if (aiTank.isCamp() == bullet.isCamp()) continue;
 					//检测是否发生碰撞
 					if (aiTank.getRect().intersects(bullet.getRect())) {
-						aiTank.setLive(false);
+						aiTank.setLife(aiTank.getLife() -bullet.getDps());
+						if (aiTank.getLife() <= 0) {
+							aiTank.setLive(false);
+							aiTanks.remove(aiTank);
+						}
 						bullet.setLive(false);
 						bullet.bulletBoom();
-						aiTanks.remove(aiTank);
 						bullets.remove(bullet);
 					}
 				}

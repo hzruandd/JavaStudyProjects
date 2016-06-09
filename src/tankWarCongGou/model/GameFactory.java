@@ -26,6 +26,11 @@ public class GameFactory {
 									{GamePanel.WIDTH/2 - Tank.WIDTH/2, 0},
 									{GamePanel.WIDTH - Tank.WIDTH*3/2, 0}};
 	/**
+	 * 代表AITank位置的标识符
+	 */
+	private int situationSymbol;
+	
+	/**
 	 * MyTank的两个初始位置
 	 */
 	private final int[][] myPosition = {{GamePanel.WIDTH/2- Tank.WIDTH*2, GamePanel.HEIGHT - Tank.HEIGHT},
@@ -61,6 +66,7 @@ public class GameFactory {
 		
 		for(int i=0; i<volume; i++) {
 			int j = random.nextInt(3);
+			situationSymbol = j;
 			int x = aiPosition[j][0];
 			int y = aiPosition[j][1];
 			AITank aiTank = new AITank(x, y);
@@ -70,7 +76,8 @@ public class GameFactory {
 	}
 	
 	public AITank getAITank() {
-		int j = random.nextInt(3);
+		int j = random.nextInt(aiPosition.length);
+		situationSymbol = j;
 		int x = aiPosition[j][0];
 		int y = aiPosition[j][1];
 		AITank aiTank = new AITank(x, y);
@@ -116,5 +123,9 @@ public class GameFactory {
 			wallList.add(wall);
 		}
 		return wallList;
+	}
+
+	public int getSituationSymbol() {
+		return situationSymbol;
 	}
 }

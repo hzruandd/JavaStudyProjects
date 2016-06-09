@@ -1,11 +1,8 @@
 package tankWarCongGou.control.gameAssist;
 
-import java.util.List;
-
-import org.omg.Messaging.SyncScopeHelper;
-
 import tankWarCongGou.control.DataAdmin;
 import tankWarCongGou.control.GameListener;
+import tankWarCongGou.control.GameRepaint;
 import tankWarCongGou.entity.AITank;
 import tankWarCongGou.model.GameFactory;
 
@@ -21,7 +18,7 @@ public class GameAssistAI extends Thread{
 	/**
 	 * AI坦克总数
 	 */
-	private final int AITankValue = 20;
+	private int aiTankValue = 10;
 	/**
 	 * AI坦克最大存在数量
 	 */
@@ -36,11 +33,30 @@ public class GameAssistAI extends Thread{
 	public void run() {
 		try {
 			while (true) {
-				sleep(3000);
+				if (aiTankValue == 0) {
+					GameRepaint.status = false;
+				}
+				sleep(2000);
 				if (admin.getAITanks().size() <AITankMaxValue) {
 					AITank aiTank = factory.getAITank();
 					aiTank.setGameListener(listener);
+					admin.getAICartoon().setSymbol(factory.getSituationSymbol());
+					/**
+					 * 开启AI坦克生成时动画
+					 */
+					admin.getAICartoon().setOpen(true);
+					int i = 4;
+					while(true) {
+						for(int j=1; j<=4; j++) {
+							admin.getAICartoon().setNumCartoon(j);
+							sleep(200);
+						}
+						i --;
+						if (i==0) break;
+					}
+					admin.getAICartoon().setOpen(false);
 					admin.getAITanks().add(aiTank);
+					aiTankValue --;
 				}
 			}
 		} catch (InterruptedException e) {

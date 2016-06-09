@@ -21,6 +21,10 @@ public class AITank extends Tank {
 	private final int MINSTEP = 3;
 	private final int MAXSTEP = 20;
 	/**
+	 * 坦克的生命值
+	 */
+	private int life;
+	/**
 	 * 用来表示为何种AI坦克的标识
 	 */
 	private int symbol;
@@ -67,14 +71,17 @@ public class AITank extends Tank {
 	public void dataInitBySymbol(int symbol) {
 		switch (symbol) {
 		case 0:
+			life = 2;
 			setSpeed(3);
 			break;
 		case 1:
+			life = 3;
 			setSpeed(1);
-			setBulletMax(2);
 			break;
 		case 2:
+			life = 1;
 			setSpeed(4);
+			setBulletMax(2);
 			break;
 		}
 	}
@@ -90,6 +97,9 @@ public class AITank extends Tank {
 			move();
 			aiMove();
 			aiFire();
+			if (symbol == 2) {
+				aiFire();
+			}
 		}
 	}
 	
@@ -192,5 +202,11 @@ public class AITank extends Tank {
 	}
 	public void setStopStatus(boolean stopStatus) {
 		this.stopStatus = stopStatus;
+	}
+	public int getLife() {
+		return life;
+	}
+	public void setLife(int life) {
+		this.life = life;
 	}
 }

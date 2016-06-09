@@ -49,12 +49,19 @@ public class TankClient {
 		gamePaint = new GamePaint(admin);
 		
 		admin.dataAddListener(listener);
+		/**
+		 * 开启自动生成道具的线程
+		 */
 		gameAssist = new GameAssistProp(admin);
 		gameAssist.start();
-		
+		/**
+		 * 开启自动生成AItank的线程
+		 */
 		aiAssist = new GameAssistAI(admin, gameFactory, listener);
 		aiAssist.start();
-		
+		/**
+		 * 开启检测老家白墙是否存在，并让白墙自动消失的线程
+		 */
 		wallAssist = new GameAssistWall(admin);
 		wallAssist.start();
 	}
@@ -68,6 +75,23 @@ public class TankClient {
 	
 	public static void main(String[] args) {
 		TankClient gameRun = new TankClient();
+		
+	}
+
+	public GameFrame getGameFrame() {
+		return gameFrame;
+	}
+
+	public DataAdmin getAdmin() {
+		return admin;
+	}
+
+	public void setGameFrame(GameFrame gameFrame) {
+		this.gameFrame = gameFrame;
+	}
+
+	public void setAdmin(DataAdmin admin) {
+		this.admin = admin;
 	}
 
 }

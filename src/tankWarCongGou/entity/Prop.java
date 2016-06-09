@@ -22,6 +22,14 @@ public class Prop {
 	private final int HEIGHT = 30;
 	private int x;
 	private int y;
+	/**
+	 * 道具的标识
+	 * 说明：   0 ：恢复坦克的生命值
+	 * 		 1： 给老家筑起白墙
+	 *       2： 杀死所有敌方坦克
+	 *       3： 停止所有敌方坦克
+	 *       4： 坦克捡一个该道具，增加移速，两个增加弹夹数量，三个增强子弹的威力
+	 */
 	private int symbol;
 	private Random random = new Random();
 	private DataAdmin admin;
@@ -38,8 +46,8 @@ public class Prop {
 		this.admin = admin;
 		x = random.nextInt(700) + 50;
 		y = random.nextInt(550) + 50;
-		this.symbol = 4;
 //		this.symbol = random.nextInt(images.length);
+		this.symbol = 4;
 	}
 	
 	public void draw(Graphics g) {
@@ -101,7 +109,7 @@ public class Prop {
 		 * 再次获得start道具后，判断坦克的子弹威力dps，如果为初始威力1，则提升子弹威力
 		 */
 		if (myTank.getSpeed() == 4) {
-			myTank.setSpeed(6);
+			myTank.setSpeed(5);
 		} else if (myTank.getBulletMax() <= 1) {
 			myTank.setBulletMax(2);
 		} else if (myTank.getDps() == 1) {

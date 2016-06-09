@@ -2,6 +2,7 @@ package tankWarCongGou.control;
 
 import java.util.List;
 
+import tankWarCongGou.entity.AICartoon;
 import tankWarCongGou.entity.AITank;
 import tankWarCongGou.entity.Boom;
 import tankWarCongGou.entity.Bullet;
@@ -116,6 +117,14 @@ public class DataAdmin {
     
     public GameHome getGameHome() {
     	return gameData.getGameHome();
+    }
+    
+    public AICartoon getAICartoon() {
+    	return gameData.getAiCartoon();
+    }
+    
+    public void setAICartoon(AICartoon aiCartoon) {
+    	gameData.setAiCartoon(aiCartoon);
     }
 	
 }
