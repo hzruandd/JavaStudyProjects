@@ -97,16 +97,16 @@ public class Wall {
 			armor = 0;
 			break;
 		case 1:
-			armor = 1;
+			armor = 2;
 			break;
 		case 2:
 			armor = 0;
 			break;
 		case 3:
-			armor = 1;
+			armor = 2;
 			break;
 		case 4:
-			armor = 1;
+			armor = 2;
 			break;
 		default:
 			armor = 0;

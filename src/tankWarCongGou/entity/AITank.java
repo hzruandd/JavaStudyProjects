@@ -77,6 +77,7 @@ public class AITank extends Tank {
 		case 1:
 			life = 3;
 			setSpeed(1);
+			setDps(2);
 			break;
 		case 2:
 			life = 1;

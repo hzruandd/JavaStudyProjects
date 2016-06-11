@@ -1,12 +1,10 @@
 package tankWarCongGou.entity;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 
-import tankWar.gameView.GamePanel;
 import tankWarCongGou.control.GameListener;
 
 /**
@@ -21,7 +19,7 @@ public class Bullet {
 	private final int HEIGHT = 12;
 	private boolean live;
 	private boolean camp;
-	private final int SPEED = 12;
+	private int speed = 8;
 	private Direction dir;
 	/**
 	 * 记录子弹是哪个坦克发出的
@@ -30,6 +28,7 @@ public class Bullet {
 	private GameListener listener;
 	private Image bullet = Toolkit.getDefaultToolkit().getImage("image/bullet/bullet.png");
 	private Image superBullet = Toolkit.getDefaultToolkit().getImage("image/bullet/superBullet.png");
+	private Image mediumBullet = Toolkit.getDefaultToolkit().getImage("image/bullet/mediumBullet.png");
 	/**
 	 * 子弹的威力值
 	 */
@@ -43,35 +42,46 @@ public class Bullet {
 		this.dir = dir;
 		this.ourTank = ourTank;
 		this.dps = dps;
+		speedInit(ourTank);
 	}
 	
 	public void move() {
 		if (live) {
 			switch(dir) {
 			case Up:
-				setY(y - SPEED);
+				setY(y - speed);
 				break;
 			case Right:
-				setX(x + SPEED);
+				setX(x + speed);
 				break;
 			case Down:
-				setY(y + SPEED);
+				setY(y + speed);
 				break;
 			case Left:
-				setX(x - SPEED);
+				setX(x - speed);
 				break;
 			}
 		}
 		
 	}
+	
+	public void speedInit(Tank tank) {
+		if (tank.isCamp()) {
+			speed = 12;
+		} 
+	}
+	
 	public void draw(Graphics g) {
 		
 		if (!live) return;
 		if (dps == 1) {
 			g.drawImage(bullet, getX(), getY(), WIDTH, HEIGHT, null);
-		} else {
+		} else if (dps ==2){
+			g.drawImage(mediumBullet, getX(), getY(), WIDTH, HEIGHT, null);
+		} else if (dps == 3) {
 			g.drawImage(superBullet, getX(), getY(), WIDTH, HEIGHT, null);
 		}
+		
 		move();
 		overBorder();
 	}
@@ -145,7 +155,7 @@ public class Bullet {
 	}
 
 	public int getSPEED() {
-		return SPEED;
+		return speed;
 	}
 
 	public int getDps() {

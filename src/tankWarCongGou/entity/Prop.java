@@ -46,8 +46,8 @@ public class Prop {
 		this.admin = admin;
 		x = random.nextInt(700) + 50;
 		y = random.nextInt(550) + 50;
-//		this.symbol = random.nextInt(images.length);
-		this.symbol = 4;
+		this.symbol = random.nextInt(images.length);
+//		this.symbol = 4;
 	}
 	
 	public void draw(Graphics g) {
@@ -113,7 +113,8 @@ public class Prop {
 		} else if (myTank.getBulletMax() <= 1) {
 			myTank.setBulletMax(2);
 		} else if (myTank.getDps() == 1) {
-			myTank.setDps(2);
+			myTank.setDps(3);
+			myTank.setBulletMax(1);
 		}
 	}
 	

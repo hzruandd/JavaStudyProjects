@@ -24,7 +24,7 @@ public class MyTank extends Tank {
 	/**
 	 * 坦克最大生命值
 	 */
-	private final int MAX_LIFE = 3;
+	private final int MAX_LIFE = 5;
 	public MyTank(int x, int y) {
 		//初始化坦克的初始位置
 		setX(x);

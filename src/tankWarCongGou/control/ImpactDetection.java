@@ -90,8 +90,8 @@ public class ImpactDetection {
 					//检测是否发生碰撞
 					if (myTank.getRect().intersects(bullet.getRect())) {
 						
-						myTank.setLife(myTank.getLife() - 1);
-						if (myTank.getLife() ==0) {
+						myTank.setLife(myTank.getLife() - bullet.getDps());
+						if (myTank.getLife() <=0) {
 							myTank.setLive(false);
 							myTanks.remove(myTank);
 						}

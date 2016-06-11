@@ -18,7 +18,7 @@ public class GameAssistAI extends Thread{
 	/**
 	 * AI坦克总数
 	 */
-	private int aiTankValue = 10;
+	private int aiTankValue = 20;
 	/**
 	 * AI坦克最大存在数量
 	 */

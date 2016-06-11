@@ -53,7 +53,7 @@ public class GameAssistWall extends Thread {
 						if (admin.getWalls().contains(homeWalls.get(i))) {
 							admin.getWalls().remove(homeWalls.get(i));						}
 					}
-					sleep(1000);
+					sleep(5000);
 					/**
 					 * 开启白墙和普通红墙间的切换特效
 					 */

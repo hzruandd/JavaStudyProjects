@@ -29,14 +29,20 @@ public class GamePaint {
 	private AICartoon aiCartoon;        //aiTank生成时动画
 	private ImpactDetection impact;     //碰撞检测
 	private DataAdmin admin;
+	/**
+	 * 游戏是否在进行的状态，true为游戏在进行，false游戏结束
+	 */
+	private boolean gameStatus;         
 	
 	public GamePaint(DataAdmin admin) {
 		this.admin = admin;
 		impact = new ImpactDetection(admin);
+		gameStatus = false;
 		dataInit();
 	}
 	
 	public void draw(Graphics g) {
+		if (gameStatus == false) return;
 		drawAICartoon(g);
 		drawTank(g);
 		drawBullet(g);
@@ -45,19 +51,19 @@ public class GamePaint {
 		drawProp(g);
 		drawHome(g);
 		drawWallEffecits(g);
-		drawData(g);
+//		drawData(g);
 		/**
 		 * 碰撞检测
 		 */
 		impact.impactCheck();
 	}
 	
-	public void drawData(Graphics g) {
-		Color c = g.getColor();
-		g.setColor(Color.WHITE);
-		g.drawString("子弹有：" + bullets.size() , 50, 50);
-		g.setColor(c);
-	}
+//	public void drawData(Graphics g) {
+//		Color c = g.getColor();
+//		g.setColor(Color.WHITE);
+//		g.drawString("子弹有：" + bullets.size() , 50, 50);
+//		g.setColor(c);
+//	}
 	
 	/**
 	 * 画图数据初始化
@@ -119,5 +125,13 @@ public class GamePaint {
 	
 	private void drawAICartoon(Graphics g) {
 		aiCartoon.draw(g);
+	}
+
+	public boolean isGameStatus() {
+		return gameStatus;
+	}
+
+	public void setGameStatus(boolean gameStatus) {
+		this.gameStatus = gameStatus;
 	}
 }
