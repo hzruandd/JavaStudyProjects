@@ -60,9 +60,7 @@ public class SetPanel extends JPanel{
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					// TODO 自动生成的方法存根
 					if(rankBlock == true){
-						
 						rankView = new RankView();
 						rankView.setVisible(true);
 						rankBlock = false;
