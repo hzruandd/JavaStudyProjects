@@ -1,9 +1,10 @@
-package tankWarCongGou.entity;
+package tankWarCongGou.cartoon;
 
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 
+import tankWarCongGou.dataEntity.GameHome;
 import tankWarCongGou.view.GamePanel;
 
 /**

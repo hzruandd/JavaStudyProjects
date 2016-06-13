@@ -1,27 +1,38 @@
-package tankWarCongGou.control;
+package tankWarCongGou.gameRun;
 
 import java.util.List;
 
-import tankWarCongGou.entity.AICartoon;
-import tankWarCongGou.entity.AITank;
-import tankWarCongGou.entity.Boom;
-import tankWarCongGou.entity.Bullet;
-import tankWarCongGou.entity.GameHome;
-import tankWarCongGou.entity.MyTank;
-import tankWarCongGou.entity.Prop;
-import tankWarCongGou.entity.Wall;
-import tankWarCongGou.entity.WallEffects;
+import tankWarCongGou.cartoon.AICartoon;
+import tankWarCongGou.cartoon.GameEnd;
+import tankWarCongGou.cartoon.WallEffects;
+import tankWarCongGou.dataEntity.AITank;
+import tankWarCongGou.dataEntity.Boom;
+import tankWarCongGou.dataEntity.Bullet;
+import tankWarCongGou.dataEntity.GameHome;
+import tankWarCongGou.dataEntity.GameMenu;
+import tankWarCongGou.dataEntity.MyTank;
+import tankWarCongGou.dataEntity.Prop;
+import tankWarCongGou.dataEntity.Wall;
 import tankWarCongGou.model.GameData;
 /**
  * 
  * @author Doctor邓
- * 用于对Model中的存放游戏数据的GameData实现增、删、改、查的工作。
+ * <p>用于对游戏中的存放统一管理。例如：添加AI坦克，添加爆炸对象</p>
  */
 public class DataAdmin {
 	private GameData gameData;
 	
 	public DataAdmin() {
 		gameData = new GameData();
+	}
+	
+	public void clear() {
+		gameData.getMyTanks().clear();
+		gameData.getAiTanks().clear();
+		gameData.getProps().clear();
+		gameData.getBullets().clear();
+		gameData.getWalls().clear();
+		gameData.getBooms().clear();
 	}
 	
 	public WallEffects getWallEffects() {
@@ -57,7 +68,7 @@ public class DataAdmin {
 	}
 	
 	public void setMyTanks(List<MyTank> myTanks) {
-		gameData.setMyTanks(myTanks);
+		gameData.getMyTanks().addAll(myTanks);
 	}
 	
 	public List<AITank> getAITanks() {
@@ -65,10 +76,12 @@ public class DataAdmin {
 	}
 	
 	public void setAITanks(List<AITank> aiTanks)  {
-		gameData.setAiTanks(aiTanks);
+		gameData.setEnemyNum(gameData.getEnemyNum() - aiTanks.size());
+		gameData.getAiTanks().addAll(aiTanks);
 	}
 	
 	public void addAITank(AITank aiTank) {
+		gameData.setEnemyNum(gameData.getEnemyNum() - 1);
 		gameData.getAiTanks().add(aiTank);
 	}
 	
@@ -104,7 +117,7 @@ public class DataAdmin {
 	}
 	
 	public void setWalls(List<Wall> walls) {
-		gameData.setWalls(walls);
+		gameData.getWalls().addAll(walls);
 	}
 	
     public void addProp(Prop prop) {
@@ -127,4 +140,27 @@ public class DataAdmin {
     	gameData.setAiCartoon(aiCartoon);
     }
 	
+    public GameMenu getGameMenu() {
+    	return gameData.getGameMenu();
+    }
+    
+    public int getScore() {
+		return gameData.getScore();
+	}
+
+	public void setScore(int score) {
+		gameData.setScore(score);
+	}
+
+	public int getEnemyNum() {
+		return gameData.getEnemyNum();
+	}
+
+	public void setEnemyNum(int enemyNum) {
+		gameData.setEnemyNum(enemyNum);
+	}
+	
+	public GameEnd getGameEnd() {
+		return gameData.getGameEnd();
+	}
 }

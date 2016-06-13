@@ -1,12 +1,12 @@
-package tankWarCongGou.control;
+package tankWarCongGou.gameRun;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import tankWarCongGou.entity.Boom;
-import tankWarCongGou.entity.Bullet;
-import tankWarCongGou.entity.Direction;
-import tankWarCongGou.entity.Tank;
+import tankWarCongGou.dataEntity.Boom;
+import tankWarCongGou.dataEntity.Bullet;
+import tankWarCongGou.dataEntity.Direction;
+import tankWarCongGou.dataEntity.Tank;
 import tankWarCongGou.model.KeyAction;
 
 /**
@@ -58,13 +58,11 @@ public class GameListener implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO 自动生成的方法存根
 		gameAction.keyPressed(e);
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO 自动生成的方法存根
 		gameAction.keyReleased(e);
 	}
 }

@@ -3,11 +3,8 @@ package tankWarCongGou.view;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
-import javax.xml.bind.Marshaller.Listener;
-
-import tankWarCongGou.control.GameListener;
-import tankWarCongGou.control.GamePaint;
-import tankWarCongGou.control.KeyMonitor;
+import tankWarCongGou.gameRun.GameListener;
+import tankWarCongGou.gameRun.GamePaint;
 /**
  * 
  * @author Doctor邓
@@ -15,6 +12,10 @@ import tankWarCongGou.control.KeyMonitor;
  */
 public class GameFrame extends JFrame {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3835947192949511757L;
 	public static final int GameHeight = 700;
 	public static final int GameWidth = 1100;
 	private final String GameName = "坦克大战";

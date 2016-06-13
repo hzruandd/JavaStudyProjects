@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import tankWarCongGou.entity.AITank;
-import tankWarCongGou.entity.GameMap;
-import tankWarCongGou.entity.MyTank;
-import tankWarCongGou.entity.Tank;
-import tankWarCongGou.entity.Wall;
+import tankWarCongGou.dataEntity.AITank;
+import tankWarCongGou.dataEntity.GameMap;
+import tankWarCongGou.dataEntity.MyTank;
+import tankWarCongGou.dataEntity.Tank;
+import tankWarCongGou.dataEntity.Wall;
 import tankWarCongGou.view.GamePanel;
 
 /**

@@ -1,11 +1,11 @@
-package tankWarCongGou.entity;
+package tankWarCongGou.dataEntity;
 
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 
-import tankWarCongGou.control.GameListener;
+import tankWarCongGou.gameRun.GameListener;
 
 /**
  * 
@@ -67,12 +67,11 @@ public class Bullet {
 	
 	public void speedInit(Tank tank) {
 		if (tank.isCamp()) {
-			speed = 12;
+			speed = 14;
 		} 
 	}
 	
 	public void draw(Graphics g) {
-		
 		if (!live) return;
 		if (dps == 1) {
 			g.drawImage(bullet, getX(), getY(), WIDTH, HEIGHT, null);

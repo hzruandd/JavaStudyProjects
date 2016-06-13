@@ -1,5 +1,5 @@
-package tankWarCongGou.control.gameAssist;
-import tankWarCongGou.control.DataAdmin;
+package tankWarCongGou.gameAssist;
+import tankWarCongGou.gameRun.DataAdmin;
 
 /**
  * 让游戏停止的线程

@@ -1,4 +1,4 @@
-package tankWarCongGou.entity;
+package tankWarCongGou.dataEntity;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -13,10 +13,10 @@ public class MyTank extends Tank {
 	/**
 	 * 坦克对应方向的图片
 	 */
-	Image up = Toolkit.getDefaultToolkit().createImage("image/myTankUp.gif");
-	Image down = Toolkit.getDefaultToolkit().createImage("image/myTankDown.gif");
-	Image left = Toolkit.getDefaultToolkit().createImage("image/myTankLeft.gif");
-	Image right = Toolkit.getDefaultToolkit().createImage("image/myTankRight.gif");
+	Image up = Toolkit.getDefaultToolkit().createImage("image/myTank/myTankUp.gif");
+	Image down = Toolkit.getDefaultToolkit().createImage("image/myTank/myTankDown.gif");
+	Image left = Toolkit.getDefaultToolkit().createImage("image/myTank/myTankLeft.gif");
+	Image right = Toolkit.getDefaultToolkit().createImage("image/myTank/myTankRight.gif");
 	/**
 	 * 坦克的生命值
 	 */

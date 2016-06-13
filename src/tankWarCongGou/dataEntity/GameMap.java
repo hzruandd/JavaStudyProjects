@@ -1,12 +1,9 @@
-package tankWarCongGou.entity;
+package tankWarCongGou.dataEntity;
 
 import tankWarCongGou.view.GamePanel;
 
 public class GameMap {
 
-	private int x;
-	private int y;
-	
 	/**
 	 * 定义的变量仅仅是为了方便代码书写的简洁
 	 */

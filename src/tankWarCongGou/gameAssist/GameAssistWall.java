@@ -1,9 +1,11 @@
-package tankWarCongGou.control.gameAssist;
+package tankWarCongGou.gameAssist;
 
 import java.util.List;
-import tankWarCongGou.control.DataAdmin;
-import tankWarCongGou.entity.GameMap;
-import tankWarCongGou.entity.Wall;
+
+import tankWarCongGou.dataEntity.GameMap;
+import tankWarCongGou.dataEntity.Wall;
+import tankWarCongGou.gameRun.DataAdmin;
+import tankWarCongGou.gameRun.TankClient;
 import tankWarCongGou.model.GameFactory;
 /**
  * 用于每隔一段时间就将老家的白墙转换为红墙
@@ -28,6 +30,11 @@ public class GameAssistWall extends Thread {
 	public void run() {
 		 try {
 			while(true) {
+				if (TankClient.gameStatus == false) {
+					sleep(200);
+					continue;
+				}
+				
 				sleep(2000);
 				/**
 				 * 用于判断老家的墙是否有白色的墙存在，默认为false，不存在

@@ -3,15 +3,17 @@ package tankWarCongGou.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import tankWarCongGou.entity.AICartoon;
-import tankWarCongGou.entity.AITank;
-import tankWarCongGou.entity.Boom;
-import tankWarCongGou.entity.Bullet;
-import tankWarCongGou.entity.GameHome;
-import tankWarCongGou.entity.MyTank;
-import tankWarCongGou.entity.Prop;
-import tankWarCongGou.entity.Wall;
-import tankWarCongGou.entity.WallEffects;
+import tankWarCongGou.cartoon.AICartoon;
+import tankWarCongGou.cartoon.GameEnd;
+import tankWarCongGou.cartoon.WallEffects;
+import tankWarCongGou.dataEntity.AITank;
+import tankWarCongGou.dataEntity.Boom;
+import tankWarCongGou.dataEntity.Bullet;
+import tankWarCongGou.dataEntity.GameHome;
+import tankWarCongGou.dataEntity.GameMenu;
+import tankWarCongGou.dataEntity.MyTank;
+import tankWarCongGou.dataEntity.Prop;
+import tankWarCongGou.dataEntity.Wall;
 
 /**
  * 
@@ -29,6 +31,10 @@ public class GameData {
 	private GameHome gameHome;          //家
 	private WallEffects wallEffects;    //老家动画特效
 	private AICartoon aiCartoon;        //AI坦克生成时动画
+	private GameMenu gameMenu;          //游戏菜单
+	private int score;                  //游戏分数
+	private int enemyNum;               //游戏剩余敌人数量
+	private GameEnd gameEnd;            //游戏结束类
 	
 	public GameData() {
 		myTanks = new ArrayList<MyTank>();
@@ -40,6 +46,10 @@ public class GameData {
 		gameHome = new GameHome();
 		wallEffects = new WallEffects();
 		aiCartoon = new AICartoon();
+		gameMenu = new GameMenu();
+		gameEnd = new GameEnd();
+		score = 0;
+		enemyNum = 3;
 	} 
 	
 	public WallEffects getWallEffects() {
@@ -108,5 +118,29 @@ public class GameData {
 
 	public void setAiCartoon(AICartoon aiCartoon) {
 		this.aiCartoon = aiCartoon;
+	}
+
+	public GameMenu getGameMenu() {
+		return gameMenu;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	public int getEnemyNum() {
+		return enemyNum;
+	}
+
+	public void setEnemyNum(int enemyNum) {
+		this.enemyNum = enemyNum;
+	}
+
+	public GameEnd getGameEnd() {
+		return gameEnd;
 	}
 }

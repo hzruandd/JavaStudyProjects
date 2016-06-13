@@ -2,15 +2,15 @@ package tankWarCongGou.view;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-
 import javax.swing.JPanel;
-
-import tankWarCongGou.control.GamePaint;
-import tankWarCongGou.control.GameRepaint;
+import tankWarCongGou.gameRun.GamePaint;
+import tankWarCongGou.gameRun.GameRepaint;
 
 public class GamePanel extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Panel坐标
 	 */

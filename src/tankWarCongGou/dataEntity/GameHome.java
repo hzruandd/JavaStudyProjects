@@ -1,4 +1,4 @@
-package tankWarCongGou.entity;
+package tankWarCongGou.dataEntity;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -18,8 +18,8 @@ public class GameHome {
 	public static final int WIDTH = 50;
 	public static final int HEIGHT = 50;
 	private boolean live;
-	private final Image LIVE = Toolkit.getDefaultToolkit().createImage("image/home/homeLive.png");
-	private final Image DEAD = Toolkit.getDefaultToolkit().createImage("image/home/homeDead.png");
+	private final Image LIVE = Toolkit.getDefaultToolkit().getImage("image/home/homeLive.png");
+	private final Image DEAD = Toolkit.getDefaultToolkit().getImage("image/home/homeDead.png");
 	
 	public GameHome() {
 		x = GamePanel.WIDTH/2 - WIDTH/2;

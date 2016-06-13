@@ -1,7 +1,8 @@
-package tankWarCongGou.control.gameAssist;
+package tankWarCongGou.gameAssist;
 
-import tankWarCongGou.control.DataAdmin;
-import tankWarCongGou.entity.Prop;
+import tankWarCongGou.dataEntity.Prop;
+import tankWarCongGou.gameRun.DataAdmin;
+import tankWarCongGou.gameRun.TankClient;
 /**
  * 游戏辅助工具类
  * @author Administrator
@@ -17,6 +18,11 @@ public class GameAssistProp extends Thread {
 	public void run() {
 		try {
 			while(true) {
+				if (TankClient.gameStatus == false) {
+					sleep(200);
+					continue;
+				}
+				
 				sleep(5000);
 				if (admin.getProps().size()==0) {
 					admin.getProps().add(new Prop(admin));

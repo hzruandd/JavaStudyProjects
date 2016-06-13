@@ -1,10 +1,9 @@
-package tankWarCongGou.entity;
+package tankWarCongGou.dataEntity;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Rectangle;
 
-import tankWarCongGou.control.GameListener;
+import tankWarCongGou.gameRun.GameListener;
 import tankWarCongGou.view.GamePanel;
 
 /**
@@ -41,10 +40,10 @@ public abstract  class Tank {
 	private int dps;
 	
 	//用于设置坦克具体方向的变量
-	private boolean up;
-	private boolean right;
-	private boolean down;
-	private boolean left;
+//	private boolean up;
+//	private boolean right;
+//	private boolean down;
+//	private boolean left;
 	
 	//坦克身上的监听器
 	private GameListener gameListener;
@@ -53,7 +52,7 @@ public abstract  class Tank {
 		this.speed = 4;
 		this.motionStatus = false;  
 		this.live = true;
-		up = true;
+//		up = true;
 		bulletMax = 1;  //默认只能同时打一发子弹
 		dps = 1;        //默认坦克子弹的威力只能打穿红墙
 	}

@@ -1,13 +1,13 @@
-package tankWarCongGou.control;
+package tankWarCongGou.gameRun;
 
 import java.util.List;
 
-import tankWarCongGou.entity.AITank;
-import tankWarCongGou.entity.Bullet;
-import tankWarCongGou.entity.GameHome;
-import tankWarCongGou.entity.MyTank;
-import tankWarCongGou.entity.Prop;
-import tankWarCongGou.entity.Wall;
+import tankWarCongGou.dataEntity.AITank;
+import tankWarCongGou.dataEntity.Bullet;
+import tankWarCongGou.dataEntity.GameHome;
+import tankWarCongGou.dataEntity.MyTank;
+import tankWarCongGou.dataEntity.Prop;
+import tankWarCongGou.dataEntity.Wall;
 
 /**
  * 
@@ -70,6 +70,14 @@ public class ImpactDetection {
 						if (aiTank.getLife() <= 0) {
 							aiTank.setLive(false);
 							aiTanks.remove(aiTank);
+							/*
+							 * 杀死ai坦克后增加玩家的游戏分数 
+							 */
+							admin.setScore(admin.getScore() + aiTank.getTankScore());
+//							/*
+//							 * 将坦克的剩余数量减去1 
+//							 */
+//							admin.setEnemyNum(admin.getEnemyNum() - 1);
 						}
 						bullet.setLive(false);
 						bullet.bulletBoom();

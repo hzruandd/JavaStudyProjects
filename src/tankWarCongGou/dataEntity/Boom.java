@@ -1,10 +1,10 @@
-package tankWarCongGou.entity;
+package tankWarCongGou.dataEntity;
 
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 
-import tankWarCongGou.control.GameListener;
+import tankWarCongGou.gameRun.GameListener;
 /**
  * 
  * @author Doctor邓

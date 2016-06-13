@@ -1,6 +1,5 @@
-package tankWarCongGou.entity;
+package tankWarCongGou.dataEntity;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -29,7 +28,6 @@ public class Wall {
 	 * 墙的护甲
 	 */
 	private int armor;
-	private Image image = Toolkit.getDefaultToolkit().getImage("image/wall.png");
 	Image[] images = {
 			Toolkit.getDefaultToolkit().getImage("image/wall/wall.png"),           //普通的红墙
 		    Toolkit.getDefaultToolkit().getImage("image/wall/wallWhite.png"),      //普通的白墙

@@ -1,4 +1,4 @@
-package tankWarCongGou.entity;
+package tankWarCongGou.dataEntity;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -7,8 +7,8 @@ import java.awt.Toolkit;
 import java.util.List;
 import java.util.Random;
 
-import tankWarCongGou.control.DataAdmin;
-import tankWarCongGou.control.gameAssist.GameAssistStop;
+import tankWarCongGou.gameAssist.GameAssistStop;
+import tankWarCongGou.gameRun.DataAdmin;
 import tankWarCongGou.model.GameFactory;
 
 /**
@@ -35,11 +35,11 @@ public class Prop {
 	private DataAdmin admin;
 	
 	private Image[] images = {
-			Toolkit.getDefaultToolkit().createImage("image/prop/lifeProp.png"),
-			Toolkit.getDefaultToolkit().createImage("image/prop/wallProp.png"),
-			Toolkit.getDefaultToolkit().createImage("image/prop/bombProp.png"),
-			Toolkit.getDefaultToolkit().createImage("image/prop/stopProp.png"),
-			Toolkit.getDefaultToolkit().createImage("image/prop/startProp.png")
+			Toolkit.getDefaultToolkit().getImage("image/prop/lifeProp.png"),
+			Toolkit.getDefaultToolkit().getImage("image/prop/wallProp.png"),
+			Toolkit.getDefaultToolkit().getImage("image/prop/bombProp.png"),
+			Toolkit.getDefaultToolkit().getImage("image/prop/stopProp.png"),
+			Toolkit.getDefaultToolkit().getImage("image/prop/startProp.png")
 	};
 	
 	public Prop(DataAdmin admin) {
@@ -119,7 +119,7 @@ public class Prop {
 	}
 	
 	public Rectangle getRect() {
-		return new Rectangle(x, y, WIDTH, HEIGHT);
+		return new Rectangle(x, y, WIDTH + 10, HEIGHT + 10);
 	}
 
 }

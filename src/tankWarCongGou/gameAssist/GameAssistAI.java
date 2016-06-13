@@ -1,9 +1,9 @@
-package tankWarCongGou.control.gameAssist;
+package tankWarCongGou.gameAssist;
 
-import tankWarCongGou.control.DataAdmin;
-import tankWarCongGou.control.GameListener;
-import tankWarCongGou.control.GameRepaint;
-import tankWarCongGou.entity.AITank;
+import tankWarCongGou.dataEntity.AITank;
+import tankWarCongGou.gameRun.DataAdmin;
+import tankWarCongGou.gameRun.GameListener;
+import tankWarCongGou.gameRun.TankClient;
 import tankWarCongGou.model.GameFactory;
 
 /**
@@ -15,10 +15,6 @@ public class GameAssistAI extends Thread{
 	private DataAdmin admin;
 	private GameFactory factory;
 	private GameListener listener;
-	/**
-	 * AI坦克总数
-	 */
-	private int aiTankValue = 20;
 	/**
 	 * AI坦克最大存在数量
 	 */
@@ -33,11 +29,12 @@ public class GameAssistAI extends Thread{
 	public void run() {
 		try {
 			while (true) {
-				if (aiTankValue == 0) {
-					GameRepaint.status = false;
+				if (TankClient.gameStatus == false) {
+					sleep(200);
+					continue;
 				}
-				sleep(2000);
-				if (admin.getAITanks().size() <AITankMaxValue) {
+				sleep(1000);
+				if (admin.getAITanks().size() <AITankMaxValue && admin.getEnemyNum() >0) {
 					AITank aiTank = factory.getAITank();
 					aiTank.setGameListener(listener);
 					admin.getAICartoon().setSymbol(factory.getSituationSymbol());
@@ -45,7 +42,7 @@ public class GameAssistAI extends Thread{
 					 * 开启AI坦克生成时动画
 					 */
 					admin.getAICartoon().setOpen(true);
-					int i = 4;
+					int i = 3;
 					while(true) {
 						for(int j=1; j<=4; j++) {
 							admin.getAICartoon().setNumCartoon(j);
@@ -55,8 +52,7 @@ public class GameAssistAI extends Thread{
 						if (i==0) break;
 					}
 					admin.getAICartoon().setOpen(false);
-					admin.getAITanks().add(aiTank);
-					aiTankValue --;
+					admin.addAITank(aiTank);
 				}
 			}
 		} catch (InterruptedException e) {

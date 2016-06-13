@@ -1,10 +1,9 @@
-package tankWarCongGou.control;
+package tankWarCongGou.gameRun;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import tankWarCongGou.model.KeyAction;
-import tankWarCongGou.model.GameData;
 
 /**
  * 键盘监听，获取用户输入，控制MyTank的方向
@@ -12,11 +11,9 @@ import tankWarCongGou.model.GameData;
  *
  */
 public class KeyMonitor extends KeyAdapter {
-	private DataAdmin admin;
 	private KeyAction gameAction;
 	
 	public KeyMonitor(DataAdmin admin) {
-		this.admin = admin;
 		gameAction = new KeyAction(admin);
 	}
 	

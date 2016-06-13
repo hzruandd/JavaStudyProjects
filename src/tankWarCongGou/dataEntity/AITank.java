@@ -1,14 +1,9 @@
-package tankWarCongGou.entity;
+package tankWarCongGou.dataEntity;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.Random;
-
-import javax.swing.ImageIcon;
-
-import tankWarCongGou.control.GameListener;
 import tankWarCongGou.view.GamePanel;
 
 public class AITank extends Tank {
@@ -32,6 +27,11 @@ public class AITank extends Tank {
 	 * 表示AI坦克是否可以进行正常开火的标识
 	 */
 	private boolean stopStatus;
+	/**
+	 * 每个AI坦克的分值 
+	 */
+	private int tankScore;
+	
 	private final Image[][] images = {
 			{Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTank1Up.gif"),
 				Toolkit.getDefaultToolkit().createImage("image/aiTank/aiTank1Down.gif"),
@@ -66,23 +66,26 @@ public class AITank extends Tank {
 	}
 	/**
 	 * 通过AI坦克的标识（所属种类），来对AI坦克的数据进行初始化
-	 * @param symbol
+	 * @param symbol  ai坦克的标识
 	 */
 	public void dataInitBySymbol(int symbol) {
 		switch (symbol) {
 		case 0:
 			life = 2;
 			setSpeed(3);
+			tankScore = 10;
 			break;
 		case 1:
 			life = 3;
 			setSpeed(1);
 			setDps(2);
+			tankScore = 20;
 			break;
 		case 2:
 			life = 1;
 			setSpeed(4);
 			setBulletMax(2);
+			tankScore = 15;
 			break;
 		}
 	}
@@ -123,7 +126,7 @@ public class AITank extends Tank {
 	 * 自动为坦克随机生成移动路径
 	 */
 	public void aiMove() {
-			Direction[] dirs = Direction.values();
+//			Direction[] dirs = Direction.values();
 			if (step == 0) {
 				step = random.nextInt(MAXSTEP - MINSTEP) + MINSTEP;
 				/**
@@ -143,7 +146,7 @@ public class AITank extends Tank {
 				if (getY() >= GamePanel.HEIGHT - 20 - GameHome.HEIGHT - 20) {
 					int j = getX() - GamePanel.WIDTH/2;
 					if (j <= 0) {
-						int m = random.nextInt(6);
+//						int m = random.nextInt(6);
 						if (i <3) {
 							setDir(Direction.Right);
 						} else if (i ==3) {
@@ -155,7 +158,7 @@ public class AITank extends Tank {
 						} 
 					}
 					if (j > 0) {
-						int m = random.nextInt(6);
+//						int m = random.nextInt(6);
 						if (i <3) {
 							setDir(Direction.Left);
 						} else if (i ==3) {
@@ -209,5 +212,8 @@ public class AITank extends Tank {
 	}
 	public void setLife(int life) {
 		this.life = life;
+	}
+	public int getTankScore() {
+		return tankScore;
 	}
 }

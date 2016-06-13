@@ -1,4 +1,4 @@
-package tankWarCongGou.control;
+package tankWarCongGou.gameRun;
 
 import javax.swing.JPanel;
 
@@ -9,12 +9,7 @@ import javax.swing.JPanel;
  */
 public class GameRepaint implements Runnable{
 	private JPanel gamePanel;
-	/**
-	 * 确定游戏是否进行的变量
-	 * true：游戏正在进行，false游戏暂停
-	 */
-	public static boolean status = true;
-	
+
 	public GameRepaint(JPanel gamePanel) {
 		this.gamePanel = gamePanel;
 	}
@@ -23,7 +18,10 @@ public class GameRepaint implements Runnable{
 	public void run() {
 		while(true) {
 			try {
-				if(!status) continue;
+				if(TankClient.stopStatus) {
+					Thread.sleep(200);					
+					continue;
+				}
 				gamePanel.repaint();
 				Thread.sleep(45);
 			} catch (InterruptedException e) {
